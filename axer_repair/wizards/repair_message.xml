@@ -1,0 +1,32 @@
+<!-- views/repair_message_wizard_view.xml -->
+<odoo>
+<record id="repair_message_wizard" model="ir.ui.view">
+<field name="name">Repair Message </field>
+<field name="model">repair.message.wizard</field>
+<field name="arch" type="xml">
+   <form string="Cancellation notes">
+        <group>
+             <field name="message" string="Why it is being cancelled"/>
+        </group>
+        <footer>
+            <button string="Confirm" type="object" name="action_save_message" class="btn-primary"/>
+            <button string="Cancel" class="btn-secondary" special="cancel"/>
+        </footer>
+    </form>
+    
+
+</field>
+</record>
+
+    <record id="repair_message_wizard_action" model="ir.actions.act_window">
+        <field name="name">Repair Message</field>
+        <!-- <field name="type">ir.actions.act_window</field> -->
+        <field name="res_model">repair.message.wizard</field>
+        <field name="view_mode">form</field>
+
+        <!-- <field name="view_id" ref="repair_message_wizard"/> -->
+        <field name="target">new</field>
+    </record>
+
+
+</odoo>

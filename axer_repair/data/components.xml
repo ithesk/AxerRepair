@@ -1,0 +1,994 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        
+        <!-- ========== PANTALLA Y DISPLAY ASSEMBLY ========== -->
+        <record id="component_display_assembly" model="repair.component">
+            <field name="name">Display Assembly Completo</field>
+            <field name="code">DISPLAY_ASSEMBLY</field>
+            <field name="category">hardware</field>
+            <field name="sequence">10</field>
+        </record>
+        
+        <record id="component_lcd_panel" model="repair.component">
+            <field name="name">Panel LCD/OLED</field>
+            <field name="code">LCD_PANEL</field>
+            <field name="category">hardware</field>
+            <field name="sequence">11</field>
+        </record>
+        
+        <record id="component_digitizer" model="repair.component">
+            <field name="name">Digitizer / Touch Layer</field>
+            <field name="code">DIGITIZER</field>
+            <field name="category">hardware</field>
+            <field name="sequence">12</field>
+        </record>
+        
+        <record id="component_front_glass" model="repair.component">
+            <field name="name">Cristal Frontal</field>
+            <field name="code">FRONT_GLASS</field>
+            <field name="category">hardware</field>
+            <field name="sequence">13</field>
+        </record>
+        
+        <record id="component_display_connector_j4" model="repair.component">
+            <field name="name">Display connector (J4)</field>
+            <field name="code">DISPLAY_CONNECTOR_J4</field>
+            <field name="category">hardware</field>
+            <field name="sequence">14</field>
+        </record>
+        
+        <record id="component_digitizer_connector_j3" model="repair.component">
+            <field name="name">Digitiser connector (J3)</field>
+            <field name="code">DIGITIZER_CONNECTOR_J3</field>
+            <field name="category">hardware</field>
+            <field name="sequence">15</field>
+        </record>
+        
+        <record id="component_backlight" model="repair.component">
+            <field name="name">Backlight</field>
+            <field name="code">BACKLIGHT</field>
+            <field name="category">hardware</field>
+            <field name="sequence">16</field>
+        </record>
+        
+        <record id="component_3d_touch_layer" model="repair.component">
+            <field name="name">Capa 3D Touch</field>
+            <field name="code">3D_TOUCH_LAYER</field>
+            <field name="category">hardware</field>
+            <field name="sequence">17</field>
+        </record>
+        
+        <record id="component_display_ic" model="repair.component">
+            <field name="name">IC de Display</field>
+            <field name="code">DISPLAY_IC</field>
+            <field name="category">hardware</field>
+            <field name="sequence">18</field>
+        </record>
+        
+        <!-- ========== LOGIC BOARD Y PROCESAMIENTO ========== -->
+        <record id="component_logic_board" model="repair.component">
+            <field name="name">Logic Board / Placa Base</field>
+            <field name="code">LOGIC_BOARD</field>
+            <field name="category">hardware</field>
+            <field name="sequence">20</field>
+        </record>
+        
+        <record id="component_a_series_cpu" model="repair.component">
+            <field name="name">Procesador A-Series (A14/A15/A16)</field>
+            <field name="code">A_SERIES_CPU</field>
+            <field name="category">hardware</field>
+            <field name="sequence">21</field>
+        </record>
+        
+        <record id="component_ram_memory" model="repair.component">
+            <field name="name">Memoria RAM</field>
+            <field name="code">RAM_MEMORY</field>
+            <field name="category">hardware</field>
+            <field name="sequence">22</field>
+        </record>
+        
+        <record id="component_nand_flash" model="repair.component">
+            <field name="name">Memoria NAND Flash</field>
+            <field name="code">NAND_FLASH</field>
+            <field name="category">hardware</field>
+            <field name="sequence">23</field>
+        </record>
+        
+        <record id="component_baseband_modem" model="repair.component">
+            <field name="name">Baseband / cellular modem</field>
+            <field name="code">BASEBAND_MODEM</field>
+            <field name="category">hardware</field>
+            <field name="sequence">24</field>
+        </record>
+        
+        <record id="component_pmic_main_u3" model="repair.component">
+            <field name="name">PMIC Principal (U3)</field>
+            <field name="code">PMIC_MAIN_U3</field>
+            <field name="category">hardware</field>
+            <field name="sequence">25</field>
+        </record>
+        
+        <record id="component_pmic_secondary" model="repair.component">
+            <field name="name">PMIC Secundario</field>
+            <field name="code">PMIC_SECONDARY</field>
+            <field name="category">hardware</field>
+            <field name="sequence">26</field>
+        </record>
+        
+        <record id="component_secure_enclave" model="repair.component">
+            <field name="name">Secure Enclave</field>
+            <field name="code">SECURE_ENCLAVE</field>
+            <field name="category">hardware</field>
+            <field name="sequence">27</field>
+        </record>
+        
+        <!-- ========== CARGA Y ALIMENTACIÓN ========== -->
+        <record id="component_lightning_connector" model="repair.component">
+            <field name="name">Conector Lightning</field>
+            <field name="code">LIGHTNING_CONNECTOR</field>
+            <field name="category">hardware</field>
+            <field name="sequence">30</field>
+        </record>
+        
+        <record id="component_dock_connector_assembly" model="repair.component">
+            <field name="name">Dock Connector Assembly</field>
+            <field name="code">DOCK_CONNECTOR_ASSEMBLY</field>
+            <field name="category">hardware</field>
+            <field name="sequence">31</field>
+        </record>
+        
+        <record id="component_charging_flex" model="repair.component">
+            <field name="name">Flex de Charging</field>
+            <field name="code">CHARGING_FLEX</field>
+            <field name="category">hardware</field>
+            <field name="sequence">32</field>
+        </record>
+        
+        <record id="component_tristar_u2" model="repair.component">
+            <field name="name">Tristar / charging IC (U2)</field>
+            <field name="code">TRISTAR_U2</field>
+            <field name="category">hardware</field>
+            <field name="sequence">33</field>
+        </record>
+        
+        <record id="component_hydra_u4500" model="repair.component">
+            <field name="name">Hydra / IC USB (U4500)</field>
+            <field name="code">HYDRA_U4500</field>
+            <field name="category">hardware</field>
+            <field name="sequence">34</field>
+        </record>
+        
+        <record id="component_battery_li_ion" model="repair.component">
+            <field name="name">Li-ion battery</field>
+            <field name="code">BATTERY_LI_ION</field>
+            <field name="category">hardware</field>
+            <field name="sequence">35</field>
+        </record>
+        
+        <record id="component_battery_connector_j7" model="repair.component">
+            <field name="name">Battery connector (J7)</field>
+            <field name="code">BATTERY_CONNECTOR_J7</field>
+            <field name="category">hardware</field>
+            <field name="sequence">36</field>
+        </record>
+        
+        <record id="component_wireless_charging_coil" model="repair.component">
+            <field name="name">Wireless charging coil</field>
+            <field name="code">WIRELESS_CHARGING_COIL</field>
+            <field name="category">hardware</field>
+            <field name="sequence">37</field>
+        </record>
+        
+        <record id="component_fuel_gauge" model="repair.component">
+            <field name="name">Fuel Gauge / Medidor Battery</field>
+            <field name="code">FUEL_GAUGE</field>
+            <field name="category">hardware</field>
+            <field name="sequence">38</field>
+        </record>
+        
+        <!-- ========== CÁMARAS Y ÓPTICA ========== -->
+        <record id="component_rear_camera_module" model="repair.component">
+            <field name="name">Main rear camera module</field>
+            <field name="code">REAR_CAMERA_MODULE</field>
+            <field name="category">hardware</field>
+            <field name="sequence">40</field>
+        </record>
+        
+        <record id="component_ultra_wide_camera" model="repair.component">
+            <field name="name">Ultra-wide camera</field>
+            <field name="code">ULTRA_WIDE_CAMERA</field>
+            <field name="category">hardware</field>
+            <field name="sequence">41</field>
+        </record>
+        
+        <record id="component_telephoto_camera" model="repair.component">
+            <field name="name">Telephoto camera</field>
+            <field name="code">TELEPHOTO_CAMERA</field>
+            <field name="category">hardware</field>
+            <field name="sequence">42</field>
+        </record>
+        
+        <record id="component_front_camera_module" model="repair.component">
+            <field name="name">Front camera module</field>
+            <field name="code">FRONT_CAMERA_MODULE</field>
+            <field name="category">hardware</field>
+            <field name="sequence">43</field>
+        </record>
+        
+        <record id="component_camera_sensor" model="repair.component">
+            <field name="name">Camera sensor</field>
+            <field name="code">CAMERA_SENSOR</field>
+            <field name="category">hardware</field>
+            <field name="sequence">44</field>
+        </record>
+        
+        <record id="component_ois_stabilizer" model="repair.component">
+            <field name="name">OIS / optical stabiliser</field>
+            <field name="code">OIS_STABILIZER</field>
+            <field name="category">hardware</field>
+            <field name="sequence">45</field>
+        </record>
+        
+        <record id="component_camera_lens" model="repair.component">
+            <field name="name">Camera lens</field>
+            <field name="code">CAMERA_LENS</field>
+            <field name="category">hardware</field>
+            <field name="sequence">46</field>
+        </record>
+        
+        <record id="component_camera_bracket" model="repair.component">
+            <field name="name">Camera bracket</field>
+            <field name="code">CAMERA_BRACKET</field>
+            <field name="category">hardware</field>
+            <field name="sequence">47</field>
+        </record>
+        
+        <record id="component_flash_led" model="repair.component">
+            <field name="name">Flash LED</field>
+            <field name="code">FLASH_LED</field>
+            <field name="category">hardware</field>
+            <field name="sequence">48</field>
+        </record>
+        
+        <record id="component_lidar_scanner" model="repair.component">
+            <field name="name">LiDAR Scanner</field>
+            <field name="code">LIDAR_SCANNER</field>
+            <field name="category">hardware</field>
+            <field name="sequence">49</field>
+        </record>
+        
+        <!-- ========== FACE ID Y TRUE DEPTH ========== -->
+        <record id="component_truedepth_camera" model="repair.component">
+            <field name="name">TrueDepth Camera System</field>
+            <field name="code">TRUEDEPTH_CAMERA</field>
+            <field name="category">hardware</field>
+            <field name="sequence">50</field>
+        </record>
+        
+        <record id="component_dot_projector" model="repair.component">
+            <field name="name">Dot Projector</field>
+            <field name="code">DOT_PROJECTOR</field>
+            <field name="category">hardware</field>
+            <field name="sequence">51</field>
+        </record>
+        
+        <record id="component_infrared_camera" model="repair.component">
+            <field name="name">Infrared camera</field>
+            <field name="code">INFRARED_CAMERA</field>
+            <field name="category">hardware</field>
+            <field name="sequence">52</field>
+        </record>
+        
+        <record id="component_flood_illuminator" model="repair.component">
+            <field name="name">Flood Illuminator</field>
+            <field name="code">FLOOD_ILLUMINATOR</field>
+            <field name="category">hardware</field>
+            <field name="sequence">53</field>
+        </record>
+        
+        <record id="component_proximity_sensor" model="repair.component">
+            <field name="name">Proximity sensor</field>
+            <field name="code">PROXIMITY_SENSOR</field>
+            <field name="category">hardware</field>
+            <field name="sequence">54</field>
+        </record>
+        
+        <record id="component_ambient_light_sensor" model="repair.component">
+            <field name="name">Ambient light sensor</field>
+            <field name="code">AMBIENT_LIGHT_SENSOR</field>
+            <field name="category">hardware</field>
+            <field name="sequence">55</field>
+        </record>
+        
+        <record id="component_front_mic_assembly" model="repair.component">
+            <field name="name">Front microphone assembly</field>
+            <field name="code">FRONT_MIC_ASSEMBLY</field>
+            <field name="category">hardware</field>
+            <field name="sequence">56</field>
+        </record>
+        
+        <!-- ========== AUDIO COMPLETO ========== -->
+        <record id="component_earpiece_speaker" model="repair.component">
+            <field name="name">Earpiece / Earpiece</field>
+            <field name="code">EARPIECE_SPEAKER</field>
+            <field name="category">hardware</field>
+            <field name="sequence">60</field>
+        </record>
+        
+        <record id="component_bottom_speaker" model="repair.component">
+            <field name="name">Speaker Inferior</field>
+            <field name="code">BOTTOM_SPEAKER</field>
+            <field name="category">hardware</field>
+            <field name="sequence">61</field>
+        </record>
+        
+        <record id="component_top_speaker" model="repair.component">
+            <field name="name">Speaker Superior</field>
+            <field name="code">TOP_SPEAKER</field>
+            <field name="category">hardware</field>
+            <field name="sequence">62</field>
+        </record>
+        
+        <record id="component_primary_microphone" model="repair.component">
+            <field name="name">Main microphone (bottom)</field>
+            <field name="code">PRIMARY_MICROPHONE</field>
+            <field name="category">hardware</field>
+            <field name="sequence">63</field>
+        </record>
+        
+        <record id="component_secondary_microphone" model="repair.component">
+            <field name="name">Secondary microphone (top)</field>
+            <field name="code">SECONDARY_MICROPHONE</field>
+            <field name="category">hardware</field>
+            <field name="sequence">64</field>
+        </record>
+        
+        <record id="component_rear_microphone" model="repair.component">
+            <field name="name">Rear microphone</field>
+            <field name="code">REAR_MICROPHONE</field>
+            <field name="category">hardware</field>
+            <field name="sequence">65</field>
+        </record>
+        
+        <record id="component_audio_codec" model="repair.component">
+            <field name="name">Audio Codec / IC Audio</field>
+            <field name="code">AUDIO_CODEC</field>
+            <field name="category">hardware</field>
+            <field name="sequence">66</field>
+        </record>
+        
+        <record id="component_amplifier_ic" model="repair.component">
+            <field name="name">Audio amplifier</field>
+            <field name="code">AMPLIFIER_IC</field>
+            <field name="category">hardware</field>
+            <field name="sequence">67</field>
+        </record>
+        
+        <record id="component_speaker_mesh" model="repair.component">
+            <field name="name">Speaker mesh</field>
+            <field name="code">SPEAKER_MESH</field>
+            <field name="category">hardware</field>
+            <field name="sequence">68</field>
+        </record>
+        
+        <!-- ========== BOTONES Y CONTROLES ========== -->
+        <record id="component_home_button_assembly" model="repair.component">
+            <field name="name">Home Button Assembly</field>
+            <field name="code">HOME_BUTTON_ASSEMBLY</field>
+            <field name="category">hardware</field>
+            <field name="sequence">70</field>
+        </record>
+        
+        <record id="component_touch_id_sensor" model="repair.component">
+            <field name="name">Touch ID Sensor</field>
+            <field name="code">TOUCH_ID_SENSOR</field>
+            <field name="category">hardware</field>
+            <field name="sequence">71</field>
+        </record>
+        
+        <record id="component_home_button_gasket" model="repair.component">
+            <field name="name">Home Button Gasket</field>
+            <field name="code">HOME_BUTTON_GASKET</field>
+            <field name="category">hardware</field>
+            <field name="sequence">72</field>
+        </record>
+        
+        <record id="component_power_sleep_button" model="repair.component">
+            <field name="name">Power/sleep button</field>
+            <field name="code">POWER_SLEEP_BUTTON</field>
+            <field name="category">hardware</field>
+            <field name="sequence">73</field>
+        </record>
+        
+        <record id="component_volume_up_button" model="repair.component">
+            <field name="name">Volume up button</field>
+            <field name="code">VOLUME_UP_BUTTON</field>
+            <field name="category">hardware</field>
+            <field name="sequence">74</field>
+        </record>
+        
+        <record id="component_volume_down_button" model="repair.component">
+            <field name="name">Volume down button</field>
+            <field name="code">VOLUME_DOWN_BUTTON</field>
+            <field name="category">hardware</field>
+            <field name="sequence">75</field>
+        </record>
+        
+        <record id="component_mute_switch" model="repair.component">
+            <field name="name">Mute switch</field>
+            <field name="code">MUTE_SWITCH</field>
+            <field name="category">hardware</field>
+            <field name="sequence">76</field>
+        </record>
+        
+        <record id="component_volume_flex_cable" model="repair.component">
+            <field name="name">Flex Cable de Volumen</field>
+            <field name="code">VOLUME_FLEX_CABLE</field>
+            <field name="category">hardware</field>
+            <field name="sequence">77</field>
+        </record>
+        
+        <record id="component_power_flex_cable" model="repair.component">
+            <field name="name">Flex Cable de Power</field>
+            <field name="code">POWER_FLEX_CABLE</field>
+            <field name="category">hardware</field>
+            <field name="sequence">78</field>
+        </record>
+        
+        <record id="component_button_brackets" model="repair.component">
+            <field name="name">Button brackets</field>
+            <field name="code">BUTTON_BRACKETS</field>
+            <field name="category">hardware</field>
+            <field name="sequence">79</field>
+        </record>
+        
+        <!-- ========== CONECTIVIDAD Y RF ========== -->
+        <record id="component_wifi_module" model="repair.component">
+            <field name="name">WiFi module</field>
+            <field name="code">WIFI_MODULE</field>
+            <field name="category">hardware</field>
+            <field name="sequence">80</field>
+        </record>
+        
+        <record id="component_bluetooth_module" model="repair.component">
+            <field name="name">Bluetooth module</field>
+            <field name="code">BLUETOOTH_MODULE</field>
+            <field name="category">hardware</field>
+            <field name="sequence">81</field>
+        </record>
+        
+        <record id="component_wifi_antenna_primary" model="repair.component">
+            <field name="name">Antena WiFi Principal</field>
+            <field name="code">WIFI_ANTENNA_PRIMARY</field>
+            <field name="category">hardware</field>
+            <field name="sequence">82</field>
+        </record>
+        
+        <record id="component_wifi_antenna_aux" model="repair.component">
+            <field name="name">Antena WiFi Auxiliar</field>
+            <field name="code">WIFI_ANTENNA_AUX</field>
+            <field name="category">hardware</field>
+            <field name="sequence">83</field>
+        </record>
+        
+        <record id="component_cellular_antenna_main" model="repair.component">
+            <field name="name">Antena Celular Principal</field>
+            <field name="code">CELLULAR_ANTENNA_MAIN</field>
+            <field name="category">hardware</field>
+            <field name="sequence">84</field>
+        </record>
+        
+        <record id="component_cellular_antenna_diversity" model="repair.component">
+            <field name="name">Antena Celular Diversity</field>
+            <field name="code">CELLULAR_ANTENNA_DIVERSITY</field>
+            <field name="category">hardware</field>
+            <field name="sequence">85</field>
+        </record>
+        
+        <record id="component_gps_antenna" model="repair.component">
+            <field name="name">Antena GPS</field>
+            <field name="code">GPS_ANTENNA</field>
+            <field name="category">hardware</field>
+            <field name="sequence">86</field>
+        </record>
+        
+        <record id="component_nfc_antenna" model="repair.component">
+            <field name="name">Antena NFC</field>
+            <field name="code">NFC_ANTENNA</field>
+            <field name="category">hardware</field>
+            <field name="sequence">87</field>
+        </record>
+        
+        <record id="component_antenna_feed" model="repair.component">
+            <field name="name">Feed de Antena</field>
+            <field name="code">ANTENNA_FEED</field>
+            <field name="category">hardware</field>
+            <field name="sequence">88</field>
+        </record>
+        
+        <record id="component_rf_shield" model="repair.component">
+            <field name="name">RF Shield / Blindaje</field>
+            <field name="code">RF_SHIELD</field>
+            <field name="category">hardware</field>
+            <field name="sequence">89</field>
+        </record>
+        
+        <!-- ========== SENSORES ========== -->
+        <record id="component_accelerometer" model="repair.component">
+            <field name="name">Accelerometer</field>
+            <field name="code">ACCELEROMETER</field>
+            <field name="category">hardware</field>
+            <field name="sequence">90</field>
+        </record>
+        
+        <record id="component_gyroscope" model="repair.component">
+            <field name="name">Giroscopio</field>
+            <field name="code">GYROSCOPE</field>
+            <field name="category">hardware</field>
+            <field name="sequence">91</field>
+        </record>
+        
+        <record id="component_magnetometer" model="repair.component">
+            <field name="name">Magnetometer / compass</field>
+            <field name="code">MAGNETOMETER</field>
+            <field name="category">hardware</field>
+            <field name="sequence">92</field>
+        </record>
+        
+        <record id="component_barometer" model="repair.component">
+            <field name="name">Barometer</field>
+            <field name="code">BAROMETER</field>
+            <field name="category">hardware</field>
+            <field name="sequence">93</field>
+        </record>
+        
+        <record id="component_hall_sensor" model="repair.component">
+            <field name="name">Hall Sensor</field>
+            <field name="code">HALL_SENSOR</field>
+            <field name="category">hardware</field>
+            <field name="sequence">94</field>
+        </record>
+        
+        <!-- ========== ESTRUCTURA Y CHASIS ========== -->
+        <record id="component_rear_housing" model="repair.component">
+            <field name="name">Carcasa Trasera</field>
+            <field name="code">REAR_HOUSING</field>
+            <field name="category">hardware</field>
+            <field name="sequence">100</field>
+        </record>
+        
+        <record id="component_midframe" model="repair.component">
+            <field name="name">Midframe / Marco Central</field>
+            <field name="code">MIDFRAME</field>
+            <field name="category">hardware</field>
+            <field name="sequence">101</field>
+        </record>
+        
+        <record id="component_sim_tray" model="repair.component">
+            <field name="name">Bandeja SIM</field>
+            <field name="code">SIM_TRAY</field>
+            <field name="category">hardware</field>
+            <field name="sequence">102</field>
+        </record>
+        
+        <record id="component_sim_reader" model="repair.component">
+            <field name="name">Lector SIM</field>
+            <field name="code">SIM_READER</field>
+            <field name="category">hardware</field>
+            <field name="sequence">103</field>
+        </record>
+        
+        <record id="component_camera_ring" model="repair.component">
+            <field name="name">Camera ring</field>
+            <field name="code">CAMERA_RING</field>
+            <field name="category">hardware</field>
+            <field name="sequence">104</field>
+        </record>
+        
+        <record id="component_camera_lens_cover" model="repair.component">
+            <field name="name">Camera glass</field>
+            <field name="code">CAMERA_LENS_COVER</field>
+            <field name="category">hardware</field>
+            <field name="sequence">105</field>
+        </record>
+        
+        <record id="component_flash_diffuser" model="repair.component">
+            <field name="name">Flash diffuser</field>
+            <field name="code">FLASH_DIFFUSER</field>
+            <field name="category">hardware</field>
+            <field name="sequence">106</field>
+        </record>
+        
+        <record id="component_gaskets" model="repair.component">
+            <field name="name">Gaskets / Sellos</field>
+            <field name="code">GASKETS</field>
+            <field name="category">hardware</field>
+            <field name="sequence">107</field>
+        </record>
+        
+        <record id="component_adhesive_strips" model="repair.component">
+            <field name="name">Cintas Adhesivas</field>
+            <field name="code">ADHESIVE_STRIPS</field>
+            <field name="category">hardware</field>
+            <field name="sequence">108</field>
+        </record>
+        
+        <!-- ========== TORNILLERÍA ========== -->
+        <record id="component_pentalobe_screws" model="repair.component">
+            <field name="name">Screws Pentalobe</field>
+            <field name="code">PENTALOBE_SCREWS</field>
+            <field name="category">hardware</field>
+            <field name="sequence">110</field>
+        </record>
+        
+        <record id="component_phillips_screws" model="repair.component">
+            <field name="name">Screws Phillips</field>
+            <field name="code">PHILLIPS_SCREWS</field>
+            <field name="category">hardware</field>
+            <field name="sequence">111</field>
+        </record>
+        
+        <record id="component_tri_point_screws" model="repair.component">
+            <field name="name">Screws Tri-point</field>
+            <field name="code">TRI_POINT_SCREWS</field>
+            <field name="category">hardware</field>
+            <field name="sequence">112</field>
+        </record>
+        
+        <record id="component_standoffs" model="repair.component">
+            <field name="name">Standoffs / Espaciadores</field>
+            <field name="code">STANDOFFS</field>
+            <field name="category">hardware</field>
+            <field name="sequence">113</field>
+        </record>
+        
+        <record id="component_brackets" model="repair.component">
+            <field name="name">Brackets / Soportes</field>
+            <field name="code">BRACKETS</field>
+            <field name="category">hardware</field>
+            <field name="sequence">114</field>
+        </record>
+        
+        <!-- ========== VIBRACIÓN Y HAPTIC ========== -->
+        <record id="component_taptic_engine" model="repair.component">
+            <field name="name">Taptic Engine</field>
+            <field name="code">TAPTIC_ENGINE</field>
+            <field name="category">hardware</field>
+            <field name="sequence">120</field>
+        </record>
+        
+        <record id="component_vibration_motor" model="repair.component">
+            <field name="name">Vibration motor</field>
+            <field name="code">VIBRATION_MOTOR</field>
+            <field name="category">hardware</field>
+            <field name="sequence">121</field>
+        </record>
+        
+        <!-- ========== FLEX CABLES Y CONECTORES ========== -->
+        <record id="component_main_flex_cable" model="repair.component">
+            <field name="name">Flex Cable Principal</field>
+            <field name="code">MAIN_FLEX_CABLE</field>
+            <field name="category">hardware</field>
+            <field name="sequence">130</field>
+        </record>
+        
+        <record id="component_interconnect_flex" model="repair.component">
+            <field name="name">Flex de Interconexión</field>
+            <field name="code">INTERCONNECT_FLEX</field>
+            <field name="category">hardware</field>
+            <field name="sequence">131</field>
+        </record>
+        
+        <record id="component_antenna_flex" model="repair.component">
+            <field name="name">Flex de Antena</field>
+            <field name="code">ANTENNA_FLEX</field>
+            <field name="category">hardware</field>
+            <field name="sequence">132</field>
+        </record>
+        
+        <record id="component_coaxial_cables" model="repair.component">
+            <field name="name">Cables Coaxiales</field>
+            <field name="code">COAXIAL_CABLES</field>
+            <field name="category">hardware</field>
+            <field name="sequence">133</field>
+        </record>
+        
+        <!-- ========== MANAGEMENT TÉRMICO ========== -->
+        <record id="component_thermal_pad" model="repair.component">
+            <field name="name">Thermal pad</field>
+            <field name="code">THERMAL_PAD</field>
+            <field name="category">hardware</field>
+            <field name="sequence">140</field>
+        </record>
+        
+        <record id="component_graphite_sheet" model="repair.component">
+            <field name="name">Graphite sheet</field>
+            <field name="code">GRAPHITE_SHEET</field>
+            <field name="category">hardware</field>
+            <field name="sequence">141</field>
+        </record>
+        
+        <record id="component_graphene_sheet" model="repair.component">
+            <field name="name">Graphene sheet</field>
+            <field name="code">GRAPHENE_SHEET</field>
+            <field name="category">hardware</field>
+            <field name="sequence">142</field>
+        </record>
+        
+        <record id="component_heat_spreader" model="repair.component">
+            <field name="name">Heat Spreader / Disipador</field>
+            <field name="code">HEAT_SPREADER</field>
+            <field name="category">hardware</field>
+            <field name="sequence">143</field>
+        </record>
+        
+        <record id="component_thermal_interface" model="repair.component">
+            <field name="name">Interfaz Térmica</field>
+            <field name="code">THERMAL_INTERFACE</field>
+            <field name="category">hardware</field>
+            <field name="sequence">144</field>
+        </record>
+        
+        <!-- ========== EMI SHIELDING ========== -->
+        <record id="component_emi_shield_main" model="repair.component">
+            <field name="name">EMI Shield Principal</field>
+            <field name="code">EMI_SHIELD_MAIN</field>
+            <field name="category">hardware</field>
+            <field name="sequence">150</field>
+        </record>
+        
+        <record id="component_emi_shield_secondary" model="repair.component">
+            <field name="name">EMI Shield Secundario</field>
+            <field name="code">EMI_SHIELD_SECONDARY</field>
+            <field name="category">hardware</field>
+            <field name="sequence">151</field>
+        </record>
+        
+        <record id="component_emi_shielding_film" model="repair.component">
+            <field name="name">Film de Blindaje EMI</field>
+            <field name="code">EMI_SHIELDING_FILM</field>
+            <field name="category">hardware</field>
+            <field name="sequence">152</field>
+        </record>
+        
+        <record id="component_metal_shield_can" model="repair.component">
+            <field name="name">Metal Shield Can</field>
+            <field name="code">METAL_SHIELD_CAN</field>
+            <field name="category">hardware</field>
+            <field name="sequence">153</field>
+        </record>
+        
+        <!-- ========== CRISTALES Y OSCILADORES ========== -->
+        <record id="component_main_crystal_26mhz" model="repair.component">
+            <field name="name">Cristal Principal 26MHz</field>
+            <field name="code">MAIN_CRYSTAL_26MHZ</field>
+            <field name="category">hardware</field>
+            <field name="sequence">160</field>
+        </record>
+        
+        <record id="component_secondary_crystal" model="repair.component">
+            <field name="name">Cristal Secundario</field>
+            <field name="code">SECONDARY_CRYSTAL</field>
+            <field name="category">hardware</field>
+            <field name="sequence">161</field>
+        </record>
+        
+        <record id="component_rtc_crystal" model="repair.component">
+            <field name="name">Cristal RTC (32.768kHz)</field>
+            <field name="code">RTC_CRYSTAL</field>
+            <field name="category">hardware</field>
+            <field name="sequence">162</field>
+        </record>
+        
+        <record id="component_clock_oscillator" model="repair.component">
+            <field name="name">Clock oscillator</field>
+            <field name="code">CLOCK_OSCILLATOR</field>
+            <field name="category">hardware</field>
+            <field name="sequence">163</field>
+        </record>
+        
+        <!-- ========== COMPONENTES MAGNÉTICOS ========== -->
+        <record id="component_magsafe_magnet_ring" model="repair.component">
+            <field name="name">MagSafe magnet ring</field>
+            <field name="code">MAGSAFE_MAGNET_RING</field>
+            <field name="category">hardware</field>
+            <field name="sequence">170</field>
+        </record>
+        
+        <record id="component_vertical_magnet_strip" model="repair.component">
+            <field name="name">Vertical magnet strip</field>
+            <field name="code">VERTICAL_MAGNET_STRIP</field>
+            <field name="category">hardware</field>
+            <field name="sequence">171</field>
+        </record>
+        
+        <record id="component_speaker_magnets" model="repair.component">
+            <field name="name">Imanes de Speaker</field>
+            <field name="code">SPEAKER_MAGNETS</field>
+            <field name="category">hardware</field>
+            <field name="sequence">172</field>
+        </record>
+        
+        <record id="component_camera_magnets" model="repair.component">
+            <field name="name">Imanes de Camera</field>
+            <field name="code">CAMERA_MAGNETS</field>
+            <field name="category">hardware</field>
+            <field name="sequence">173</field>
+        </record>
+        
+        <!-- ========== ICs DE GESTIÓN Y CONTROL ========== -->
+        <record id="component_power_management_ic_secondary" model="repair.component">
+            <field name="name">IC Gestión Energía Secundario</field>
+            <field name="code">POWER_MANAGEMENT_IC_SECONDARY</field>
+            <field name="category">hardware</field>
+            <field name="sequence">180</field>
+        </record>
+        
+        <record id="component_battery_management_ic" model="repair.component">
+            <field name="name">IC Gestión de Battery</field>
+            <field name="code">BATTERY_MANAGEMENT_IC</field>
+            <field name="category">hardware</field>
+            <field name="sequence">181</field>
+        </record>
+        
+        <record id="component_display_power_ic" model="repair.component">
+            <field name="name">IC Alimentación Display</field>
+            <field name="code">DISPLAY_POWER_IC</field>
+            <field name="category">hardware</field>
+            <field name="sequence">182</field>
+        </record>
+        
+        <record id="component_backlight_driver_ic" model="repair.component">
+            <field name="name">IC Driver Backlight</field>
+            <field name="code">BACKLIGHT_DRIVER_IC</field>
+            <field name="category">hardware</field>
+            <field name="sequence">183</field>
+        </record>
+        
+        <record id="component_camera_control_ic" model="repair.component">
+            <field name="name">IC Control de Camera</field>
+            <field name="code">CAMERA_CONTROL_IC</field>
+            <field name="category">hardware</field>
+            <field name="sequence">184</field>
+        </record>
+        
+        <record id="component_touch_controller_ic" model="repair.component">
+            <field name="name">IC Controlador Touch</field>
+            <field name="code">TOUCH_CONTROLLER_IC</field>
+            <field name="category">hardware</field>
+            <field name="sequence">185</field>
+        </record>
+        
+        <!-- ========== FILTROS Y COMPONENTES RF ========== -->
+        <record id="component_rx_filter" model="repair.component">
+            <field name="name">Filtro RX</field>
+            <field name="code">RX_FILTER</field>
+            <field name="category">hardware</field>
+            <field name="sequence">190</field>
+        </record>
+        
+        <record id="component_tx_filter" model="repair.component">
+            <field name="name">Filtro TX</field>
+            <field name="code">TX_FILTER</field>
+            <field name="category">hardware</field>
+            <field name="sequence">191</field>
+        </record>
+        
+        <record id="component_duplexer" model="repair.component">
+            <field name="name">Duplexer</field>
+            <field name="code">DUPLEXER</field>
+            <field name="category">hardware</field>
+            <field name="sequence">192</field>
+        </record>
+        
+        <record id="component_balun" model="repair.component">
+            <field name="name">Balun</field>
+            <field name="code">BALUN</field>
+            <field name="category">hardware</field>
+            <field name="sequence">193</field>
+        </record>
+        
+        <record id="component_rf_switch" model="repair.component">
+            <field name="name">Switch RF</field>
+            <field name="code">RF_SWITCH</field>
+            <field name="category">hardware</field>
+            <field name="sequence">194</field>
+        </record>
+        
+        <!-- ========== CONECTORES INTERNOS ========== -->
+        <record id="component_board_to_board_connector" model="repair.component">
+            <field name="name">Conector Board-to-Board</field>
+            <field name="code">BOARD_TO_BOARD_CONNECTOR</field>
+            <field name="category">hardware</field>
+            <field name="sequence">200</field>
+        </record>
+        
+        <record id="component_fpc_connector" model="repair.component">
+            <field name="name">Conector FPC</field>
+            <field name="code">FPC_CONNECTOR</field>
+            <field name="category">hardware</field>
+            <field name="sequence">201</field>
+        </record>
+        
+        <record id="component_antenna_connector" model="repair.component">
+            <field name="name">Antenna connector</field>
+            <field name="code">ANTENNA_CONNECTOR</field>
+            <field name="category">hardware</field>
+            <field name="sequence">202</field>
+        </record>
+        
+        <record id="component_test_points" model="repair.component">
+            <field name="name">Test points</field>
+            <field name="code">TEST_POINTS</field>
+            <field name="category">hardware</field>
+            <field name="sequence">203</field>
+        </record>
+        
+        <!-- ========== SOFTWARE ADICIONAL ========== -->
+        <record id="component_firmware_update" model="repair.component">
+            <field name="name">Firmware update</field>
+            <field name="code">FIRMWARE_UPDATE</field>
+            <field name="category">software</field>
+            <field name="sequence">300</field>
+        </record>
+        
+        <record id="component_baseband_firmware" model="repair.component">
+            <field name="name">Firmware Baseband</field>
+            <field name="code">BASEBAND_FIRMWARE</field>
+            <field name="category">software</field>
+            <field name="sequence">301</field>
+        </record>
+        
+        <record id="component_bootloader_repair" model="repair.component">
+            <field name="name">Bootloader repair</field>
+            <field name="code">BOOTLOADER_REPAIR</field>
+            <field name="category">software</field>
+            <field name="sequence">302</field>
+        </record>
+        
+        <record id="component_factory_reset" model="repair.component">
+            <field name="name">Factory Reset Completo</field>
+            <field name="code">FACTORY_RESET</field>
+            <field name="category">software</field>
+            <field name="sequence">303</field>
+        </record>
+        
+        <!-- ========== SERVICIOS ADICIONALES ========== -->
+        <record id="component_liquid_damage_cleaning" model="repair.component">
+            <field name="name">Liquid damage cleaning</field>
+            <field name="code">LIQUID_DAMAGE_CLEANING</field>
+            <field name="category">other</field>
+            <field name="sequence">400</field>
+        </record>
+        
+        <record id="component_ultrasonic_cleaning" model="repair.component">
+            <field name="name">Ultrasonic cleaning</field>
+            <field name="code">ULTRASONIC_CLEANING</field>
+            <field name="category">other</field>
+            <field name="sequence">401</field>
+        </record>
+        
+        <record id="component_reballing" model="repair.component">
+            <field name="name">IC reballing</field>
+            <field name="code">REBALLING</field>
+            <field name="category">other</field>
+            <field name="sequence">402</field>
+        </record>
+        
+        <record id="component_microsoldering" model="repair.component">
+            <field name="name">Microsoldadura</field>
+            <field name="code">MICROSOLDERING</field>
+            <field name="category">other</field>
+            <field name="sequence">403</field>
+        </record>
+        
+        <record id="component_board_level_repair" model="repair.component">
+            <field name="name">Board-level repair</field>
+            <field name="code">BOARD_LEVEL_REPAIR</field>
+            <field name="category">other</field>
+            <field name="sequence">404</field>
+        </record>
+        
+    </data>
+</odoo>

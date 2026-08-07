@@ -1,0 +1,989 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Template principal para visualizar las reparaciones masivas -->
+    <template id="bulk_repair_portal_template" name="Bulk repairs portal">
+        <t t-call="web.basic_layout">
+            <t t-set="title">My devices under repair</t>
+            <link rel="stylesheet" href="/axer_repair/static/css/bulk.css"/>
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"/>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+            <style>
+                /* Forzar ancho completo - override del layout de Odoo */
+                #wrapwrap, #wrapwrap > main, #wrapwrap > main > .container,
+                .o_action_manager, .o_action, .oe_website_login_container,
+                #wrap, #wrap > .container, #wrap > .container-fluid,
+                .oe_structure, .oe_structure > .container {
+                    max-width: 100% !important;
+                    width: 100% !important;
+                    padding-left: 0 !important;
+                    padding-right: 0 !important;
+                    margin: 0 !important;
+                }
+            </style>
+
+            <!-- Header principal con color de marca -->
+            <div style="background:linear-gradient(135deg,#1e3a5f 0%,#2563eb 100%);padding:1.2rem 0;">
+                <div class="container-fluid px-3 px-md-5">
+                    <div class="d-flex align-items-center justify-content-between flex-wrap gap-2">
+                        <div>
+                            <h4 class="fw-bold mb-0 text-white">Hola, <span t-field="partner.name"/></h4>
+                            <p class="mb-0" style="color:rgba(255,255,255,.75);font-size:.85rem;">
+                                <i class="fa fa-store me-1"></i><t t-out="branch_name"/> &#183; <t t-out="first_day"/>
+                            </p>
+                        </div>
+                        <div class="d-flex align-items-center gap-2">
+                            <img t-att-src="'/web/image/res.company/%s/logo' % company.id" alt="Logo" style="max-height:40px;filter:brightness(0) invert(1);" class="d-none d-md-block"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container-fluid px-3 px-md-5 mt-3 repair-portal-container">
+
+                <!-- 2. Dashboard resumen por estado -->
+                <div class="row g-2 mb-3">
+                    <div class="col-6 col-md-3">
+                        <div class="dash-card" style="border-left:4px solid #3b82f6;">
+                            <div class="dash-number" style="color:#3b82f6;"><t t-out="repair_count"/></div>
+                            <div class="dash-label">Total equipos</div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div class="dash-card" style="border-left:4px solid #f59e0b;">
+                            <div class="dash-number" style="color:#f59e0b;"><t t-out="active_count"/></div>
+                            <div class="dash-label">En proceso</div>
+                            <div class="dash-hint">Your device is being worked on</div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div class="dash-card" style="border-left:4px solid #8b5cf6;">
+                            <div class="dash-number" style="color:#8b5cf6;"><t t-out="pending_count"/></div>
+                            <div class="dash-label">Pendings</div>
+                            <div class="dash-hint">Waiting to be seen</div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div class="dash-card" style="border-left:4px solid #10b981;">
+                            <div class="dash-number" style="color:#10b981;"><t t-out="done_count"/></div>
+                            <div class="dash-label">Listos</div>
+                            <div class="dash-hint">Reparados o entregados</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. Tabla con filtros integrados en el header -->
+                <div class="card rounded-3 border-0 shadow-sm mb-4 overflow-hidden">
+                    <!-- Toolbar integrado -->
+                    <div class="table-toolbar">
+                        <div class="d-flex flex-wrap align-items-center gap-2">
+                            <div class="input-group" style="max-width:280px;">
+                                <span class="input-group-text bg-transparent border-end-0"><i class="fa fa-search text-muted small"></i></span>
+                                <input type="text" id="repairSearch" class="form-control form-control-sm border-start-0" placeholder="Buscar..."/>
+                            </div>
+                            <div class="vr d-none d-md-block"></div>
+                            <div class="d-flex flex-wrap gap-1" id="stateFilters">
+                                <button class="btn btn-sm filter-chip active" data-filter="all">Todos <span class="filter-count"><t t-out="repair_count"/></span></button>
+                                <t t-if="state_counts.get('draft', 0)"><button class="btn btn-sm filter-chip" data-filter="draft">Condition rating <span class="filter-count"><t t-out="state_counts.get('draft', 0)"/></span></button></t>
+                                <t t-if="state_counts.get('confirmed', 0)"><button class="btn btn-sm filter-chip" data-filter="confirmed">Confirmed <span class="filter-count"><t t-out="state_counts.get('confirmed', 0)"/></span></button></t>
+                                <t t-if="state_counts.get('under_repair', 0)"><button class="btn btn-sm filter-chip" data-filter="under_repair">Under repair <span class="filter-count"><t t-out="state_counts.get('under_repair', 0)"/></span></button></t>
+                                <t t-if="state_counts.get('test', 0)"><button class="btn btn-sm filter-chip" data-filter="test">En prueba <span class="filter-count"><t t-out="state_counts.get('test', 0)"/></span></button></t>
+                                <t t-if="state_counts.get('done', 0)"><button class="btn btn-sm filter-chip" data-filter="done">Reparado <span class="filter-count"><t t-out="state_counts.get('done', 0)"/></span></button></t>
+                                <t t-if="state_counts.get('handover', 0)"><button class="btn btn-sm filter-chip" data-filter="handover">Handed over <span class="filter-count"><t t-out="state_counts.get('handover', 0)"/></span></button></t>
+                            </div>
+                            <div class="ms-auto">
+                                <span class="text-muted small" id="resultCount"><t t-out="repair_count"/> equipos</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Desktop: Tabla -->
+                    <div class="table-responsive d-none d-md-block">
+                        <table class="table align-middle mb-0 repair-table" id="repairTable">
+                            <thead>
+                                <tr>
+                                    <th class="ps-4">Orden</th>
+                                    <th>Device</th>
+                                    <th>IMEI / SN</th>
+                                    <th>Problema</th>
+                                    <th class="text-center">State</th>
+                                    <th class="text-end pe-4"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="all_repairs" t-as="repair">
+                                    <tr class="repair-row" t-att-data-state="repair.get('state', '')"
+                                        t-att-data-search-text="(repair.get('name','') + ' ' + (repair.get('product_id') and repair['product_id'][1] or '') + ' ' + (repair.get('imei','') or repair.get('serial','') or '') + ' ' + (repair.get('description','') or '')).lower()">
+                                        <td class="ps-4">
+                                            <div class="fw-semibold" t-out="repair['name']"/>
+                                        </td>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <div class="repair-icon-box-sm me-2">
+                                                    <i t-if="repair.get('typerepair') == 'cell'" class="fa fa-mobile-alt"></i>
+                                                    <i t-elif="repair.get('typerepair') == 'tablet'" class="fa fa-tablet-alt"></i>
+                                                    <i t-elif="repair.get('typerepair') == 'smartwatch'" class="fa fa-watch"></i>
+                                                    <i t-else="" class="fa fa-microchip"></i>
+                                                </div>
+                                                <span t-if="repair.get('product_id')" t-out="repair['product_id'][1]"/>
+                                                <span t-else="" class="text-muted">Sin identificar</span>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <code class="small text-body-secondary" t-out="repair.get('imei') or repair.get('serial') or '—'"/>
+                                        </td>
+                                        <td>
+                                            <div class="small" t-out="repair.get('description') or 'Sin descripción'"/>
+                                        </td>
+                                        <td class="text-center">
+                                            <span t-if="repair.get('state') == 'draft'" class="status-pill st-draft"><i class="fa fa-circle me-1"></i>Condition rating</span>
+                                            <span t-elif="repair.get('state') == 'confirmed'" class="status-pill st-confirmed"><i class="fa fa-circle me-1"></i>Confirmed</span>
+                                            <span t-elif="repair.get('state') == 'under_repair'" class="status-pill st-repair"><i class="fa fa-circle me-1"></i>Under repair</span>
+                                            <span t-elif="repair.get('state') == 'test'" class="status-pill st-test"><i class="fa fa-circle me-1"></i>En prueba</span>
+                                            <span t-elif="repair.get('state') == 'done'" class="status-pill st-done"><i class="fa fa-circle me-1"></i>Reparado</span>
+                                            <span t-elif="repair.get('state') == 'handover'" class="status-pill st-handover"><i class="fa fa-circle me-1"></i>Handed over</span>
+                                            <span t-elif="repair.get('state') == 'cancel'" class="status-pill st-cancel"><i class="fa fa-circle me-1"></i>Cancelled</span>
+                                            <span t-else="" class="status-pill" t-out="repair.get('state')"/>
+                                        </td>
+                                        <td class="text-end pe-4">
+                                            <a t-att-href="'/repair/track/' + str(repair['id']) + '/' + str(repair.get('access_token', ''))" class="btn btn-sm btn-outline-primary rounded-pill">
+                                                Ver detalle <i class="fa fa-arrow-right ms-1"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Mobile: Cards -->
+                    <div class="d-md-none" id="repairCards">
+                        <t t-foreach="all_repairs" t-as="repair">
+                            <div class="repair-row mobile-card" t-att-data-state="repair.get('state', '')"
+                                 t-att-data-search-text="(repair.get('name','') + ' ' + (repair.get('product_id') and repair['product_id'][1] or '') + ' ' + (repair.get('imei','') or repair.get('serial','') or '') + ' ' + (repair.get('description','') or '')).lower()">
+                                <div class="d-flex justify-content-between align-items-start">
+                                    <div class="d-flex align-items-center">
+                                        <div class="repair-icon-box-sm me-2">
+                                            <i t-if="repair.get('typerepair') == 'cell'" class="fa fa-mobile-alt"></i>
+                                            <i t-elif="repair.get('typerepair') == 'tablet'" class="fa fa-tablet-alt"></i>
+                                            <i t-elif="repair.get('typerepair') == 'smartwatch'" class="fa fa-watch"></i>
+                                            <i t-else="" class="fa fa-microchip"></i>
+                                        </div>
+                                        <div>
+                                            <div class="fw-semibold small" t-out="repair['name']"/>
+                                            <div class="text-muted" style="font-size:0.75rem;">
+                                                <span t-if="repair.get('product_id')" t-out="repair['product_id'][1]"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <span t-if="repair.get('state') == 'draft'" class="status-pill st-draft"><i class="fa fa-circle me-1"></i>Condition rating</span>
+                                    <span t-elif="repair.get('state') == 'confirmed'" class="status-pill st-confirmed"><i class="fa fa-circle me-1"></i>Confirmed</span>
+                                    <span t-elif="repair.get('state') == 'under_repair'" class="status-pill st-repair"><i class="fa fa-circle me-1"></i>Under repair</span>
+                                    <span t-elif="repair.get('state') == 'test'" class="status-pill st-test"><i class="fa fa-circle me-1"></i>En prueba</span>
+                                    <span t-elif="repair.get('state') == 'done'" class="status-pill st-done"><i class="fa fa-circle me-1"></i>Reparado</span>
+                                    <span t-elif="repair.get('state') == 'handover'" class="status-pill st-handover"><i class="fa fa-circle me-1"></i>Handed over</span>
+                                    <span t-elif="repair.get('state') == 'cancel'" class="status-pill st-cancel"><i class="fa fa-circle me-1"></i>Cancelled</span>
+                                </div>
+                                <div class="mt-2 small text-muted" t-out="repair.get('description') or 'Sin descripción'"/>
+                                <a t-att-href="'/repair/track/' + str(repair['id']) + '/' + str(repair.get('access_token', ''))" class="btn btn-sm btn-outline-primary rounded-pill w-100 mt-2">
+                                    Ver detalle <i class="fa fa-arrow-right ms-1"></i>
+                                </a>
+                            </div>
+                        </t>
+                    </div>
+
+                    <!-- Sin resultados -->
+                    <div class="text-center py-5 d-none" id="noResults">
+                        <i class="fa fa-search fa-2x text-muted mb-2"></i>
+                        <p class="text-muted mb-0">No devices matched that search</p>
+                    </div>
+                </div>
+
+                <!-- 7. Footer: micro-copys tranquilizadores + contacto -->
+                <div class="row g-3 mb-4">
+                    <div class="col-md-8">
+                        <div class="d-flex flex-wrap gap-3">
+                            <div class="reassure-item">
+                                <i class="fa fa-shield-alt text-primary me-2"></i>
+                                <span class="small">Warranty on every repair</span>
+                            </div>
+                            <div class="reassure-item">
+                                <i class="fa fa-bell text-warning me-2"></i>
+                                <span class="small">Le notificaremos cada cambio por WhatsApp</span>
+                            </div>
+                            <div class="reassure-item">
+                                <i class="fa fa-lock text-success me-2"></i>
+                                <span class="small">Your data is protected</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 text-md-end">
+                        <a t-attf-href="https://api.whatsapp.com/send?phone=#{company.phone and company.phone.replace(' ', '').replace('-', '').replace('+', '')}&amp;text=Hola, necesito información sobre mis reparaciones" class="btn btn-sm btn-success rounded-pill me-2" target="_blank">
+                            <i class="fab fa-whatsapp me-1"></i> WhatsApp
+                        </a>
+                        <a t-attf-href="tel:#{company.phone}" class="btn btn-sm btn-outline-secondary rounded-pill">
+                            <i class="fa fa-phone me-1"></i> Llamar
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <style>
+                /* Dashboard cards */
+                .dash-card {
+                    background: #fff; border-radius: 10px; padding: 14px 16px;
+                    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+                }
+                .dash-number { font-size: 1.6rem; font-weight: 700; line-height: 1; }
+                .dash-label { font-size: 0.8rem; color: #64748b; font-weight: 500; margin-top: 2px; }
+                .dash-hint { font-size: 0.68rem; color: #94a3b8; margin-top: 2px; }
+
+                /* Toolbar */
+                .table-toolbar {
+                    padding: 10px 16px; background: #f8fafc;
+                    border-bottom: 1px solid #e2e8f0;
+                }
+
+                /* Filter chips */
+                .filter-chip {
+                    background: #fff; border: 1px solid #e2e8f0; color: #475569;
+                    border-radius: 6px; font-size: 0.75rem; padding: 4px 10px;
+                    font-weight: 500; transition: all 0.15s;
+                }
+                .filter-chip:hover { background: #f1f5f9; color: #1e293b; }
+                .filter-chip.active {
+                    background: #1e40af !important; color: #fff !important;
+                    border-color: #1e40af !important;
+                }
+                .filter-count {
+                    display: inline-flex; align-items: center; justify-content: center;
+                    background: rgba(0,0,0,0.1); border-radius: 4px; padding: 0 5px;
+                    font-size: 0.65rem; margin-left: 4px; min-width: 18px; height: 16px;
+                }
+                .filter-chip.active .filter-count { background: rgba(255,255,255,0.25); }
+
+                /* Icon box */
+                .repair-icon-box-sm {
+                    width: 30px; height: 30px; border-radius: 7px;
+                    background: #eff6ff; display: flex; align-items: center;
+                    justify-content: center; color: #3b82f6; font-size: 0.8rem; flex-shrink: 0;
+                }
+
+                /* Table */
+                .repair-table { border-collapse: separate; border-spacing: 0; width: 100%; }
+                .repair-table thead th {
+                    background: #f8fafc; color: #64748b; font-size: 0.7rem;
+                    font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em;
+                    padding: 10px 16px; border-bottom: 1px solid #e2e8f0;
+                    white-space: nowrap;
+                }
+                .repair-table tbody td { padding: 12px 16px; border-bottom: 1px solid #f1f5f9; }
+                .repair-table tbody tr { transition: background-color 0.12s; }
+                .repair-table tbody tr:hover { background-color: #f0f7ff; }
+                .repair-row.d-none { display: none !important; }
+
+                /* Status pills */
+                .status-pill {
+                    display: inline-flex; align-items: center; font-size: 0.7rem;
+                    font-weight: 600; padding: 3px 10px; border-radius: 20px;
+                    white-space: nowrap;
+                }
+                .status-pill .fa-circle { font-size: 0.4rem; }
+                .st-draft { background:#f1f5f9; color:#475569; }
+                .st-confirmed { background:#dbeafe; color:#1e40af; }
+                .st-repair { background:#fef3c7; color:#92400e; }
+                .st-test { background:#e0e7ff; color:#3730a3; }
+                .st-done { background:#d1fae5; color:#065f46; }
+                .st-handover { background:#d1fae5; color:#065f46; }
+                .st-cancel { background:#fee2e2; color:#991b1b; }
+
+                /* Mobile cards */
+                .mobile-card {
+                    padding: 12px 16px; border-bottom: 1px solid #f1f5f9;
+                }
+
+                /* Reassure items */
+                .reassure-item {
+                    display: inline-flex; align-items: center;
+                    background: #f8fafc; padding: 6px 12px; border-radius: 8px;
+                    border: 1px solid #f1f5f9;
+                }
+            </style>
+
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    var searchInput = document.getElementById('repairSearch');
+                    var filterBtns = document.querySelectorAll('.filter-chip');
+                    var tableRows = document.querySelectorAll('#repairTable .repair-row');
+                    var cardRows = document.querySelectorAll('#repairCards .repair-row');
+                    var noResults = document.getElementById('noResults');
+                    var resultCount = document.getElementById('resultCount');
+                    var activeFilter = 'all';
+
+                    function filterRow(row, query) {
+                        var matchState = (activeFilter === 'all') || (row.getAttribute('data-state') === activeFilter);
+                        var searchText = row.getAttribute('data-search-text') || '';
+                        var matchSearch = !query || searchText.indexOf(query) !== -1;
+                        var show = matchState &amp;&amp; matchSearch;
+                        row.classList.toggle('d-none', !show);
+                        return show;
+                    }
+
+                    function applyFilters() {
+                        var query = (searchInput.value || '').toLowerCase().trim();
+                        var visible = 0;
+                        tableRows.forEach(function(row) { if (filterRow(row, query)) visible++; });
+                        cardRows.forEach(function(row) { filterRow(row, query); });
+                        if (noResults) noResults.classList.toggle('d-none', visible > 0);
+                        if (resultCount) resultCount.textContent = visible + ' equipo' + (visible !== 1 ? 's' : '');
+                    }
+
+                    if (searchInput) searchInput.addEventListener('input', applyFilters);
+
+                    filterBtns.forEach(function(btn) {
+                        btn.addEventListener('click', function() {
+                            filterBtns.forEach(function(b) { b.classList.remove('active'); });
+                            btn.classList.add('active');
+                            activeFilter = btn.getAttribute('data-filter');
+                            applyFilters();
+                        });
+                    });
+                });
+            </script>
+        </t>
+    </template>
+
+    <!-- Template para el seguimiento individual de reparación -->
+    <template id="repair_track_template" name="Repair tracking">
+        <t t-call="web.basic_layout">
+            <t t-set="title">Repair tracking</t>
+            <link rel="stylesheet" href="/axer_repair/static/css/bulk.css"/>
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"/>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+            <style>
+                #wrapwrap, #wrapwrap > main, #wrapwrap > main > .container,
+                .o_action_manager, .o_action, .oe_website_login_container,
+                #wrap, #wrap > .container, #wrap > .container-fluid,
+                .oe_structure, .oe_structure > .container {
+                    max-width: 100% !important;
+                    width: 100% !important;
+                    padding-left: 0 !important;
+                    padding-right: 0 !important;
+                    margin: 0 !important;
+                }
+            </style>
+
+            <div class="container-fluid px-3 px-md-5 mt-4 repair-portal-container">
+                <!-- Botón de retroceso al listado -->
+                <t t-if="bulk_url">
+                    <a t-att-href="bulk_url" class="btn btn-outline-primary rounded-pill mb-3">
+                        <i class="fa fa-arrow-left me-2"></i> Back to the device list
+                    </a>
+                </t>
+
+                <!-- Cabecera con información de la reparación -->
+                <div class="card rounded-4 shadow-sm border-0 mb-4" data-animate="true">
+                    <div class="card-body p-0">
+                        <div class="row g-0">
+                            <div class="col-md-4 bg-primary text-white p-4 d-flex flex-column justify-content-center">
+                                <div class="opacity-75 mb-1">Repair order</div>
+                                <h1 class="display-6 fw-bold mb-3" t-field="repair.name"/>
+                                <div class="d-flex align-items-center">
+                                    <span class="badge bg-white text-primary me-2">State:</span>
+                                    <span t-if="repair.state == 'draft'" class="badge bg-secondary" data-repair-status="draft">Condition rating</span>
+                                    <span t-elif="repair.state == 'confirmed'" class="badge bg-info" data-repair-status="confirmed">Confirmed</span>
+                                    <span t-elif="repair.state == 'under_repair'" class="badge bg-warning" data-repair-status="under_repair">Under repair</span>
+                                    <span t-elif="repair.state == 'test'" class="badge bg-primary" data-repair-status="test">En prueba</span>
+                                    <span t-elif="repair.state == 'done'" class="badge bg-success" data-repair-status="done">Reparado</span>
+                                    <span t-elif="repair.state == 'handover'" class="badge bg-success" data-repair-status="handover">Handed over</span>
+                                    <span t-elif="repair.state == 'cancel'" class="badge bg-danger" data-repair-status="cancel">Cancelled</span>
+                                    <span t-else="" class="badge bg-secondary" t-out="repair.state"/>
+                                </div>
+                            </div>
+                            <div class="col-md-8 p-4">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="d-flex align-items-center mb-3">
+                                            <i class="fa fa-mobile-alt fs-4 me-3 text-primary"></i>
+                                            <div>
+                                                <div class="text-muted small">Device</div>
+                                                <div class="fs-5 fw-bold" t-field="repair.product_id.name"/>
+                                                <div class="small text-muted" t-if="repair.imei">
+                                                    IMEI: <t t-out="repair.imei"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="d-flex align-items-center mb-3">
+                                            <i class="fa fa-tools fs-4 me-3 text-primary"></i>
+                                            <div>
+                                                <div class="text-muted small">Problema</div>
+                                                <div class="fs-5 fw-bold" t-field="repair.description"/>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="d-flex align-items-center mb-3">
+                                            <i class="fa fa-calendar-alt fs-4 me-3 text-primary"></i>
+                                            <div>
+                                                <div class="text-muted small">Creation date</div>
+                                                <div class="fs-5 fw-bold" t-field="repair.create_date" t-options="{'widget': 'datetime'}"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="d-flex align-items-center mb-3">
+                                            <i class="fa fa-user fs-4 me-3 text-primary"></i>
+                                            <div>
+                                                <div class="text-muted small">Customer</div>
+                                                <div class="fs-5 fw-bold" t-field="repair.partner_id.name"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Barra de progreso -->
+                                <div class="progress-container">
+                                    <div class="progress-labels">
+                                        <span class="progress-label">Repair progress</span>
+                                        <span class="progress-value"><t t-out="progress_percentage"/>%</span>
+                                    </div>
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" t-att-style="'width: ' + str(progress_percentage) + '%'" 
+                                             t-att-aria-valuenow="progress_percentage" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Detalles de la reparación -->
+                <div class="row g-4 mb-4">
+                    <!-- Columna izquierda: Línea de tiempo -->
+                    <div class="col-lg-7">
+                        <div class="card rounded-4 border-0 shadow-sm h-100" data-animate="true">
+                            <div class="card-header bg-white border-0 py-3">
+                                <h4 class="mb-0">
+                                    <i class="fa fa-history text-primary me-2"></i>
+                                    Tracking
+                                </h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="timeline position-relative px-3">
+                                    <!-- Línea vertical -->
+                                    <div class="timeline-line"></div>
+                                    
+                                    <!-- Eventos del historial -->
+                                    <t t-foreach="history" t-as="event">
+                                        <div t-attf-class="timeline-item mb-4 position-relative #{'' if event['active'] else 'inactive'}">
+                                            <div t-attf-class="timeline-icon rounded-circle d-flex align-items-center justify-content-center bg-#{event['color'] if event['active'] else 'gray-200'}">
+                                                <i t-attf-class="fa fa-#{event['icon']} #{'' if event['active'] else 'text-gray-500'}"></i>
+                                            </div>
+                                            <div class="timeline-content ps-4 ms-3">
+                                                <div class="d-flex justify-content-between">
+                                                    <h5 t-attf-class="mb-1 #{'' if event['active'] else 'text-muted'}">
+                                                        <t t-out="event['name']"/>
+                                                    </h5>
+                                                    <span t-if="event['date']" class="small text-muted">
+                                                        <t t-out="event['formatted_date']"/>
+                                                    </span>
+                                                </div>
+                                                <p t-attf-class="mb-0 #{'' if event['active'] else 'text-muted'}">
+                                                    <t t-out="event['description']"/>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </t>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Columna derecha: Detalles técnicos y acciones -->
+                    <div class="col-lg-5">
+                        <div class="card rounded-4 border-0 shadow-sm mb-4" data-animate="true">
+                            <div class="card-header bg-white border-0 py-3">
+                                <h4 class="mb-0">
+                                    <i class="fa fa-clipboard-list text-primary me-2"></i>
+                                    Detalles Technicians
+                                </h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <div class="text-muted small">Device type</div>
+                                        <div class="fw-bold">
+                                            <t t-if="repair.typerepair == 'cell'">Celular</t>
+                                            <t t-elif="repair.typerepair == 'tablet'">Tablet</t>
+                                            <t t-elif="repair.typerepair == 'smartwatch'">SmartWatch</t>
+                                            <t t-else="">Otro</t>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <div class="text-muted small">Branch</div>
+                                        <div class="fw-bold" t-field="repair.branch_id.name"/>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <div class="text-muted small">Battery</div>
+                                        <div class="fw-bold">
+                                            <t t-out="repair.battery"/>%
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <div class="text-muted small">Warranty</div>
+                                        <div class="fw-bold" t-if="repair.guarantee_limit" t-field="repair.guarantee_limit"/>
+                                        <div class="fw-bold" t-else="">No disponible</div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Quotation estimado -->
+                                <div class="budget-card mb-4" t-if="repair.estimated_budget is not None and repair.estimated_budget is not False">
+                                    <div class="d-flex align-items-center justify-content-between p-3 rounded-3" style="background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%); border-left: 4px solid #2e7d32;">
+                                        <div>
+                                            <div class="text-muted small mb-1"><i class="fa fa-money-bill-wave me-1"></i> Estimated quotation</div>
+                                            <div class="fs-3 fw-bold" style="color: #2e7d32;">
+                                                $<t t-out="'{:,.2f}'.format(repair.estimated_budget)"/>
+                                                <span class="fs-6 text-muted" t-if="repair.currency_id" t-out="repair.currency_id.name"/>
+                                            </div>
+                                        </div>
+                                        <i class="fa fa-receipt fa-2x" style="color: #a5d6a7;"></i>
+                                    </div>
+                                </div>
+
+                                <!-- Verificaciones técnicas -->
+                                <h5 class="mt-3 mb-2"><i class="fa fa-tasks text-primary me-2"></i>Device diagnosis</h5>
+                                <p class="text-muted small mb-3">
+                                    <i class="fa fa-check-circle text-success me-1"></i> Funciona correctamente
+                                    <span class="mx-2">|</span>
+                                    <i class="fa fa-times-circle text-danger me-1"></i> Requiere atención
+                                </p>
+                                <div class="row g-2">
+                                    <div class="col-6 col-lg-4">
+                                        <div t-attf-class="verify-item d-flex align-items-center p-2 rounded-3 #{repair.faceid and 'verify-ok' or 'verify-fail'}">
+                                            <i t-attf-class="fa #{repair.faceid and 'fa-check-circle text-success' or 'fa-times-circle text-danger'} me-2"></i>
+                                            <span class="small">Face ID</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 col-lg-4">
+                                        <div t-attf-class="verify-item d-flex align-items-center p-2 rounded-3 #{repair.signal and 'verify-ok' or 'verify-fail'}">
+                                            <i t-attf-class="fa #{repair.signal and 'fa-check-circle text-success' or 'fa-times-circle text-danger'} me-2"></i>
+                                            <span class="small">Signal</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 col-lg-4">
+                                        <div t-attf-class="verify-item d-flex align-items-center p-2 rounded-3 #{repair.wifi and 'verify-ok' or 'verify-fail'}">
+                                            <i t-attf-class="fa #{repair.wifi and 'fa-check-circle text-success' or 'fa-times-circle text-danger'} me-2"></i>
+                                            <span class="small">WiFi</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 col-lg-4">
+                                        <div t-attf-class="verify-item d-flex align-items-center p-2 rounded-3 #{repair.screen and 'verify-ok' or 'verify-fail'}">
+                                            <i t-attf-class="fa #{repair.screen and 'fa-check-circle text-success' or 'fa-times-circle text-danger'} me-2"></i>
+                                            <span class="small">Screen</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 col-lg-4">
+                                        <div t-attf-class="verify-item d-flex align-items-center p-2 rounded-3 #{repair.truetone and 'verify-ok' or 'verify-fail'}">
+                                            <i t-attf-class="fa #{repair.truetone and 'fa-check-circle text-success' or 'fa-times-circle text-danger'} me-2"></i>
+                                            <span class="small">True Tone</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 col-lg-4">
+                                        <div t-attf-class="verify-item d-flex align-items-center p-2 rounded-3 #{repair.touch and 'verify-ok' or 'verify-fail'}">
+                                            <i t-attf-class="fa #{repair.touch and 'fa-check-circle text-success' or 'fa-times-circle text-danger'} me-2"></i>
+                                            <span class="small">Touch</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 col-lg-4">
+                                        <div t-attf-class="verify-item d-flex align-items-center p-2 rounded-3 #{repair.camera and 'verify-ok' or 'verify-fail'}">
+                                            <i t-attf-class="fa #{repair.camera and 'fa-check-circle text-success' or 'fa-times-circle text-danger'} me-2"></i>
+                                            <span class="small">Camera</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 col-lg-4">
+                                        <div t-attf-class="verify-item d-flex align-items-center p-2 rounded-3 #{repair.camerafront and 'verify-ok' or 'verify-fail'}">
+                                            <i t-attf-class="fa #{repair.camerafront and 'fa-check-circle text-success' or 'fa-times-circle text-danger'} me-2"></i>
+                                            <span class="small">Front camera</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 col-lg-4">
+                                        <div t-attf-class="verify-item d-flex align-items-center p-2 rounded-3 #{repair.microphone and 'verify-ok' or 'verify-fail'}">
+                                            <i t-attf-class="fa #{repair.microphone and 'fa-check-circle text-success' or 'fa-times-circle text-danger'} me-2"></i>
+                                            <span class="small">Microphone</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 col-lg-4">
+                                        <div t-attf-class="verify-item d-flex align-items-center p-2 rounded-3 #{repair.speaker and 'verify-ok' or 'verify-fail'}">
+                                            <i t-attf-class="fa #{repair.speaker and 'fa-check-circle text-success' or 'fa-times-circle text-danger'} me-2"></i>
+                                            <span class="small">Bocina</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 col-lg-4">
+                                        <div t-attf-class="verify-item d-flex align-items-center p-2 rounded-3 #{repair.charging and 'verify-ok' or 'verify-fail'}">
+                                            <i t-attf-class="fa #{repair.charging and 'fa-check-circle text-success' or 'fa-times-circle text-danger'} me-2"></i>
+                                            <span class="small">Charging</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 col-lg-4">
+                                        <div t-attf-class="verify-item d-flex align-items-center p-2 rounded-3 #{repair.buttons and 'verify-ok' or 'verify-fail'}">
+                                            <i t-attf-class="fa #{repair.buttons and 'fa-check-circle text-success' or 'fa-times-circle text-danger'} me-2"></i>
+                                            <span class="small">Buttons</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 col-lg-4">
+                                        <div t-attf-class="verify-item d-flex align-items-center p-2 rounded-3 #{repair.panic and 'verify-ok' or 'verify-fail'}">
+                                            <i t-attf-class="fa #{repair.panic and 'fa-check-circle text-success' or 'fa-times-circle text-danger'} me-2"></i>
+                                            <span class="small">Panic</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 col-lg-4">
+                                        <div t-attf-class="verify-item d-flex align-items-center p-2 rounded-3 #{repair.screw and 'verify-ok' or 'verify-fail'}">
+                                            <i t-attf-class="fa #{repair.screw and 'fa-check-circle text-success' or 'fa-times-circle text-danger'} me-2"></i>
+                                            <span class="small">Screws</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 col-lg-4">
+                                        <div t-attf-class="verify-item d-flex align-items-center p-2 rounded-3 #{repair.earphone and 'verify-ok' or 'verify-fail'}">
+                                            <i t-attf-class="fa #{repair.earphone and 'fa-check-circle text-success' or 'fa-times-circle text-danger'} me-2"></i>
+                                            <span class="small">Earpiece</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 col-lg-4">
+                                        <div t-attf-class="verify-item d-flex align-items-center p-2 rounded-3 #{repair.sim and 'verify-ok' or 'verify-fail'}">
+                                            <i t-attf-class="fa #{repair.sim and 'fa-check-circle text-success' or 'fa-times-circle text-danger'} me-2"></i>
+                                            <span class="small">SIM</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 col-lg-4">
+                                        <div t-attf-class="verify-item d-flex align-items-center p-2 rounded-3 #{repair.flash and 'verify-ok' or 'verify-fail'}">
+                                            <i t-attf-class="fa #{repair.flash and 'fa-check-circle text-success' or 'fa-times-circle text-danger'} me-2"></i>
+                                            <span class="small">Flash</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Acciones disponibles -->
+                        <div class="card rounded-4 border-0 shadow-sm" data-animate="true">
+                            <div class="card-header bg-white border-0 py-3">
+                                <h4 class="mb-0">
+                                    <i class="fa fa-cog text-primary me-2"></i>
+                                    Acciones
+                                </h4>
+                            </div>
+                            <div class="card-body">
+                                <a t-att-href="label_url" class="btn btn-primary rounded-pill w-100 mb-3">
+                                    <i class="fa fa-print me-2"></i> Print etiqueta
+                                </a>
+                                
+                                <button class="btn btn-outline-primary rounded-pill w-100 mb-3 btn-share-repair" 
+                                        t-att-data-repair-url="track_url">
+                                    <i class="fa fa-share-alt me-2"></i> Compartir seguimiento
+                                </button>
+                                
+                                <a t-att-href="'/web/login?redirect=' + track_url" class="btn btn-outline-secondary rounded-pill w-100">
+                                    <i class="fa fa-sign-in-alt me-2"></i> Sign in for more options
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Información adicional y soporte -->
+                <div class="card rounded-4 border-0 shadow-sm mb-5" data-animate="true">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <h4 class="mb-3">
+                                    <i class="fa fa-info-circle text-primary me-2"></i>
+                                    Información del servicio
+                                </h4>
+                                <p>Your device is in good hands. Our technicians are working to sort it out as soon as possible.</p>
+                                <p>If you need any further information, you can reach us on WhatsApp or by calling our customer line.</p>
+                                <div class="d-flex align-items-center mt-4">
+                                <a t-attf-href="https://api.whatsapp.com/send?phone=#{company.phone and company.phone.replace(' ', '').replace('-', '').replace('+', '')}&amp;text=Hola, necesito información sobre mi orden de reparación: #{repair.name}"                                                                    class="btn btn-success rounded-pill me-3" target="_blank">
+                                        <i class="fab fa-whatsapp me-2"></i> Contactar por WhatsApp
+                                    </a>
+                                    <a t-attf-href="tel:#{company.phone}" class="btn btn-outline-primary rounded-pill">
+                                        <i class="fa fa-phone me-2"></i> Llamar
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="text-center">
+                                    <img t-att-src="'/web/image/res.company/%s/logo' % company.id" alt="Logo" class="img-fluid" style="max-height: 100px;"/>
+                                    <div class="mt-3">
+                                        <div class="fs-5 fw-bold" t-field="company.name"/>
+                                        <div class="text-muted small" t-field="company.street"/>
+                                        <div class="text-muted small" t-field="company.phone"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+            <!-- Estilos necesarios para la línea de tiempo -->
+            <style>
+                .timeline-line {
+                    position: absolute;
+                    top: 0;
+                    bottom: 0;
+                    left: 15px;
+                    width: 2px;
+                    background-color: #e9ecef;
+                    z-index: 0;
+                }
+                
+                .timeline-icon {
+                    width: 32px;
+                    height: 32px;
+                    background-color: var(--primary);
+                    color: white;
+                    z-index: 1;
+                    position: absolute;
+                    left: 0;
+                }
+                
+                .timeline-item.inactive .timeline-icon {
+                    background-color: #dee2e6;
+                    color: #adb5bd;
+                }
+                
+                .verify-item {
+                    border: 1px solid #e9ecef;
+                    transition: all 0.2s ease;
+                }
+                .verify-item.verify-ok {
+                    background-color: #f0fdf4;
+                    border-color: #bbf7d0;
+                }
+                .verify-item.verify-fail {
+                    background-color: #fef2f2;
+                    border-color: #fecaca;
+                }
+                .verify-item .fa-check-circle { font-size: 1.1rem; }
+                .verify-item .fa-times-circle { font-size: 1.1rem; }
+
+                /* Bulk portal styles */
+                .repair-icon-box {
+                    width: 40px; height: 40px; border-radius: 10px;
+                    background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+                    display: flex; align-items: center; justify-content: center;
+                    color: #1565c0; font-size: 1.1rem; flex-shrink: 0;
+                }
+                .badge-budget {
+                    display: inline-block; padding: 4px 10px; border-radius: 20px;
+                    font-size: 0.8rem; font-weight: 600;
+                    background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+                    color: #2e7d32; border: 1px solid #a5d6a7;
+                }
+                .verify-chip {
+                    display: inline-flex; align-items: center; justify-content: center;
+                    width: 100%; padding: 4px 6px; border-radius: 6px;
+                    font-size: 0.7rem; font-weight: 500; text-align: center;
+                    border: 1px solid #e0e0e0;
+                }
+                .verify-chip.chip-ok {
+                    background-color: #f0fdf4; color: #166534; border-color: #bbf7d0;
+                }
+                .verify-chip.chip-fail {
+                    background-color: #fef2f2; color: #991b1b; border-color: #fecaca;
+                }
+                .repair-card { transition: box-shadow 0.2s ease; }
+                .repair-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+            </style>
+        </t>
+    </template>
+    
+    <!-- Template para la etiqueta -->
+    <template id="repair_label_template" name="Repair label">
+        <t t-call="web.basic_layout">
+            <link rel="stylesheet" href="/axer_repair/static/css/bulk.css"/>
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"/>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+            <t t-set="title">Repair label</t>
+            
+            <div class="container mt-4 mb-5">
+                <div class="card rounded-4 border-0 shadow-sm mb-4">
+                    <div class="card-body p-0">
+                        <div class="row g-0">
+                            <div class="col-md-4 bg-primary text-white p-4 d-flex flex-column justify-content-center">
+                                <h1 class="mb-0">Label</h1>
+                                <p class="opacity-75 mt-2">Ready to print</p>
+                            </div>
+                            <div class="col-md-8 p-4">
+                                <p class="mb-3">This is the label for your device under repair. You can print it and keep it for reference.</p>
+                                <div class="d-flex">
+                                    <button onclick="window.print()" class="btn btn-primary rounded-pill me-3 btn-print-label">
+                                        <i class="fa fa-print me-2"></i> Print
+                                    </button>
+                                    <a t-att-href="track_url" class="btn btn-outline-primary rounded-pill">
+                                        <i class="fa fa-arrow-left me-2"></i> Volver a seguimiento
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Label para imprimir -->
+                <div class="repair-label-container">
+                    <div class="repair-label p-4 bg-white shadow-sm border rounded-4">
+                        <div class="text-center mb-3">
+                            <img t-att-src="'/web/image/res.company/%s/logo' % company.id" alt="Logo" class="img-fluid" style="max-height: 60px;"/>
+                        </div>
+                        
+                        <div class="mb-3 text-center">
+                            <h1 class="h3 mb-0" t-field="repair.name"/>
+                            <p class="text-muted small mb-0" t-field="repair.create_date" t-options="{'widget': 'date'}"/>
+                        </div>
+                        
+                        <div class="row mb-3">
+                            <div class="col-6">
+                                <div class="text-muted small">Customer</div>
+                                <div class="fw-bold" t-field="repair.partner_id.name"/>
+                            </div>
+                            <div class="col-6 text-end">
+                                <div class="text-muted small">State</div>
+                                <div class="fw-bold text-end">
+                                    <span t-if="repair.state == 'draft'" class="badge bg-secondary">Condition rating</span>
+                                    <span t-elif="repair.state == 'confirmed'" class="badge bg-info">Confirmed</span>
+                                    <span t-elif="repair.state == 'under_repair'" class="badge bg-warning">Under repair</span>
+                                    <span t-elif="repair.state == 'done'" class="badge bg-success">Reparado</span>
+                                    <span t-else="" class="badge bg-secondary" t-out="repair.state"/>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row mb-4">
+                            <div class="col-6">
+                                <div class="text-muted small">Device</div>
+                                <div class="fw-bold" t-field="repair.product_id.name"/>
+                            </div>
+                            <div class="col-6 text-end">
+                                <div class="text-muted small">IMEI/SN</div>
+                                <div class="fw-bold text-end" t-out="repair.imei or repair.serial or 'N/A'"/>
+                            </div>
+                        </div>
+                        
+                        <div class="row mb-3">
+                            <div class="col-12">
+                                <div class="text-muted small">Problema</div>
+                                <div class="fw-bold" t-field="repair.description"/>
+                            </div>
+                        </div>
+                        
+                        <div class="text-center mt-3">
+                            <img t-att-src="'data:image/png;base64,' + qr_image" class="img-fluid" style="max-width: 150px;"/>
+                            <p class="text-muted small mt-2">Scan to track</p>
+                        </div>
+                        
+                        <div class="border-top mt-3 pt-3 text-center">
+                            <div class="small">
+                                <span t-field="company.name"/> | <span t-field="company.phone"/>
+                            </div>
+                            <div class="small text-muted" t-field="company.website"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Estilos para la impresión -->
+            <style>
+                @media print {
+                    body * {
+                        visibility: hidden;
+                    }
+                    .repair-label-container, .repair-label-container * {
+                        visibility: visible;
+                    }
+                    .repair-label {
+                        position: absolute;
+                        left: 0;
+                        top: 0;
+                        width: 100%;
+                        box-shadow: none !important;
+                    }
+                    .container {
+                        width: 100%;
+                        max-width: 100%;
+                        padding: 0;
+                        margin: 0;
+                    }
+                }
+                
+                @page {
+                    size: auto;
+                    margin: 10mm;
+                }
+            </style>
+        </t>
+    </template>
+    
+    <!-- Templates de error y mensajes -->
+    <template id="bulk_repair_error" name="Bulk repair error">
+        <t t-call="web.basic_layout">
+            <link rel="stylesheet" href="/axer_repair/static/css/bulk.css"/>
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"/>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+            <div class="container mt-5 text-center">
+                <div class="card rounded-4 border-0 shadow-sm p-5 mx-auto" style="max-width: 600px;">
+                    <i class="fa fa-exclamation-circle text-danger fa-4x mb-4"></i>
+                    <h1 class="h3 mb-4">Ha ocurrido un error</h1>
+                    <p class="text-muted mb-4" t-out="error_message or 'No se pudo procesar su solicitud.'"/>
+                    <a href="/" class="btn btn-primary rounded-pill">
+                        <i class="fa fa-home me-2"></i> Volver al inicio
+                    </a>
+                </div>
+            </div>
+        </t>
+    </template>
+    
+    <template id="bulk_repair_invalid_token" name="Invalid token">
+        <t t-call="web.basic_layout">
+            <link rel="stylesheet" href="/axer_repair/static/css/bulk.css"/>
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"/>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+            <div class="container mt-5 text-center">
+                <div class="card rounded-4 border-0 shadow-sm p-5 mx-auto" style="max-width: 600px;">
+                    <i class="fa fa-lock text-warning fa-4x mb-4"></i>
+                    <h1 class="h3 mb-4">Acceso denegado</h1>
+                    <p class="text-muted mb-4">The link you are trying to open is not valid or has expired.</p>
+                    <a href="/" class="btn btn-primary rounded-pill">
+                        <i class="fa fa-home me-2"></i> Volver al inicio
+                    </a>
+                </div>
+            </div>
+        </t>
+    </template>
+    
+    <template id="bulk_repair_no_records" name="No records">
+        <t t-call="web.basic_layout">
+            <link rel="stylesheet" href="/axer_repair/static/css/bulk.css"/>
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"/>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+            <div class="container mt-5 text-center">
+                <div class="card rounded-4 border-0 shadow-sm p-5 mx-auto" style="max-width: 600px;">
+                    <i class="fa fa-search text-info fa-4x mb-4"></i>
+                    <h1 class="h3 mb-4">No hay reparaciones recientes</h1>
+                    <p class="text-muted mb-4">No recent repairs found for <span t-field="partner.name"/>.</p>
+                    <a href="/" class="btn btn-primary rounded-pill">
+                        <i class="fa fa-home me-2"></i> Volver al inicio
+                    </a>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

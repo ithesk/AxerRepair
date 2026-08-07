@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="axer_repair.DeliveryDatePicker">
+        <div class="delivery-date-picker position-relative">
+            <div class="date-display d-flex align-items-center p-3 border rounded-lg cursor-pointer hover:shadow-sm transition-all duration-200"
+                 t-on-click="(ev) => this.togglePicker(ev)">
+                <i class="fa fa-calendar-alt me-2 text-primary"/>
+                <span t-if="state.value" t-out="formatDisplayValue()" class="text-gray-800"/>
+                <span t-else="" class="text-gray-400">Pick the delivery date and time</span>
+            </div>
+
+            <t t-if="state.showPicker">
+                <div class="date-picker-dropdown position-absolute start-0 w-100 mt-2 p-4 bg-white rounded-lg shadow-lg border">
+                    <div class="days-section d-flex flex-wrap gap-2 mb-4">
+                        <t t-foreach="getAvailableDays()" t-as="day" t-key="day.value">
+                            <button type="button"
+                                    class="btn flex-grow-1 rounded-lg px-3 py-2 transition-all duration-200"
+                                    t-att-class="{
+                                        'btn-primary shadow-sm': state.selectedDay?.value === day.value,
+                                        'btn-outline-secondary hover:bg-gray-50': state.selectedDay?.value !== day.value
+                                    }"
+                                    t-on-click="(ev) => this.selectDay(day, ev)">
+                                <t t-out="day.label"/>
+                            </button>
+                        </t>
+                    </div>
+
+                    <div t-if="state.selectedDay" 
+                         class="time-section d-grid gap-2"
+                         style="grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));">
+                        <t t-foreach="timeSlots" t-as="time" t-key="time.value">
+                            <button type="button"
+                                    t-att-disabled="!isTimeAvailable(time, state.selectedDay)"
+                                    class="btn rounded-lg px-3 py-2 transition-all duration-200"
+                                    t-att-class="{
+                                        'btn-outline-secondary hover:bg-gray-50': isTimeAvailable(time, state.selectedDay),
+                                        'btn-light text-gray-400 cursor-not-allowed': !isTimeAvailable(time, state.selectedDay)
+                                    }"
+                                    t-on-click="(ev) => this.selectTime(time, ev)">
+                                <t t-out="time.label"/>
+                            </button>
+                        </t>
+                    </div>
+                </div>
+            </t>
+        </div>
+    </t>
+</templates>

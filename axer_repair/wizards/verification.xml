@@ -1,0 +1,128 @@
+<odoo>
+    <record id="view_repair_end_wizard_form" model="ir.ui.view">
+        <field name="name">repair.end.wizard.form</field>
+        <field name="model">repair.end.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Finish repair">
+                
+                <!-- Header con progreso -->
+                <header>
+                    <div class="alert alert-success" role="alert" style="margin-bottom: 20px;">
+                        <h4><i class="fa fa-wrench"/> Finish repair</h4>
+                        <p>Complete los siguientes pasos para finalizar la reparación correctamente</p>
+                    </div>
+                </header>
+
+                <sheet>
+                    <field name="repair_id" invisible="1"/>
+                    <field name="wizard_step" invisible="1"/>
+                    
+                    <!-- PASO 1: COMPONENTES REPARADOS -->
+                    <div invisible="wizard_step != 'components'">
+                        <div class="o_form_step_header">
+                            <h3><i class="fa fa-cogs"/> Step 1: which components did you repair?</h3>
+                            <p class="text-muted">Select every component you worked on in this repair</p>
+                        </div>
+                        
+                        <field name="selected_component_ids" nolabel="1">
+                            <tree>
+                                <field name="sequence" invisible="1"/>
+                                <field name="name" string="Componente" readonly="1"/>
+                                <field name="category" string="Category" readonly="1"/>
+                            </tree>
+                        </field>
+                        
+                        <group>
+                            <field name="component_notes" placeholder="Additional notes about the components..." string="Observaciones"/>
+                        </group>
+                        
+                        <div class="alert alert-info mt16" role="alert">
+                            <p><i class="fa fa-info-circle"/> <strong>Importante:</strong> Esta información será utilizada para la facturación</p>
+                        </div>
+                    </div>
+
+                    <!-- PASO 2: VERIFICACIÓN DE FUNCIONAMIENTO -->
+                    <div invisible="wizard_step != 'verification'">
+                        <div class="o_form_step_header">
+                            <h3><i class="fa fa-check-circle"/> Step 2: function check</h3>
+                            <p class="text-muted">Confirm that the following functions work correctly</p>
+                        </div>
+                        
+                        <!-- Verificaciones organizadas por categorías -->
+                        <group>
+                            <group string="🔗 Conectividad">
+                                <field name="wifi" string="WiFi"/>
+                                <field name="signal" string="Mobile signal"/>
+                                <field name="earphone" string="Earpiecees"/>
+                            </group>
+                            
+                            <group string="📱 Screen y Entrada">
+                                <field name="screen" string="Screen"/>
+                                <field name="touch" string="Touch"/>
+                                <field name="truetone" string="True Tone"/>
+                            </group>
+                        </group>
+                        
+                        <group>
+                            <group string="📷 Cameras">
+                                <field name="camera" string="Rear camera"/>
+                                <field name="camerafront" string="Front camera"/>
+                                <field name="flash" string="Flash"/>
+                                <field name="faceid" string="Face ID"/>
+                            </group>
+                            
+                            <group string="🔘 Controles y Audio">
+                                <field name="buttons" string="Buttons"/>
+                                <field name="speaker" string="Bocina"/>
+                                <field name="microphone" string="Microphone"/>
+                                <field name="charging" string="Charging"/>
+                                <field name="screw" string="Screws"/>
+                            </group>
+                        </group>
+                        
+                        <!-- Bypass Section -->
+                        <separator string="⚠️ Casos Especiales"/>
+                        <group>
+                            <field name="bypass_checks" string="Could not be fully tested"/>
+                        </group>
+                        
+                        <div class="alert alert-warning" role="alert" invisible="not bypass_checks">
+                            <p style="font-weight: bold;">
+                                ⚠️ <strong>Device no pudo ser probado completamente</strong><br/>
+                                Motivos válidos: pantalla no funciona, touch no responde, reinicios constantes, 
+                                clave no suministrada, equipo no enciende.
+                            </p>
+                        </div>
+                        
+                        <group>
+                            <field name="note" placeholder="Observaciones adicionales..." string="Notas"/>
+                        </group>
+                    </div>
+                </sheet>
+
+                <!-- Footer con navegación -->
+                <footer>
+                    <!-- Buttons para paso de componentes -->
+                    <div invisible="wizard_step != 'components'">
+                        <button string="Siguiente →" name="action_next_step" type="object" class="btn-primary"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </div>
+                    
+                    <!-- Buttons para paso de verificación -->
+                    <div invisible="wizard_step != 'verification'">
+                        <button string="✓ Finish repair" name="action_confirm" type="object" class="btn-success"/>
+                        <button string="← Anterior" name="action_previous_step" type="object" class="btn-secondary"/>
+                        <button string="Cancel" class="btn-light" special="cancel"/>
+                    </div>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_repair_end_wizard" model="ir.actions.act_window">
+        <field name="name">Finish repair</field>
+        <field name="res_model">repair.end.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

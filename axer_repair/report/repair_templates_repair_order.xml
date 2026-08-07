@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data>
+<template id="report_repairorder1">
+   
+  <!-- El bucle sobre 'docs' lo hace report_repairorder3, que llama a esta
+       plantilla una vez por reparación. Aquí no debe repetirse: había dos
+       anidados, así que imprimir tres reparaciones sacaba veintisiete hojas. -->
+  <t t-call="web.basic_layout">
+      <div class="page">
+         <div>
+             <div class="titulo">Intake sheet</div>
+         <div align="center" style="margin:10 auto;padding:0 auto;font-size:18px">
+       
+         <div align="center" style="margin:0 auto;padding:0 auto;font-size:13px;margin-top:8px;font-family: Helvetica;">
+                               
+                               <div style="font-size:14px;">
+                                 
+                                 <!-- Logotipo de la compañía; si no tiene, su nombre -->
+                                 <img t-if="o.company_id.logo" t-att-src="image_data_uri(o.company_id.logo)"
+                                      style="max-width:60mm; max-height:20mm;" t-att-alt="o.company_id.name"/>
+                                 <h1 t-else="" style="font-size: 26px; margin:0;"><strong t-field="o.company_id.name"/></h1>
+                        <div t-if="o.address"><strong t-out="o.address"/></div>
+                        <div t-if="o.company_phone"><strong t-out="o.company_phone"/></div>
+                        <div t-if="o.company_id.email"><strong t-out="o.company_id.email"/></div>
+                        <div t-if="o.website1"><strong t-out="o.website1"/></div>
+                    </div>
+                               <div align="center" style="margin-top:7px !important;">==========================<br/></div>
+                               
+                               
+                               
+                             </div>
+
+<table style="width:100%;margin-top:16px; font-family: Helvetica; border-top:1pt black;"> 
+
+<tr>
+<td class="text-left">
+Customer:
+</td>
+<td align="left">
+<strong t-field="o.partner_id"/>
+</td>
+</tr>
+
+<tr t-if="o.partner_id.phone">
+<td class="text-left">
+Tel.:
+</td>
+<td align="left">
+<strong t-out="o.partner_id.phone"/>
+</td>
+</tr>
+
+<tr t-if="o.partner_id.email">
+<td class="text-left">
+Email:
+</td>
+<td align="left">
+<strong t-out="o.partner_id.email"/>
+</td>
+</tr>
+
+<tr>
+<td class="text-left">
+Fecha:
+</td>
+<td align="left">
+<!-- Fecha de recepción, no la de la última modificación -->
+<strong t-field="o.create_date"/>
+</td>
+</tr>
+
+</table>
+
+
+
+<div align="center" style="margin-top:10px !important;">==========================<br/></div>
+
+
+
+<table style="width:100%;font-family: Helvetica;">
+
+<tr>
+<td class="text-left">
+Device:
+</td>
+<td align="left">
+<strong t-field="o.product_id.name"/>
+</td>
+</tr>
+
+
+  <tr>
+<td class="text-left">
+Imei o serie:
+</td>
+<td align="left">
+<strong t-field="o.imei"/>
+</td>
+</tr>
+
+
+
+    <tr>
+<td class="text-left">
+Problema:
+</td>
+<td align="left font-size:8px;">
+<strong t-field="o.description"/>
+</td>
+</tr>
+
+  <!-- Campo de presupuesto condicional -->
+        <tr t-if="o.estimated_budget">
+            <td class="text-left">
+                Quotation:
+            </td>
+            <td align="left">
+                <strong t-field="o.estimated_budget" 
+                        t-options='{"widget": "monetary", "display_currency": o.currency_id}'
+                        style="font-size: 14px; font-weight: bold;"/>
+            </td>
+        </tr>
+
+     <tr t-if="o.powerstate">
+<td class="text-left">
+Bateria:
+</td>
+<td align="left">
+<strong t-field="o.battery"/>% vida</td>
+</tr>
+
+</table>
+
+<div align="center" style="margin-top:10px !important;">_____________________________<br/></div>
+
+<div align="center" style="margin-top:10px !important;">Test Funciones</div>
+
+
+
+
+
+<style>
+
+.page{
+  width: 72mm;
+
+}
+
+table, th, td {
+border: 1px solid black;
+border-collapse: collapse;
+font-size:13px;
+}
+
+tr:nth-child(even) {
+background-color: rgba(150, 212, 212, 0.4);
+}
+
+th:nth-child(even),td:nth-child(even) {
+background-color: rgba(150, 212, 212, 0.4);
+}
+
+
+.titulo{
+ 
+    font-weight: bold;
+    font-size: 16px;
+    text-align: center;
+    color: white;
+    background-color: black;
+    padding: 2px 6px;
+    margin-bottom: 6px;
+}
+
+
+
+</style>
+
+<table style="width:100%">
+<tr>
+<th>Funcion</th>
+<th>State</th>
+<th>Funcion</th>
+<th>State</th>
+
+
+
+
+</tr>
+<tr>
+<td>Faceid/H</td>
+<td align="left"> 
+<t t-if="o.faceid == true"> OK </t></td>
+<td>WIFI</td>
+<td align="left"> 
+<t t-if="o.wifi == true"> OK </t></td>
+
+
+
+
+</tr>
+<tr>
+
+<td>CamaraT.</td>
+<td align="left"> 
+<t t-if="o.camera == true"> OK </t></td>
+<td>CamaraF</td>
+<td align="left"> 
+<t t-if="o.camerafront == true"> OK </t></td>
+
+
+
+</tr>
+<tr>
+<td>USB/Charging</td>
+<td align="left"> 
+<t t-if="o.charging == true"> OK </t></td>
+<td>Buttons</td>
+<td align="left"> 
+<t t-if="o.buttons == true"> OK </t></td>
+
+
+</tr>
+<tr>
+<td>Senal</td>
+<td align="left"> 
+<t t-if="o.signal == true"> OK </t></td>
+<td>Touch</td>
+<td align="left"> 
+<t t-if="o.touch == true"> OK </t></td>
+
+
+</tr>
+<tr>
+<td>Screen</td>
+<td align="left"> 
+<t t-if="o.screen == true"> OK </t></td>
+<td>Sim/m</td>
+<td align="left"> 
+<t t-if="o.sim == true"> OK </t></td>
+
+
+</tr>
+<tr>
+<td>PanicFull</td>
+<td align="left"> 
+<t t-if="o.panic == true"> OK </t></td>
+<td>Microfono</td>
+<td align="left"> 
+<t t-if="o.microphone == true"> OK </t></td>
+
+
+</tr>
+
+<tr>
+<td>Tornillo</td>
+<td align="left"> 
+<t t-if="o.screw == true"> OK </t></td>
+<td>Bocina</td>
+<td align="left"> 
+<t t-if="o.speaker == true"> OK </t></td>
+
+
+</tr>
+
+</table>
+
+<br/>
+
+<div align="center" style="margin-top:6px;">
+  <div t-if="o.imei" t-field="o.imei"
+       t-options="{'widget': 'barcode', 'humanreadable': 1, 'width': 280, 'height': 55}"/>
+</div>
+
+<div align="center" style="margin-top:10px;">
+  <div t-field="o.name"
+       t-options="{'widget': 'barcode', 'humanreadable': 1, 'width': 280, 'height': 55}"/>
+</div>
+
+<div align="center" style="margin-top:12px;" t-if="o.access_token">
+  <!-- Enlace de seguimiento para el cliente -->
+  <img t-att-src="'/report/barcode/QR/'+o.get_portal_url()"
+       style="height:95px; width:95px;" alt="Repair tracking"/>
+  <div style="font-size:9px;">Check the status of your repair</div>
+</div>
+
+
+
+<div align="center" style="font-size:12px;">  
+
+<p><i>EL Customer reconoce que las funciones no probadas por nuestros tecnicos, no podemos garantizar su funcionamiento</i></p>
+<p t-if="o._datos_taller(o.company_id)['dias_abandono']"><i>
+  <span t-field="o.company_id.name"/> no se hace responsable de los equipos
+  abandonados después de <t t-out="o._datos_taller(o.company_id)['dias_abandono']"/> calendar days.
+</i></p>
+<p t-if="o._datos_taller(o.company_id)['garantia']"><i>
+  <!-- QR a la política de garantía del taller -->
+  <img t-att-src="'/report/barcode/QR/' + o._datos_taller(o.company_id)['garantia']"
+       style="height:50px; width:50px;" alt="Warranty policy"/>
+</i></p>     
+<div align="center" style="font-size:11px;">Garantias</div>
+
+
+
+
+
+<br/></div>
+
+         </div>
+         </div>
+      </div>
+  </t>
+</template>
+
+<template id="axer_repair.report_repairorder3">
+    <t t-call="web.html_container">
+        <!-- Este es el único bucle: la plantilla interior recibe la
+             reparación en 'o' y no vuelve a recorrer 'docs'. -->
+        <t t-foreach="docs" t-as="o">
+            <t t-call="axer_repair.report_repairorder1" t-lang="o.partner_id.lang"/>
+        </t>
+    </t>
+</template>
+</data>
+</odoo>

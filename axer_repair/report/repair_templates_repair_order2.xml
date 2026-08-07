@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data>
+<template id="report_repairorder_9">
+    <t t-call="web.basic_layout">
+        <t t-foreach="docs" t-as="o">
+         
+
+
+ <link href="/axer_repair/static/css/label.css" rel="stylesheet"/>
+
+
+    <div class="label">
+        
+        <!-- Logotipo de la compañía (Ajustes → Users y compañías) -->
+        <img class="logo" t-if="o.company_id.logo"
+             t-att-src="image_data_uri(o.company_id.logo)" t-att-alt="o.company_id.name"/>
+        <span t-else="" t-field="o.company_id.name"/>
+        
+
+            <hr></hr>
+
+
+    
+    <div class="parner">
+        <span t-field="o.partner_id"/>
+            </div>
+
+
+            <div class="circulo">
+                <div class="circuloletra">
+                  <span t-field="o.classific"/> </div>
+            </div>
+    
+    
+            <hr></hr>
+
+            <div class="tel">
+                <span t-field="o.partner_id.phone"/>
+            </div>
+
+            <hr></hr>
+    
+            <div class="password">
+                <span t-out="o.passcode"/>
+            
+            </div>
+
+            <hr></hr>
+
+
+    <div class="problem">
+        <span t-field="o.description"/>
+    </div>
+       
+    <h2></h2>
+    
+    <div class="barcode">
+    <img t-att-src="'/report/barcode/QR/'+o.name" style="height:50px; width:50px;" alt="Barcode"/>
+    </div>
+    
+    <div class="date">
+    <span t-out="datetime.datetime.now().strftime('%Y-%m-%d')" t-options="{'widget': 'date'}"/>
+    </div>
+   
+    <div class="code2">
+        <img t-att-src="'/report/barcode/Code128/'+o.name" style="height:30px; width:70px;" alt="Barcode"/>
+        <span t-out="o.name"/>
+    </div>
+
+   
+    
+   <div class="titulo">
+    Test V.
+   </div>
+    
+    
+      <div class="tablas">
+    <table style="width:100% ">
+      <tr>
+       
+      </tr>
+      
+      <tr>
+        <td><div style="text-align: left; font-size: 0.6em">faceid</div></td>
+        <td><div style="text-align: left; font-size: 0.6em"><t t-if="o.faceid == true"> ✔ </t></div></td>
+        <td><div style="text-align: left; font-size: 0.6em">Wifi</div></td>
+        <td><div style="text-align: left; font-size: 0.6em"><t t-if="o.wifi == true"> ✔ </t></div></td>
+      </tr>
+      <tr>
+        <td><div style="text-align: left; font-size: 0.6em">CamaraT</div></td>
+        <td><div style="text-align: left; font-size: 0.6em"><t t-if="o.camera == true"> ✔ </t></div></td>
+        <td><div style="text-align: left; font-size: 0.6em">CamaraF</div></td>
+        <td><div style="text-align: left; font-size: 0.6em"><t t-if="o.camerafront == true"> ✔ </t></div></td>
+      </tr>
+       <tr>
+        <td><div style="text-align: left; font-size: 0.6em">Charging</div></td>
+        <td><div style="text-align: left; font-size: 0.6em"><t t-if="o.charging == true"> ✔ </t></div></td>
+        <td><div style="text-align: left; font-size: 0.6em">Buttons</div></td>
+        <td><div style="text-align: left; font-size: 0.6em"><t t-if="o.buttons == true"> ✔ </t></div></td>
+      </tr>
+       <tr>
+        <td><div style="text-align: left; font-size: 0.6em">Senal</div></td>
+        <td><div style="text-align: left; font-size: 0.6em"><t t-if="o.signal == true"> ✔ </t></div></td>
+        <td><div style="text-align: left; font-size: 0.6em">Touch</div></td>
+        <td><div style="text-align: left; font-size: 0.6em"><t t-if="o.touch  == true"> ✔ </t></div></td>
+      </tr>
+       <tr>
+        <td><div style="text-align: left; font-size: 0.6em">Screen</div></td>
+        <td><div style="text-align: left; font-size: 0.6em"><t t-if="o.screen == true"> ✔ </t></div></td>
+        <td><div style="text-align: left; font-size: 0.6em">Sim</div></td>
+        <td><div style="text-align: left; font-size: 0.6em"><t t-if="o.sim == true"> ✔ </t></div></td>
+      </tr>
+       <tr>
+        <td><div style="text-align: left; font-size: 0.6em">Panic</div></td>
+        <td><div style="text-align: left; font-size: 0.6em"><t t-if="o.panic == true"> ✔ </t></div></td>
+        <td><div style="text-align: left; font-size: 0.6em">Earpiece</div></td>
+        <td><div style="text-align: left; font-size: 0.6em"><t t-if="o.microphone == true"> ✔ </t></div></td>
+      </tr>
+       <tr>
+        <td><div style="text-align: left; font-size: 0.6em">Screws</div></td>
+        <td><div style="text-align: left; font-size: 0.6em"><t t-if="o.screw == true"> ✔ </t></div></td>
+        <td><div style="text-align: left; font-size: 0.6em">Bocinas</div></td>
+        <td><div style="text-align: left; font-size: 0.6em"><t t-if="o.speaker == true"> ✔ </t></div></td>
+      </tr>
+      <tr>
+        <td><div style="text-align: left; font-size: 0.6em">Flash</div></td>
+        <td><div style="text-align: left; font-size: 0.6em"><t t-if="o.flash == true"> ✔ </t></div></td>
+        <td><div style="text-align: left; font-size: 0.6em">Microfono</div></td>
+        <td><div style="text-align: left; font-size: 0.6em"><t t-if="o.microphone == true"> ✔ </t></div></td>
+      </tr>
+      <tr>
+        <td><div style="text-align: left; font-size: 0.6em">TrueTone</div></td>
+        <td><div style="text-align: left; font-size: 0.6em"><t t-if="o.truetone == true"> ✔ </t></div></td>
+      </tr>
+    </table>
+    </div>
+       </div>
+        </t>
+
+        
+        <div class ="test">
+        <span t-out="o.evaluation"/>
+        </div>
+      
+
+        <h1></h1>
+        <div class="barcode2">
+           
+            <img t-att-src="'/report/barcode/QR/'+o.name" style="height:50px; width:50px;" alt="Barcode"/>
+            </div>
+            
+            <div class="date2">
+            <span t-out="datetime.datetime.now().strftime('%Y-%m-%d')" t-options="{'widget': 'date'}"/>
+            </div>
+           
+            <div class="code3">
+                <img t-att-src="'/report/barcode/Code128/'+o.name" style="height:30px; width:70px;" alt="Barcode"/>
+                <span t-out="o.name"/>
+            </div>
+
+
+
+
+            <t t-if="o.cover == true and o.accessories == true">
+              <div class="covert">
+                Cover
+               </div>
+              
+             <div class="coverid">
+               <span t-field="o.partner_id"/>
+                </div>
+             <div class="coverqr">
+               <img t-att-src="'/report/barcode/QR/'+o.imei+o.name" style="height:50px; width:50px;" alt="Barcode"/>
+                </div>
+             <div class="coverdate">
+               <span t-out="datetime.datetime.now().strftime('%Y-%m-%d')" t-options="{'widget': 'date'}"/>
+                 </div>
+               <g1></g1>  
+                
+        
+               <div class="covert1">
+                Accessories
+                </div>
+               <div class="coverid1">
+                <span t-field="o.partner_id"/>
+                 </div>
+              <div class="coverqr1">
+                <img t-att-src="'/report/barcode/QR/'+o.imei+o.name" style="height:50px; width:50px;" alt="Barcode"/>
+                 </div>
+              <div class="coverdate1">
+                <span t-out="datetime.datetime.now().strftime('%Y-%m-%d')" t-options="{'widget': 'date'}"/>
+                  </div>
+                <g2></g2> 
+        
+        
+              </t> 
+           
+            
+        
+            <t t-if="o.cover == true and o.accessories == false"> 
+              <div class="covert">
+                 Cover
+                </div>
+               
+              <div class="coverid">
+                <span t-field="o.partner_id"/>
+                 </div>
+              <div class="coverqr">
+                <img t-att-src="'/report/barcode/QR/'+o.imei+o.name" style="height:50px; width:50px;" alt="Barcode"/>
+                 </div>
+              <div class="coverdate">
+                <span t-out="datetime.datetime.now().strftime('%Y-%m-%d')" t-options="{'widget': 'date'}"/>
+                  </div>
+                <g1></g1>  
+             </t>
+        
+             <t t-if="o.accessories == true and o.cover == false"> 
+              <div class="covert">
+                Accessories
+                </div>
+               
+              <div class="coverid">
+                <span t-field="o.partner_id"/>
+                 </div>
+              <div class="coverqr">
+                <img t-att-src="'/report/barcode/QR/'+o.imei+o.name" style="height:50px; width:50px;" alt="Barcode"/>
+                 </div>
+              <div class="coverdate">
+                <span t-out="datetime.datetime.now().strftime('%Y-%m-%d')" t-options="{'widget': 'date'}"/>
+                  </div>
+        
+                <g1></g1>  
+             </t>
+
+
+
+
+
+
+        <!-- 
+      <div class="cod2">
+        <div style="text-align: center; font-size: 0.5em" t-field="o.name" t-options="{'widget': 'barcode', 'humanreadable': 1, 'width': 200, 'height': 30}"/>
+        </div>
+    -->
+      </t>
+</template>
+
+
+<template id="axer_repair.report_repairorder9">
+    <t t-call="web.html_container">
+        <t t-foreach="docs" t-as="doc">
+            <t t-call="axer_repair.report_repairorder_9" t-lang="doc.partner_id.lang"/>
+        </t>
+    </t>
+</template>
+
+</data>
+</odoo>

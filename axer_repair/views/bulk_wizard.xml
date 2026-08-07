@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Vista de formulario para el asistente -->
+    <record id="view_bulk_repair_wizard_form" model="ir.ui.view">
+        <field name="name">bulk.repair.wizard.form</field>
+        <field name="model">bulk.repair.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Create several repair orders">
+                <sheet>
+                    <div class="oe_title">
+                        <h1>Bulk creation of repair orders</h1>
+                        <p>This wizard lets you quickly create several repair orders for one customer.</p>
+                    </div>
+                    
+                    <group>
+                        <group>
+                            <field name="partner_id"/>
+                            <field name="branch_id"/>
+                            <field name="lead_source"/>
+                        </group>
+                        <group>
+                            <field name="auto_print_labels"/>
+                            <field name="auto_whatsapp"/>
+                        </group>
+                    </group>
+                    
+                    <notebook>
+                        <page string="Devices to repair" name="repair_lines">
+                            <div class="alert alert-info" role="alert">
+                                <h4 class="alert-heading">Quick scan mode</h4>
+                                <p>Scan the IMEI/SN of each device and press Enter:</p>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <field name="quick_scan_imei" placeholder="Scan IMEI/SN here" autofocus="1" class="oe_inline"/>
+                                        <button name="action_quick_scan" string="Add" type="object" class="btn btn-primary"/>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <field name="default_equipment_type"/>
+                                        <field name="default_description" placeholder="Default main fault"/>
+                                    </div>
+                                </div>
+                                
+                                <hr/>
+                                <h4 class="alert-heading mt-3">Bulk scan mode</h4>
+                                <p>Paste several IMEI/SN and process them in one go:</p>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <field name="bulk_scan_text" placeholder="Paste several IMEI/SN here (one per line, or separated by spaces or commas)" class="w-100"/>
+                                    </div>
+                                    <div class="col-md-12 mt-2">
+                                        <button name="action_scan_multiple" string="Process IMEI/SN in bulk" type="object" class="btn btn-primary"/>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <field name="repair_line_ids" widget="one2many">
+                                <tree editable="bottom">
+                                    <field name="imei" placeholder="Escanee IMEI/SN"/>
+                                    <field name="serial" placeholder="Additional serial"/>
+                                    <field name="equipment_type"/>
+                                    <field name="description" placeholder="Main fault"/>
+                                    <field name="repair_issues" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                                    <field name="sim" widget="boolean_toggle"/>
+                                    <field name="condition"/>
+                                    <field name="product_id"/>
+                                </tree>
+                            </field>
+                            <!-- Sin la clase 'oe_chatter': el cliente web la
+                                 interpreta como un chatter real y pide sus
+                                 datos a un modelo que no es mail.thread. -->
+                            <div class="mt-4">
+                                <p class="text-muted">Tip: to add devices quickly, scan an IMEI, press Tab, pick the type, describe the fault and press Enter to move to the next line.</p>
+                            </div>
+                        </page>
+                    </notebook>
+                </sheet>
+                
+                <footer>
+                    <button name="action_create_repairs" string="Create orders" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- Acción del menú -->
+    <record id="action_bulk_repair_wizard" model="ir.actions.act_window">
+        <field name="name">Create repairs in bulk</field>
+        <field name="res_model">bulk.repair.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <!-- Elemento de menú para el wizard.
+         La secuencia debe ser mayor que la del menú 'Órdenes' de Odoo (10):
+         al entrar en la aplicación se abre su primer menú, y si éste fuese el
+         asistente, el usuario se encontraría el diálogo antes que la lista. -->
+    <menuitem
+        id="menu_bulk_repair_wizard"
+        name="Create repairs in bulk"
+        parent="repair.menu_repair_order"
+        action="action_bulk_repair_wizard"
+        sequence="15"/>
+
+    <!-- Vista para las etiquetas de problemas -->
+    <record id="view_repair_issue_tag_form" model="ir.ui.view">
+        <field name="name">repair.issue.tag.form</field>
+        <field name="model">repair.issue.tag</field>
+        <field name="arch" type="xml">
+            <form string="Repair issue">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" class="oe_edit_only"/>
+                        <h1><field name="name" placeholder="Fault name"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="code"/>
+                            <field name="icon"/>
+                            <field name="color" widget="color_picker"/>
+                        </group>
+                        <group>
+                            <field name="related_field"/>
+                            <field name="description"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_repair_issue_tag_tree" model="ir.ui.view">
+        <field name="name">repair.issue.tag.tree</field>
+        <field name="model">repair.issue.tag</field>
+        <field name="arch" type="xml">
+            <tree string="Repair issues">
+                <field name="name"/>
+                <field name="code"/>
+                <field name="description"/>
+                <field name="related_field"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Acción para etiquetas de problemas -->
+    <record id="action_repair_issue_tag" model="ir.actions.act_window">
+        <field name="name">Common faults</field>
+        <field name="res_model">repair.issue.tag</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Cuelga del menú de configuración que ya trae Odoo, para no repetir
+         un segundo apartado 'Configuración' en la aplicación. -->
+    <menuitem
+        id="menu_repair_issue_tag"
+        name="Common faults"
+        parent="repair.repair_menu_config"
+        action="action_repair_issue_tag"
+        sequence="20"/>
+
+</odoo>

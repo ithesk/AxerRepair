@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Reporte para etiqueta de transferencia interna -->
+    <record id="paperformat_label_transfer" model="report.paperformat">
+        <field name="name">Transfer label</field>
+        <field name="default" eval="True"/>
+        <field name="format">custom</field>
+        <field name="page_height">75</field>
+        <field name="page_width">38</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">1</field>
+        <field name="margin_bottom">0</field>
+        <field name="margin_left">0</field>
+        <field name="margin_right">0</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">0</field>
+        <field name="dpi">96</field>
+    </record>
+
+    <record id="action_report_internal_transfer" model="ir.actions.report">
+        <field name="name">Transfer label</field>
+        <field name="model">internal.transfer</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">axer_repair.report_internal_transfer</field>
+        <field name="report_file">axer_repair.report_internal_transfer</field>
+        <field name="print_report_name">'Transferencia - %s' % (object.name)</field>
+        <field name="binding_model_id" ref="model_internal_transfer"/>
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="paperformat_label_transfer"/>
+    </record>
+
+    <!-- Template para la etiqueta de transferencia -->
+    <template id="report_internal_transfer">
+        <t t-name="axer_repair.report_internal_transfer">
+            <t t-call="web.basic_layout">
+                <t t-foreach="docs" t-as="o">
+                    <div class="article page" t-att-data-oe-model="o._name" t-att-data-oe-id="o.id" style="font-family: 'Courier New', Courier, monospace; font-size: 9px; width: 36mm; max-width: 36mm; margin: 0; padding: 0; page-break-after: avoid; page-break-inside: avoid;">
+                        <!-- Encabezado de la etiqueta -->
+                        <div style="text-align: center; border-bottom: 1px dashed black; margin-bottom: 4px; width: 100%;">
+                            <span style="font-weight: bold; font-size: 10px;">TRANSFERENCIA INTERNA</span>
+                        </div>
+                        
+                        <!-- Datos principales -->
+                        <div style="margin-bottom: 4px; width: 100%;">
+                            <div><strong>Reference:</strong> <span t-field="o.name"/></div>
+                            <div><strong>Fecha:</strong> <span t-field="o.date" t-options="{'widget': 'date'}"/></div>
+                            <div><strong>Origen:</strong> <span t-field="o.location_origin_id.name"/></div>
+                            <div><strong>Destino:</strong> <span t-field="o.location_dest_id.name"/></div>
+                        </div>
+                        
+                        <!-- Lista de productos -->
+                        <div style="border-top: 1px dashed black; border-bottom: 1px dashed black; padding: 4px 0; width: 100%;">
+                            <div><strong>Productos:</strong></div>
+                            <t t-foreach="o.transfer_line_ids" t-as="line">
+                                <div style="padding-left: 4px;">
+                                    - <span t-field="line.repair_order_id.name"/> (<span t-field="line.quantity"/> <t t-if="line.quantity == 1">ud</t><t t-else="">uds</t>)
+                                    <div style="padding-left: 8px; font-size: 8px;">
+                                        <span t-field="line.product_id.name"/>
+                                    </div>
+                                </div>
+                            </t>
+                        </div>
+                        
+                       <!-- Code de barras -->
+                        <div style="text-align: center; margin-top: 8px; width: 100%;">
+                            <div>Scan to receive:</div>
+                            <div style="margin: 10px 0;">
+                                <!-- <img t-att-src="'/report/barcode/Code128/'+o.barcode" style="width: 100%; height: 50px;" alt="Barcode"/> -->
+                            </div>
+                               <img t-att-src="'/report/barcode/QR/'+o.barcode" style="height:50px; width:60px;" alt="Barcode"/>
+                            <div style="font-size: 10px; font-weight: bold; margin-top: 4px;">
+                                <span t-field="o.barcode"/>
+                            </div>
+                        </div>
+                        
+                        <!-- Línea final -->
+                        <div style="text-align: center; border-top: 1px dashed black; margin-top: 4px; width: 100%;">
+                            <span t-field="o.company_id.name"/>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

@@ -1,0 +1,5007 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* axer_repair
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0-20250311\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-08-07 12:16+0000\n"
+"PO-Revision-Date: 2026-08-07 12:16+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: axer_repair
+#. odoo-python
+#: code:addons/axer_repair/wizards/verification.py:0
+#: code:addons/axer_repair/wizards/verification.py:0
+#, python-format
+msgid ""
+"\n"
+"\n"
+"Componentes reparados: %s"
+msgstr ""
+
+#. module: axer_repair
+#. odoo-python
+#: code:addons/axer_repair/wizards/verification.py:0
+#, python-format
+msgid ""
+"\n"
+"Nota adicional: %s"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.report_repairorder1
+msgid "% vida"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.actions.report,print_report_name:axer_repair.action_report_repair_order_qr_simple
+msgid "'Label QR - %s' % (object.name)"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.actions.report,print_report_name:axer_repair.action_report_internal_transfer
+msgid "'Transferencia - %s' % (object.name)"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.actions.report,print_report_name:axer_repair.action_report_repair_order
+#: model:ir.actions.report,print_report_name:axer_repair.action_report_repair_order4
+#: model:ir.actions.report,print_report_name:axer_repair.action_report_repair_order5
+msgid ""
+"(\n"
+"                object.state == 'draft' and 'Repair Quotation - %s' % (object.name) or\n"
+"                'Repair Order - %s' % (object.name))"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.res_config_settings_view_form
+msgid "(opcional) http://localhost:11434/v1"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,help:axer_repair.field_repair_order__state
+msgid ""
+"* The 'Draft' status is used when a user is encoding a new and unconfirmed repair order.\n"
+"* The 'Confirmed' status is used when a user confirms the repair order.\n"
+"* The 'Ready to Repair' status is used to start to repairing, user can start repairing only after repair order is confirmed.\n"
+"* The 'Under Repair' status is used when the repair is ongoing.\n"
+"* The 'To be Invoiced' status is used to generate the invoice before or after repairing done.\n"
+"* The 'Done' status is set when repairing is completed.\n"
+"* The 'Test' status is used when the equipment is under test.\n"
+"* The 'Cancelled' status is used when user cancel repair order.* The 'Handed over' status is used when the equipment is delivered to the customer.\n"
+"* The 'Guarantee' status is used when the equipment is under guarantee.\n"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.res_config_settings_view_form
+msgid "18095551234"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields.selection,name:axer_repair.selection__repair_order__sizewatch__38
+msgid "38mm"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields.selection,name:axer_repair.selection__repair_order__sizewatch__40
+msgid "40mm"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields.selection,name:axer_repair.selection__repair_order__sizewatch__41
+msgid "41mm"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields.selection,name:axer_repair.selection__repair_order__sizewatch__42
+msgid "42mm"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields.selection,name:axer_repair.selection__repair_order__sizewatch__44
+msgid "44mm"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields.selection,name:axer_repair.selection__repair_order__sizewatch__45
+msgid "45mm"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields.selection,name:axer_repair.selection__repair_order__sizewatch__49
+msgid "49mm"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.portal_my_repairs_details
+msgid "<b class=\"funciones1\">Functions</b>"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_track_template
+msgid "<i class=\"fa fa-arrow-left me-2\"/> Back to the device list"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_label_template
+msgid "<i class=\"fa fa-arrow-left me-2\"/> Volver a seguimiento"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.bulk_repair_portal_template
+msgid ""
+"<i class=\"fa fa-bell text-warning me-2\"/>\n"
+"                                <span class=\"small\">Le notificaremos cada cambio por WhatsApp</span>"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_track_template
+msgid ""
+"<i class=\"fa fa-check-circle text-success me-1\"/> Funciona correctamente\n"
+"                                    <span class=\"mx-2\">|</span>\n"
+"                                    <i class=\"fa fa-times-circle text-danger me-1\"/> Requiere atención"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_repair_end_wizard_form
+msgid "<i class=\"fa fa-check-circle\"/> Step 2: function check"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.bulk_repair_portal_template
+msgid "<i class=\"fa fa-circle me-1\"/>Cancelled"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.bulk_repair_portal_template
+msgid "<i class=\"fa fa-circle me-1\"/>Condition rating"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.bulk_repair_portal_template
+msgid "<i class=\"fa fa-circle me-1\"/>Confirmed"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.bulk_repair_portal_template
+msgid "<i class=\"fa fa-circle me-1\"/>En prueba"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.bulk_repair_portal_template
+msgid "<i class=\"fa fa-circle me-1\"/>Handed over"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.bulk_repair_portal_template
+msgid "<i class=\"fa fa-circle me-1\"/>Reparado"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.bulk_repair_portal_template
+msgid "<i class=\"fa fa-circle me-1\"/>Under repair"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_track_template
+msgid ""
+"<i class=\"fa fa-clipboard-list text-primary me-2\"/>\n"
+"                                    Detalles Technicians"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_track_template
+msgid ""
+"<i class=\"fa fa-cog text-primary me-2\"/>\n"
+"                                    Acciones"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_repair_end_wizard_form
+msgid "<i class=\"fa fa-cogs\"/> Step 1: which components did you repair?"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_track_template
+msgid ""
+"<i class=\"fa fa-history text-primary me-2\"/>\n"
+"                                    Tracking"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.bulk_repair_error
+#: model_terms:ir.ui.view,arch_db:axer_repair.bulk_repair_invalid_token
+#: model_terms:ir.ui.view,arch_db:axer_repair.bulk_repair_no_records
+msgid "<i class=\"fa fa-home me-2\"/> Volver al inicio"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_track_template
+msgid ""
+"<i class=\"fa fa-info-circle text-primary me-2\"/>\n"
+"                                    Información del servicio"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_repair_end_wizard_form
+msgid ""
+"<i class=\"fa fa-info-circle\"/> <strong>Importante:</strong> Esta "
+"información será utilizada para la facturación"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.bulk_repair_portal_template
+msgid ""
+"<i class=\"fa fa-lock text-success me-2\"/>\n"
+"                                <span class=\"small\">Your data is protected</span>"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_track_template
+msgid "<i class=\"fa fa-money-bill-wave me-1\"/> Estimated quotation"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.bulk_repair_portal_template
+msgid "<i class=\"fa fa-phone me-1\"/> Llamar"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_track_template
+msgid "<i class=\"fa fa-phone me-2\"/> Llamar"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_label_template
+msgid "<i class=\"fa fa-print me-2\"/> Print"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_track_template
+msgid "<i class=\"fa fa-print me-2\"/> Print etiqueta"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_track_template
+msgid "<i class=\"fa fa-share-alt me-2\"/> Compartir seguimiento"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.bulk_repair_portal_template
+msgid ""
+"<i class=\"fa fa-shield-alt text-primary me-2\"/>\n"
+"                                <span class=\"small\">Warranty on every repair</span>"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_track_template
+msgid "<i class=\"fa fa-sign-in-alt me-2\"/> Sign in for more options"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_track_template
+msgid "<i class=\"fa fa-tasks text-primary me-2\"/>Device diagnosis"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_repair_end_wizard_form
+msgid "<i class=\"fa fa-wrench\"/> Finish repair"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.bulk_repair_portal_template
+msgid "<i class=\"fab fa-whatsapp me-1\"/> WhatsApp"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_track_template
+msgid "<i class=\"fab fa-whatsapp me-2\"/> Contactar por WhatsApp"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.report_repairorder1
+msgid ""
+"<i>EL Customer reconoce que las funciones no probadas por nuestros tecnicos,"
+" no podemos garantizar su funcionamiento</i>"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_track_template
+msgid "<span class=\"badge bg-white text-primary me-2\">State:</span>"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_order_form_view_inherit
+msgid "<span class=\"ms-1\">%</span>"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_order_form_view_inherit
+msgid ""
+"<span class=\"o_stat_text\">Tracking</span>\n"
+"                    <span class=\"o_stat_text\">for the customer</span>"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_track_template
+msgid "<span class=\"progress-label\">Repair progress</span>"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_track_template
+msgid "<span class=\"small\">Bocina</span>"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_track_template
+msgid "<span class=\"small\">Buttons</span>"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_track_template
+msgid "<span class=\"small\">Camera</span>"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_track_template
+msgid "<span class=\"small\">Charging</span>"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_track_template
+msgid "<span class=\"small\">Earpiece</span>"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_track_template
+msgid "<span class=\"small\">Face ID</span>"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_track_template
+msgid "<span class=\"small\">Flash</span>"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_track_template
+msgid "<span class=\"small\">Front camera</span>"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_track_template
+msgid "<span class=\"small\">Microphone</span>"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_track_template
+msgid "<span class=\"small\">Panic</span>"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_track_template
+msgid "<span class=\"small\">SIM</span>"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_track_template
+msgid "<span class=\"small\">Screen</span>"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_track_template
+msgid "<span class=\"small\">Screws</span>"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_track_template
+msgid "<span class=\"small\">Signal</span>"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_track_template
+msgid "<span class=\"small\">Touch</span>"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_track_template
+msgid "<span class=\"small\">True Tone</span>"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_track_template
+msgid "<span class=\"small\">WiFi</span>"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.report_internal_transfer
+msgid ""
+"<span style=\"font-weight: bold; font-size: 10px;\">TRANSFERENCIA "
+"INTERNA</span>"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_barcode_receive_wizard_form
+msgid "<span>Scan the transfer barcode</span>"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_barcode_receive_wizard_form
+msgid "<span>Transfer verified. Now scan the devices.</span>"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.report_internal_transfer
+msgid "<strong>Destino:</strong>"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.report_internal_transfer
+msgid "<strong>Fecha:</strong>"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.report_internal_transfer
+msgid "<strong>Origen:</strong>"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.report_internal_transfer
+msgid "<strong>Productos:</strong>"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_barcode_receive_wizard_form
+msgid "<strong>Receiveds: </strong>"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.report_internal_transfer
+msgid "<strong>Reference:</strong>"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.report_repairorder1
+msgid "==========================<br/>"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_res_config_settings__rw_ai_enabled
+#: model_terms:ir.ui.view,arch_db:axer_repair.res_config_settings_view_form
+msgid "AI assistant"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_res_config_settings__rw_ai_api_key
+#: model:ir.model.fields,field_description:axer_repair.field_res_config_settings__rw_api_key
+#: model:ir.model.fields,field_description:axer_repair.field_res_config_settings__rw_imei_key
+msgid "API key"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_res_config_settings__rw_signature_token
+msgid "API token"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_res_config_settings__rw_abandoned_days
+msgid "Abandoned equipment notice"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.bulk_repair_invalid_token
+msgid "Acceso denegado"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields.selection,name:axer_repair.selection__repair_component__category__accessory
+msgid "Accesorio"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_order_form_view_inherit
+msgid "Access and condition"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_repair_order__access_token
+msgid "Access token"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_repair_order__accessories
+#: model_terms:ir.ui.view,arch_db:axer_repair.report_repairorder_9
+msgid "Accessories"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_update_bot_message_form
+msgid "Acciones realizadas?"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_accelerometer
+msgid "Acelerómetro"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_internal_transfer__message_needaction
+#: model:ir.model.fields,field_description:axer_repair.field_repair_location__message_needaction
+msgid "Action Needed"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_update_bot_message__action_result
+msgid "Action Result"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_repair_component__active
+#: model:ir.model.fields,field_description:axer_repair.field_repair_location__active
+msgid "Active"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_internal_transfer__activity_ids
+msgid "Activities"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_internal_transfer__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_internal_transfer__activity_state
+msgid "Activity State"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_internal_transfer__activity_type_icon
+msgid "Activity Type Icon"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_firmware_update
+msgid "Actualización de Firmware"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_update_bot_message_form
+msgid "Actualizar mensaje a cliente"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_bulk_repair_wizard_form
+msgid "Add"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_internal_transfer_form
+msgid "Add further notes here..."
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_repair_order__historia_check
+msgid "Add history"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_repair_end_wizard_form
+msgid "Additional notes about the components..."
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,help:axer_repair.field_repair_end_wizard__component_notes
+msgid "Additional notes about the repaired components"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_bulk_repair_wizard_form
+msgid "Additional serial"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_repair_location__address
+#: model:ir.model.fields,field_description:axer_repair.field_repair_order__address
+msgid "Address"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,help:axer_repair.field_repair_location__cups_server_ip
+msgid ""
+"Address of the print server. If left empty, documents are downloaded as PDF "
+"instead of printed."
+msgstr ""
+
+#. module: axer_repair
+#. odoo-python
+#: code:addons/axer_repair/models/transf.py:0
+#: code:addons/axer_repair/models/transf.py:0
+#: code:addons/axer_repair/models/transf.py:0
+#, python-format
+msgid "Advertencia"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_bottom_speaker
+msgid "Altavoz Inferior"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_top_speaker
+msgid "Altavoz Superior"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_res_config_settings__rw_ai_base_url
+msgid "Alternative URL"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_repair_order__amount_paid
+msgid "Amount paid"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_amplifier_ic
+msgid "Amplificador de Audio"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_magsafe_magnet_ring
+msgid "Anillo Magnético MagSafe"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_camera_ring
+msgid "Anillo de Cámara"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.res_config_settings_view_form
+msgid "Another Odoo database"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields.selection,name:axer_repair.selection__repair_printer_selection_wizard__printer_location__other_branch
+msgid "Another branch"
+msgstr ""
+
+#. module: axer_repair
+#. odoo-python
+#: code:addons/axer_repair/models/repair_order.py:0
+#, python-format
+msgid "Another customer already has that %s."
+msgstr ""
+
+#. module: axer_repair
+#. odoo-python
+#: code:addons/axer_repair/models/repair_integration.py:0
+#, python-format
+msgid "Answer only with the word: correct"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_cellular_antenna_diversity
+msgid "Antena Celular Diversity"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_cellular_antenna_main
+msgid "Antena Celular Principal"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_gps_antenna
+msgid "Antena GPS"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_nfc_antenna
+msgid "Antena NFC"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_wifi_antenna_aux
+msgid "Antena WiFi Auxiliar"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_wifi_antenna_primary
+msgid "Antena WiFi Principal"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_order_form_view_inherit
+msgid "Are you sure this repair is a warranty claim?"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,help:axer_repair.field_res_config_settings__rw_signature_enabled
+msgid "Asks the customer to sign the quotation or the handover."
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_front_mic_assembly
+msgid "Assembly Micrófono Frontal"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_res_config_settings__rw_ai_instruction
+msgid "Assistant instructions"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_internal_transfer__message_attachment_count
+#: model:ir.model.fields,field_description:axer_repair.field_repair_location__message_attachment_count
+msgid "Attachment Count"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_audio_codec
+msgid "Audio Codec / IC Audio"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.res_config_settings_view_form
+msgid "Automatic drafting"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.portal_my_repairs_details
+msgid "Autorizar!"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.res_config_settings_view_form
+msgid ""
+"Avisa al cliente por WhatsApp cuando cambia el estado de su reparación."
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_order_form_view_inherit
+msgid "Avisos y firma"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_repair_order__cover
+msgid "Back cover"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_repair_order__backglass
+msgid "Back glass"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,help:axer_repair.field_repair_order__backglass
+msgid "Back glass problems"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.portal_my_repairs_details
+msgid "Backglass 11promax verde...RD$:1500"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_backlight
+msgid "Backlight / Iluminación"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_balun
+msgid "Balun"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_sim_tray
+msgid "Bandeja SIM"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_barcode_receive_wizard__barcode
+#: model:ir.model.fields,field_description:axer_repair.field_barcode_scan_wizard__barcode
+#: model:ir.model.fields,field_description:axer_repair.field_internal_transfer__barcode
+#: model_terms:ir.ui.view,arch_db:axer_repair.report_internal_transfer
+#: model_terms:ir.ui.view,arch_db:axer_repair.report_repair_order_qr_simple
+#: model_terms:ir.ui.view,arch_db:axer_repair.report_repairorder_7
+#: model_terms:ir.ui.view,arch_db:axer_repair.report_repairorder_9
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_barcode_receive_wizard_form
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_barcode_scan_wizard_form
+msgid "Barcode"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model,name:axer_repair.model_barcode_scan_wizard
+msgid "Barcode scanning wizard"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_barometer
+msgid "Barómetro"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,help:axer_repair.field_res_config_settings__rw_signature_url
+msgid "Base URL of the signature API. Example: https://sign.mydomain.com/api"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_baseband_modem
+msgid "Baseband / Módem Celular"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.portal_my_repairs_details
+msgid "Bateria"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.report_repairorder1
+msgid "Bateria:"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_battery_li_ion
+msgid "Batería Li-ion"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_track_template
+msgid "Battery"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_repair_order_tree_inherit
+msgid "Battery %"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_repair_order__battery
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_order_form_view_inherit
+msgid "Battery (%)"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_wireless_charging_coil
+msgid "Bobina de Carga Inalámbrica"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.report_repairorder1
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_repair_end_wizard_form
+msgid "Bocina"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.report_repairorder_9
+msgid "Bocinas"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,help:axer_repair.field_repair_issue_tag__related_field
+msgid "Boolean field on repair.order to tick when this issue is selected"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields.selection,name:axer_repair.selection__repair_printer_selection_wizard__printer_type__both
+msgid "Both"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_power_sleep_button
+msgid "Botón Power/Sleep"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_volume_up_button
+msgid "Botón Volumen +"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_volume_down_button
+msgid "Botón Volumen -"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_camera_bracket
+msgid "Bracket de Cámara"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_brackets
+msgid "Brackets / Soportes"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_button_brackets
+msgid "Brackets de Botones"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_bulk_repair_wizard__branch_id
+#: model:ir.model.fields,field_description:axer_repair.field_repair_order__branch_id
+#: model:ir.model.fields,field_description:axer_repair.field_repair_printer_selection_wizard__branch_id
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_track_template
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_repair_order_search_analysis
+msgid "Branch"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_repair_location_form
+msgid "Branch name"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields.selection,name:axer_repair.selection__repair_printer_selection_wizard__printer_location__current_branch
+msgid "Branch of the repair"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,help:axer_repair.field_repair_printer_selection_wizard__branch_id
+msgid "Branch whose printers will be used."
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.actions.act_window,name:axer_repair.action_repair_location
+#: model:ir.ui.menu,name:axer_repair.menu_repair_location
+msgid "Branches"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_bulk_repair_wizard__bulk_scan_text
+msgid "Bulk IMEI/SN scan"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_bulk_repair_wizard_form
+msgid "Bulk creation of repair orders"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model,name:axer_repair.model_bulk_repair_wizard
+msgid "Bulk repair creation wizard"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model,name:axer_repair.model_bulk_repair_line
+msgid "Bulk repair line"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_bulk_repair_wizard_form
+msgid "Bulk scan mode"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_internal_transfer_search
+msgid "Buscar Transfers"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.bulk_repair_portal_template
+msgid "Buscar..."
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_repair_end_wizard__buttons
+#: model:ir.model.fields,field_description:axer_repair.field_repair_order__buttons
+#: model_terms:ir.ui.view,arch_db:axer_repair.report_repairorder1
+#: model_terms:ir.ui.view,arch_db:axer_repair.report_repairorder_9
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_repair_end_wizard_form
+msgid "Buttons"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_repair_end_wizard__bypass_checks
+msgid "Bypass Checks"
+msgstr ""
+
+#. module: axer_repair
+#. odoo-python
+#: code:addons/axer_repair/models/printing.py:0
+#, python-format
+msgid "CUPS rejected the job."
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_repair_location__cups_server_ip
+#: model:ir.model.fields,field_description:axer_repair.field_repair_printer_selection_wizard__custom_cups_server_ip
+msgid "CUPS server"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_coaxial_cables
+msgid "Cables Coaxiales"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.report_repairorder1
+#: model_terms:ir.ui.view,arch_db:axer_repair.report_repairorder_9
+msgid "CamaraF"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.report_repairorder_9
+msgid "CamaraT"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.report_repairorder1
+msgid "CamaraT."
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_repair_end_wizard__camera
+msgid "Camera"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_repair_issue_tag__related_field
+msgid "Campo relacionado"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_message_wizard
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_bulk_repair_wizard_form
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_internal_transfer_form
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_repair_end_wizard_form
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_repair_printer_selection_wizard
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_update_bot_message_form
+msgid "Cancel"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_internal_transfer_search
+msgid "Canceladas"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_message_wizard
+msgid "Cancellation notes"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields.selection,name:axer_repair.selection__internal_transfer__state__cancel
+#: model:ir.model.fields.selection,name:axer_repair.selection__repair_order__state__cancel
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_track_template
+msgid "Cancelled"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_internal_transfer_line__quantity
+msgid "Cantidad"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_3d_touch_layer
+msgid "Capa 3D Touch"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_rear_housing
+msgid "Carcasa Trasera"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_repair_component__category
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_repair_end_wizard_form
+msgid "Category"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields.selection,name:axer_repair.selection__bulk_repair_line__equipment_type__cell
+#: model:ir.model.fields.selection,name:axer_repair.selection__bulk_repair_wizard__default_equipment_type__cell
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_track_template
+msgid "Celular"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_repair_end_wizard__charging
+#: model:ir.model.fields,field_description:axer_repair.field_repair_order__charging
+#: model_terms:ir.ui.view,arch_db:axer_repair.report_repairorder_9
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_repair_end_wizard_form
+msgid "Charging"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.res_config_settings_view_form
+msgid "Check"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.portal_my_home_repair
+msgid "Check the status of your devices"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.report_repairorder1
+msgid "Check the status of your repair"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_order_form_view_inherit
+msgid "Checks"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_adhesive_strips
+msgid "Cintas Adhesivas"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_repair_order__classific
+msgid "Classification"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.res_config_settings_view_form
+msgid ""
+"Claves que protegen las direcciones públicas del módulo. Mientras estén "
+"vacías, esos accesos permanecen cerrados."
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_barcode_scan_wizard_form
+msgid "Close"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_repair_component__code
+#: model:ir.model.fields,field_description:axer_repair.field_repair_issue_tag__code
+msgid "Code"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_repair_order__user_ids
+msgid "Collaborators"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,help:axer_repair.field_repair_order__user_ids
+msgid "Collaborators who helped with the repair"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_repair_order_tree_inherit
+msgid "Collected"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_repair_issue_tag__color
+msgid "Color"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.actions.act_window,name:axer_repair.action_repair_issue_tag
+#: model:ir.ui.menu,name:axer_repair.menu_repair_issue_tag
+msgid "Common faults"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model,name:axer_repair.model_repair_issue_tag
+msgid "Common repair issue tags"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_internal_transfer__company_id
+#: model:ir.model.fields,field_description:axer_repair.field_internal_transfer_line__company_id
+msgid "Company"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_repair_order__company_phone
+msgid "Company phone"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_partner_form_inherit_repair
+msgid "Compartir Portal"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_repair_end_wizard_form
+msgid ""
+"Complete los siguientes pasos para finalizar la reparación correctamente"
+msgstr ""
+
+#. module: axer_repair
+#. odoo-python
+#: code:addons/axer_repair/models/transf.py:0
+#, python-format
+msgid "Completed"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_repair_order__done_date_w
+msgid "Completion date"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_repair_component__name
+msgid "Component name"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_repair_end_wizard__component_notes
+msgid "Component notes"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_repair_order_component_line__component_id
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_repair_end_wizard_form
+msgid "Componente"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields.selection,name:axer_repair.selection__repair_end_wizard__wizard_step__components
+msgid "Componentes"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_repair_order__repaired_components_summary
+msgid "Components summary"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_repair_order__evaluation
+#: model_terms:ir.ui.view,arch_db:axer_repair.bulk_repair_portal_template
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_label_template
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_track_template
+msgid "Condition rating"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_board_to_board_connector
+msgid "Conector Board-to-Board"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_fpc_connector
+msgid "Conector FPC"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_lightning_connector
+msgid "Conector Lightning"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_antenna_connector
+msgid "Conector de Antena"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_battery_connector_j7
+msgid "Conector de Batería (J7)"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_digitizer_connector_j3
+msgid "Conector de Digitizer (J3)"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_display_connector_j4
+msgid "Conector de Display (J4)"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model,name:axer_repair.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_message_wizard
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_internal_transfer_form
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_update_bot_message_form
+msgid "Confirm"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_repair_end_wizard_form
+msgid "Confirm that the following functions work correctly"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_internal_transfer_search
+msgid "Confirmadas"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields.selection,name:axer_repair.selection__internal_transfer__state__confirmed
+#: model:ir.model.fields.selection,name:axer_repair.selection__repair_order__state__confirmed
+#: model_terms:ir.ui.view,arch_db:axer_repair.bulk_repair_portal_template
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_label_template
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_track_template
+msgid "Confirmed"
+msgstr ""
+
+#. module: axer_repair
+#. odoo-python
+#: code:addons/axer_repair/models/res_config_settings.py:0
+#, python-format
+msgid "Connection successful"
+msgstr ""
+
+#. module: axer_repair
+#. odoo-python
+#: code:addons/axer_repair/models/repair_integration.py:0
+#, python-format
+msgid "Connection to the external Odoo is working."
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model,name:axer_repair.model_res_partner
+msgid "Contact"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_repair_end_wizard_form
+msgid "Could not be fully tested"
+msgstr ""
+
+#. module: axer_repair
+#. odoo-python
+#: code:addons/axer_repair/models/repair_integration.py:0
+#, python-format
+msgid "Could not connect to the external Odoo: %s"
+msgstr ""
+
+#. module: axer_repair
+#. odoo-python
+#: code:addons/axer_repair/models/repair_integration.py:0
+#, python-format
+msgid "Could not reach the signature service: %s"
+msgstr ""
+
+#. module: axer_repair
+#. odoo-python
+#: code:addons/axer_repair/models/repair_integration.py:0
+#, python-format
+msgid "Could not send the WhatsApp message: %s"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_product_manufacturer__country
+msgid "Country of origin"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.report_repairorder_9
+msgid "Cover"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.actions.act_window,help:axer_repair.action_internal_transfer
+msgid "Create a new internal transfer"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_bulk_repair_wizard_form
+msgid "Create orders"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.actions.act_window,name:axer_repair.action_bulk_repair_wizard
+#: model:ir.ui.menu,name:axer_repair.menu_bulk_repair_wizard
+msgid "Create repairs in bulk"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_bulk_repair_wizard_form
+msgid "Create several repair orders"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.actions.act_window,help:axer_repair.action_repair_component
+msgid "Create your first repair component"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_barcode_receive_wizard__create_uid
+#: model:ir.model.fields,field_description:axer_repair.field_barcode_scan_wizard__create_uid
+#: model:ir.model.fields,field_description:axer_repair.field_bulk_repair_line__create_uid
+#: model:ir.model.fields,field_description:axer_repair.field_bulk_repair_wizard__create_uid
+#: model:ir.model.fields,field_description:axer_repair.field_internal_transfer__create_uid
+#: model:ir.model.fields,field_description:axer_repair.field_internal_transfer_line__create_uid
+#: model:ir.model.fields,field_description:axer_repair.field_product_manufacturer__create_uid
+#: model:ir.model.fields,field_description:axer_repair.field_repair_component__create_uid
+#: model:ir.model.fields,field_description:axer_repair.field_repair_end_wizard__create_uid
+#: model:ir.model.fields,field_description:axer_repair.field_repair_issue_tag__create_uid
+#: model:ir.model.fields,field_description:axer_repair.field_repair_location__create_uid
+#: model:ir.model.fields,field_description:axer_repair.field_repair_message_wizard__create_uid
+#: model:ir.model.fields,field_description:axer_repair.field_repair_order_component_line__create_uid
+#: model:ir.model.fields,field_description:axer_repair.field_repair_printer_selection_wizard__create_uid
+#: model:ir.model.fields,field_description:axer_repair.field_update_bot_message__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_repair_order__created_from_wizard
+msgid "Created from bulk wizard"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_repair_order__pos_created
+msgid "Created in POS"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_barcode_receive_wizard__create_date
+#: model:ir.model.fields,field_description:axer_repair.field_barcode_scan_wizard__create_date
+#: model:ir.model.fields,field_description:axer_repair.field_bulk_repair_line__create_date
+#: model:ir.model.fields,field_description:axer_repair.field_bulk_repair_wizard__create_date
+#: model:ir.model.fields,field_description:axer_repair.field_internal_transfer__create_date
+#: model:ir.model.fields,field_description:axer_repair.field_internal_transfer_line__create_date
+#: model:ir.model.fields,field_description:axer_repair.field_product_manufacturer__create_date
+#: model:ir.model.fields,field_description:axer_repair.field_repair_component__create_date
+#: model:ir.model.fields,field_description:axer_repair.field_repair_end_wizard__create_date
+#: model:ir.model.fields,field_description:axer_repair.field_repair_issue_tag__create_date
+#: model:ir.model.fields,field_description:axer_repair.field_repair_location__create_date
+#: model:ir.model.fields,field_description:axer_repair.field_repair_message_wizard__create_date
+#: model:ir.model.fields,field_description:axer_repair.field_repair_order_component_line__create_date
+#: model:ir.model.fields,field_description:axer_repair.field_repair_printer_selection_wizard__create_date
+#: model:ir.model.fields,field_description:axer_repair.field_update_bot_message__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,help:axer_repair.field_res_config_settings__rw_xmlrpc_enabled
+msgid "Creates products and contacts in a second Odoo database."
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_repair_order__create_date_w
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_track_template
+msgid "Creation date"
+msgstr ""
+
+#. module: axer_repair
+#. odoo-python
+#: code:addons/axer_repair/models/repair_integration.py:0
+#, python-format
+msgid "Credentials rejected by the external Odoo."
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_front_glass
+msgid "Cristal Frontal"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_main_crystal_26mhz
+msgid "Cristal Principal 26MHz"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_rtc_crystal
+msgid "Cristal RTC (32.768kHz)"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_secondary_crystal
+msgid "Cristal Secundario"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_camera_lens_cover
+msgid "Cristal de Cámara"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_repair_order__currency_id
+msgid "Currency"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_bulk_repair_wizard__partner_id
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_label_template
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_order2_search_view_inherit
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_order_form_view_inherit
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_track_template
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_repair_order_search_analysis
+msgid "Customer"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_update_bot_message__customer_desc
+msgid "Customer Description"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_update_bot_message__customer_name
+msgid "Customer Name"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_update_bot_message__customer_phone
+msgid "Customer Phone"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_update_bot_message_form
+msgid "Customer description"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_repair_order__partner1_email
+msgid "Customer email"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_update_bot_message_form
+msgid "Customer name"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.res_config_settings_view_form
+msgid "Customer notifications"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_repair_order__partner1_phone
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_update_bot_message_form
+msgid "Customer phone"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.res_config_settings_view_form
+msgid "Customer signature"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.report_repairorder1
+msgid "Customer:"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_infrared_camera
+msgid "Cámara Infrarroja"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_telephoto_camera
+msgid "Cámara Telephoto"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_ultra_wide_camera
+msgid "Cámara Ultra Wide"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_res_config_settings__rw_xmlrpc_db
+msgid "Database"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.portal_my_repairs_details
+msgid "Datos Importates"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_repair_order_tree_inherit
+msgid "Days"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,help:axer_repair.field_res_config_settings__rw_abandoned_days
+msgid ""
+"Days after which the workshop is no longer liable for an uncollected device."
+" Printed on the receipt. Zero to omit it."
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_repair_order__days_elapsed
+msgid "Days elapsed"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_repair_order_tree_inherit
+msgid "Days in workshop"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,help:axer_repair.field_repair_order__warranty_fields
+msgid "Days of warranty the workshop grants on the repair."
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields.selection,name:axer_repair.selection__repair_order__signature_status__declined
+msgid "Declined"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_bulk_repair_wizard__default_equipment_type
+msgid "Default device type"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_bulk_repair_wizard_form
+msgid "Default main fault"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_order_form_view_inherit
+msgid "Delivery"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_repair_order__schedule_date
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_repair_order_search_analysis
+msgid "Delivery date"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_repair_order__schedule_date_str
+msgid "Delivery date (picker)"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,help:axer_repair.field_res_config_settings__rw_ai_instruction
+msgid ""
+"Describes the role the assistant takes when drafting messages: tone, "
+"technical level and the name of your workshop."
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.portal_my_repairs
+msgid "Descripcion"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_bulk_repair_line__description
+#: model:ir.model.fields,field_description:axer_repair.field_internal_transfer_line__description
+#: model:ir.model.fields,field_description:axer_repair.field_repair_issue_tag__description
+#: model:ir.model.fields,field_description:axer_repair.field_repair_order__description
+msgid "Description"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.actions.act_window,help:axer_repair.action_repair_analysis
+msgid ""
+"Desde aquí puede cruzar los datos como necesite: arrastre a\n"
+"                filas y columnas el técnico, el tipo de equipo, la avería o la\n"
+"                sucursal, y elija qué medir. El resultado se guarda como\n"
+"                favorito y se exporta a hoja de cálculo."
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_internal_transfer__location_dest_id
+msgid "Destination branch"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_internal_transfer_search
+msgid "Destino"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_internal_transfer_line__repair_order_id
+#: model_terms:ir.ui.view,arch_db:axer_repair.bulk_repair_portal_template
+#: model_terms:ir.ui.view,arch_db:axer_repair.portal_my_repairs
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_label_template
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_order_form_view_inherit
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_track_template
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_repair_order_search_analysis
+msgid "Device"
+msgstr ""
+
+#. module: axer_repair
+#. odoo-python
+#: code:addons/axer_repair/models/transf.py:0
+#, python-format
+msgid "Device %s added to the transfer."
+msgstr ""
+
+#. module: axer_repair
+#. odoo-python
+#: code:addons/axer_repair/models/transf.py:0
+#: code:addons/axer_repair/models/transf.py:0
+#, python-format
+msgid "Device %s is already part of this transfer."
+msgstr ""
+
+#. module: axer_repair
+#. odoo-python
+#: code:addons/axer_repair/models/transf.py:0
+#: code:addons/axer_repair/models/transf.py:0
+#, python-format
+msgid "Device %s is not at the source branch %s."
+msgstr ""
+
+#. module: axer_repair
+#. odoo-python
+#: code:addons/axer_repair/models/transf.py:0
+#, python-format
+msgid "Device %s is not part of this transfer."
+msgstr ""
+
+#. module: axer_repair
+#. odoo-python
+#: code:addons/axer_repair/models/transf.py:0
+#, python-format
+msgid "Device %s marcado como recibido."
+msgstr ""
+
+#. module: axer_repair
+#. odoo-python
+#: code:addons/axer_repair/models/transf.py:0
+#, python-format
+msgid "Device %s marked as received (%s of %s)."
+msgstr ""
+
+#. module: axer_repair
+#. odoo-python
+#: code:addons/axer_repair/models/transf.py:0
+#, python-format
+msgid "Device %s was already received."
+msgstr ""
+
+#. module: axer_repair
+#. odoo-python
+#: code:addons/axer_repair/models/transf.py:0
+#, python-format
+msgid "Device Received"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_bulk_repair_line__condition
+#: model:ir.model.fields,field_description:axer_repair.field_repair_order__condition
+#: model:ir.model.fields,field_description:axer_repair.field_repair_order__statecell
+msgid "Device condition"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.res_config_settings_view_form
+msgid "Device data from IMEI"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_order_form_view_inherit
+msgid "Device intake"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model,name:axer_repair.model_barcode_receive_wizard
+msgid "Device reception wizard"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_bulk_repair_line__equipment_type
+#: model:ir.model.fields,field_description:axer_repair.field_repair_order__typerepair
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_track_template
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_repair_order_search_analysis
+msgid "Device type"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.report_repairorder1
+msgid "Device:"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_internal_transfer_form
+msgid "Devices"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_barcode_receive_wizard__items_received
+msgid "Devices Receiveds"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_bulk_repair_wizard__repair_line_ids
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_bulk_repair_wizard_form
+msgid "Devices to repair"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_flash_diffuser
+msgid "Difusor de Flash"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_res_config_settings__rw_signature_enabled
+#: model_terms:ir.ui.view,arch_db:axer_repair.res_config_settings_view_form
+msgid "Digital signature"
+msgstr ""
+
+#. module: axer_repair
+#. odoo-python
+#: code:addons/axer_repair/models/res_config_settings.py:0
+#, python-format
+msgid "Digital signature will be validated on the first real request."
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_digitizer
+msgid "Digitizer / Touch Layer"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_display_assembly
+msgid "Display Assembly Completo"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_barcode_receive_wizard__display_name
+#: model:ir.model.fields,field_description:axer_repair.field_barcode_scan_wizard__display_name
+#: model:ir.model.fields,field_description:axer_repair.field_bulk_repair_line__display_name
+#: model:ir.model.fields,field_description:axer_repair.field_bulk_repair_wizard__display_name
+#: model:ir.model.fields,field_description:axer_repair.field_internal_transfer__display_name
+#: model:ir.model.fields,field_description:axer_repair.field_internal_transfer_line__display_name
+#: model:ir.model.fields,field_description:axer_repair.field_product_manufacturer__display_name
+#: model:ir.model.fields,field_description:axer_repair.field_repair_component__display_name
+#: model:ir.model.fields,field_description:axer_repair.field_repair_end_wizard__display_name
+#: model:ir.model.fields,field_description:axer_repair.field_repair_issue_tag__display_name
+#: model:ir.model.fields,field_description:axer_repair.field_repair_location__display_name
+#: model:ir.model.fields,field_description:axer_repair.field_repair_message_wizard__display_name
+#: model:ir.model.fields,field_description:axer_repair.field_repair_order_component_line__display_name
+#: model:ir.model.fields,field_description:axer_repair.field_repair_printer_selection_wizard__display_name
+#: model:ir.model.fields,field_description:axer_repair.field_update_bot_message__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_dock_connector_assembly
+msgid "Dock Connector Assembly"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_dot_projector
+msgid "Dot Projector"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields.selection,name:axer_repair.selection__internal_transfer__state__draft
+msgid "Draft"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_internal_transfer_search
+msgid "Draftes"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,help:axer_repair.field_res_config_settings__rw_ai_enabled
+msgid "Drafts the follow-up messages to the customer automatically."
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_repair_order_search_analysis
+msgid "Due today"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_duplexer
+msgid "Duplexer"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_emi_shield_main
+msgid "EMI Shield Principal"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_emi_shield_secondary
+msgid "EMI Shield Secundario"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_repair_end_wizard__earphone
+msgid "Earphone"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_repair_order__earphone
+#: model_terms:ir.ui.view,arch_db:axer_repair.report_repairorder_9
+msgid "Earpiece"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_earpiece_speaker
+msgid "Earpiece / Auricular"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_repair_end_wizard_form
+msgid "Earpiecees"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,help:axer_repair.field_res_config_settings__rw_xmlrpc_url
+msgid "Ejemplo: https://otra-instancia.odoo.com"
+msgstr ""
+
+#. module: axer_repair
+#. odoo-python
+#: code:addons/axer_repair/models/repair_integration.py:0
+#, python-format
+msgid ""
+"El asistente de IA necesita la librería 'openai'. Instálala con: pip install"
+" openai"
+msgstr ""
+
+#. module: axer_repair
+#. odoo-python
+#: code:addons/axer_repair/models/transf.py:0
+#, python-format
+msgid ""
+"El código %s no corresponde a la transferencia %s. Por favor, escanee la "
+"transferencia correcta."
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.res_config_settings_view_form
+msgid ""
+"El nombre, el logotipo y los datos de contacto se toman de la ficha de tu "
+"compañía. Aquí van los enlaces que aparecen en los recibos y en los avisos "
+"al cliente."
+msgstr ""
+
+#. module: axer_repair
+#. odoo-python
+#: code:addons/axer_repair/models/repair_order.py:0
+#, python-format
+msgid ""
+"El número de %s sólo puede contener dígitos, entre 7 y 15, sin espacios ni "
+"símbolos (ej: 18092742666)."
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_repair_order__elapsed_time_hours
+msgid "Elapsed Time Hours"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_repair_order__elapsed_time_w
+msgid "Elapsed time (hours)"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.report_repairorder1
+msgid "Email:"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_repair_order__company_name
+msgid "Empresa"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.bulk_repair_portal_template
+msgid "En proceso"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.bulk_repair_portal_template
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_track_template
+msgid "En prueba"
+msgstr ""
+
+#. module: axer_repair
+#. odoo-python
+#: code:addons/axer_repair/models/repair_order.py:0
+#: code:addons/axer_repair/models/repair_order.py:0
+#, python-format
+msgid "Enable external synchronisation in Ajustes → Repair Workshop."
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,help:axer_repair.field_res_config_settings__rw_whatsapp_url
+msgid ""
+"Endpoint receiving {phone, message, mediaUrl} by POST. Example: http://my-"
+"server:3005/send-message"
+msgstr ""
+
+#. module: axer_repair
+#. odoo-python
+#: code:addons/axer_repair/models/repair_integration.py:0
+#, python-format
+msgid "Enter a test phone number."
+msgstr ""
+
+#. module: axer_repair
+#. odoo-python
+#: code:addons/axer_repair/models/res_config_settings.py:0
+#, python-format
+msgid "Enter the URL of the signature service."
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields.selection,name:axer_repair.selection__repair_printer_selection_wizard__printer_location__custom
+msgid "Enter the printer"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.portal_my_repairs
+msgid "Entrada"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.actions.report,name:axer_repair.action_report_repair_order
+msgid "Entrada/T20"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields.selection,name:axer_repair.selection__barcode_receive_wizard__state__items
+msgid "Escanear Devices"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields.selection,name:axer_repair.selection__barcode_receive_wizard__state__transfer
+msgid "Escanear Transferencia"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_bulk_repair_wizard_form
+msgid "Escanee IMEI/SN"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_repair_order__estimated_budget
+msgid "Estimated quotation"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.portal_my_repairs_details
+msgid "Evaluacion"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.res_config_settings_view_form
+msgid "External access"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.res_config_settings_view_form
+msgid "External applications"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model,name:axer_repair.model_repair_integration
+msgid "External repair services"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.res_config_settings_view_form
+msgid "External synchronisation"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_product_product__manufacturer_id
+#: model:ir.model.fields,field_description:axer_repair.field_product_template__manufacturer_id
+msgid "Fabricante"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_repair_end_wizard__faceid
+#: model:ir.model.fields,field_description:axer_repair.field_repair_order__faceid
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_repair_end_wizard_form
+msgid "Face ID"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.report_repairorder1
+msgid "Faceid/H"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_factory_reset
+msgid "Factory Reset Completo"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_repair_order_search_analysis
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_repair_order_tree_inherit
+msgid "Fault"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_repair_issue_tag_form
+msgid "Fault name"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_internal_transfer__date
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_internal_transfer_search
+msgid "Fecha"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.report_repairorder1
+msgid "Fecha:"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_antenna_feed
+msgid "Feed de Antena"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_emi_shielding_film
+msgid "Film de Blindaje EMI"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_rx_filter
+msgid "Filtro RX"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_tx_filter
+msgid "Filtro TX"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_barcode_receive_wizard_form
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_internal_transfer_form
+msgid "Finalizar"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.actions.act_window,name:axer_repair.action_repair_end_wizard
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_order_form_view_inherit
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_repair_end_wizard_form
+msgid "Finish repair"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_baseband_firmware
+msgid "Firmware Baseband"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_repair_end_wizard__flash
+#: model:ir.model.fields,field_description:axer_repair.field_repair_order__flash
+#: model_terms:ir.ui.view,arch_db:axer_repair.report_repairorder_9
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_repair_end_wizard_form
+msgid "Flash"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_flash_led
+msgid "Flash LED"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_main_flex_cable
+msgid "Flex Cable Principal"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_power_flex_cable
+msgid "Flex Cable de Power"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_volume_flex_cable
+msgid "Flex Cable de Volumen"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_antenna_flex
+msgid "Flex de Antena"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_charging_flex
+msgid "Flex de Carga"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_interconnect_flex
+msgid "Flex de Interconexión"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_flood_illuminator
+msgid "Flood Illuminator"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_internal_transfer__message_follower_ids
+#: model:ir.model.fields,field_description:axer_repair.field_repair_location__message_follower_ids
+msgid "Followers"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_internal_transfer__message_partner_ids
+#: model:ir.model.fields,field_description:axer_repair.field_repair_location__message_partner_ids
+msgid "Followers (Partners)"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,help:axer_repair.field_repair_issue_tag__icon
+msgid "Font Awesome icon code"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,help:axer_repair.field_internal_transfer__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_repair_end_wizard__camerafront
+msgid "Front Camera"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_repair_order__camerafront
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_repair_end_wizard_form
+msgid "Front camera"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_fuel_gauge
+msgid "Fuel Gauge / Medidor Batería"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_repair_order__full_description
+msgid "Full description"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_repair_order__complete_description
+msgid "Full history"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.report_repairorder1
+msgid "Funcion"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.report_repairorder1
+msgid "Garantias"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_gaskets
+msgid "Gaskets / Sellos"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_res_config_settings__rw_whatsapp_url
+msgid "Gateway URL"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.res_config_settings_view_form
+msgid ""
+"Genera los mensajes de seguimiento a partir del estado de la reparación."
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_gyroscope
+msgid "Giroscopio"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_order2_search_view_inherit
+msgid "Group By"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_internal_transfer_search
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_repair_order_search_analysis
+msgid "Group by"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields.selection,name:axer_repair.selection__repair_order__state__guarantee
+msgid "Guarantee"
+msgstr ""
+
+#. module: axer_repair
+#. odoo-python
+#: code:addons/axer_repair/models/transf.py:0
+#, python-format
+msgid ""
+"Ha escaneado la transferencia %s, pero la transferencia actual es %s. Por "
+"favor, escanee la transferencia correcta."
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.bulk_repair_error
+msgid "Ha ocurrido un error"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_hall_sensor
+msgid "Hall Sensor"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_order_form_view_inherit
+msgid "Hand over to customer"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields.selection,name:axer_repair.selection__repair_order__state__handover
+#: model_terms:ir.ui.view,arch_db:axer_repair.bulk_repair_portal_template
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_track_template
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_repair_order_search_analysis
+msgid "Handed over"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields.selection,name:axer_repair.selection__repair_component__category__hardware
+msgid "Hardware"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_internal_transfer__has_message
+#: model:ir.model.fields,field_description:axer_repair.field_repair_location__has_message
+msgid "Has Message"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_order_form_view_inherit
+msgid "Have you tested every function of the device?"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_heat_spreader
+msgid "Heat Spreader / Disipador"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_repair_order__done
+msgid "Hecho"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_update_bot_message__history_message
+msgid "History Message"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.bulk_repair_portal_template
+msgid "Hola,"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_home_button_assembly
+msgid "Home Button Assembly"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_home_button_gasket
+msgid "Home Button Gasket"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,help:axer_repair.field_res_config_settings__rw_message_signature
+msgid ""
+"How customer notifications sign off. If left empty, the company name is "
+"used."
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_bulk_repair_wizard__lead_source
+#: model:ir.model.fields,field_description:axer_repair.field_repair_order__lead_source
+msgid "How did you hear about us?"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_repair_order_search_analysis
+msgid "How they heard about us"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_hydra_u4500
+msgid "Hydra / IC USB (U4500)"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_display_power_ic
+msgid "IC Alimentación Display"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_camera_control_ic
+msgid "IC Control de Cámara"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_touch_controller_ic
+msgid "IC Controlador Touch"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_backlight_driver_ic
+msgid "IC Driver Backlight"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_power_management_ic_secondary
+msgid "IC Gestión Energía Secundario"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_battery_management_ic
+msgid "IC Gestión de Batería"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_display_ic
+msgid "IC de Display"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_barcode_receive_wizard__id
+#: model:ir.model.fields,field_description:axer_repair.field_barcode_scan_wizard__id
+#: model:ir.model.fields,field_description:axer_repair.field_bulk_repair_line__id
+#: model:ir.model.fields,field_description:axer_repair.field_bulk_repair_wizard__id
+#: model:ir.model.fields,field_description:axer_repair.field_internal_transfer__id
+#: model:ir.model.fields,field_description:axer_repair.field_internal_transfer_line__id
+#: model:ir.model.fields,field_description:axer_repair.field_product_manufacturer__id
+#: model:ir.model.fields,field_description:axer_repair.field_repair_component__id
+#: model:ir.model.fields,field_description:axer_repair.field_repair_end_wizard__id
+#: model:ir.model.fields,field_description:axer_repair.field_repair_issue_tag__id
+#: model:ir.model.fields,field_description:axer_repair.field_repair_location__id
+#: model:ir.model.fields,field_description:axer_repair.field_repair_message_wizard__id
+#: model:ir.model.fields,field_description:axer_repair.field_repair_order_component_line__id
+#: model:ir.model.fields,field_description:axer_repair.field_repair_printer_selection_wizard__id
+#: model:ir.model.fields,field_description:axer_repair.field_update_bot_message__id
+msgid "ID"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_order2_search_view_inherit
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_repair_order_search_analysis
+msgid "IMEI"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.bulk_repair_portal_template
+msgid "IMEI / SN"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_bulk_repair_line__imei
+#: model:ir.model.fields,field_description:axer_repair.field_internal_transfer_line__imei
+#: model:ir.model.fields,field_description:axer_repair.field_repair_order__imei
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_repair_order_tree_inherit
+msgid "IMEI / Serial number"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_res_config_settings__rw_imei_enabled
+#: model_terms:ir.ui.view,arch_db:axer_repair.res_config_settings_view_form
+msgid "IMEI lookup"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_repair_order_search_analysis
+msgid "IMEI or serial number"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_label_template
+msgid "IMEI/SN"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_track_template
+msgid "IMEI:"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_internal_transfer__activity_exception_icon
+msgid "Icon"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,help:axer_repair.field_internal_transfer__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_repair_issue_tag__icon
+msgid "Icono"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,help:axer_repair.field_res_config_settings__rw_signature_template_id
+msgid "Identifier of the document template the customer signs."
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,help:axer_repair.field_internal_transfer__message_needaction
+#: model:ir.model.fields,help:axer_repair.field_repair_location__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,help:axer_repair.field_internal_transfer__message_has_error
+#: model:ir.model.fields,help:axer_repair.field_internal_transfer__message_has_sms_error
+#: model:ir.model.fields,help:axer_repair.field_repair_location__message_has_error
+#: model:ir.model.fields,help:axer_repair.field_repair_location__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_track_template
+msgid ""
+"If you need any further information, you can reach us on WhatsApp or by "
+"calling our customer line."
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_speaker_magnets
+msgid "Imanes de Altavoz"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_camera_magnets
+msgid "Imanes de Cámara"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.report_repairorder1
+msgid "Imei o serie:"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields.selection,name:axer_repair.selection__repair_order__statecell__in
+msgid "In"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_repair_order_search_analysis
+msgid "In progress"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_repair_order_search_analysis
+msgid "Intake date"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.report_repairorder1
+msgid "Intake sheet"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_thermal_interface
+msgid "Interfaz Térmica"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model,name:axer_repair.model_internal_transfer
+msgid "Internal device transfer"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model,name:axer_repair.model_internal_transfer_line
+msgid "Internal transfer line"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.actions.act_window,name:axer_repair.action_internal_transfer
+#: model:ir.ui.menu,name:axer_repair.menu_internal_transfer
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_internal_transfer_tree
+msgid "Internal transfers"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_order_form_view_inherit
+msgid "Invoicing"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_order_form_view_inherit
+msgid "Invoicing and notifications"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_internal_transfer__message_is_follower
+#: model:ir.model.fields,field_description:axer_repair.field_repair_location__message_is_follower
+msgid "Is Follower"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,help:axer_repair.field_res_config_settings__rw_api_key
+msgid ""
+"Key that external applications must send in the Authorization header to "
+"query repairs or request messages. Without a key, those endpoints stay "
+"closed."
+msgstr ""
+
+#. module: axer_repair
+#. odoo-python
+#: code:addons/axer_repair/models/repair_order.py:0
+#, python-format
+msgid ""
+"La consulta de IMEI no está activada. Configúrala en Ajustes → Repair "
+"Workshop."
+msgstr ""
+
+#. module: axer_repair
+#. odoo-python
+#: code:addons/axer_repair/models/repair_order.py:0
+#, python-format
+msgid ""
+"La firma digital no está configurada. Revísala en Ajustes → Repair Workshop."
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.constraint,message:axer_repair.constraint_internal_transfer_name_uniq
+msgid "La referencia de transferencia debe ser única!"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields.selection,name:axer_repair.selection__repair_printer_selection_wizard__printer_type__label
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_label_template
+msgid "Label"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.actions.report,name:axer_repair.action_report_repair_order_qr_simple
+msgid "Label QR simple"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_repair_order__label_printed
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_repair_order_tree_inherit
+msgid "Label printed"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_repair_location__printer_name
+#: model:ir.model.fields,field_description:axer_repair.field_repair_printer_selection_wizard__custom_label_printer
+msgid "Label printer"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.actions.report,name:axer_repair.action_report_repair_order5
+msgid "Label/watch"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields.selection,name:axer_repair.selection__repair_order__typerepair__laptop
+msgid "Laptop"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.actions.act_window,help:axer_repair.action_internal_transfer
+msgid "Las transferencias internas permiten mover equipos entre ubicaciones."
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_barcode_receive_wizard__write_uid
+#: model:ir.model.fields,field_description:axer_repair.field_barcode_scan_wizard__write_uid
+#: model:ir.model.fields,field_description:axer_repair.field_bulk_repair_line__write_uid
+#: model:ir.model.fields,field_description:axer_repair.field_bulk_repair_wizard__write_uid
+#: model:ir.model.fields,field_description:axer_repair.field_internal_transfer__write_uid
+#: model:ir.model.fields,field_description:axer_repair.field_internal_transfer_line__write_uid
+#: model:ir.model.fields,field_description:axer_repair.field_product_manufacturer__write_uid
+#: model:ir.model.fields,field_description:axer_repair.field_repair_component__write_uid
+#: model:ir.model.fields,field_description:axer_repair.field_repair_end_wizard__write_uid
+#: model:ir.model.fields,field_description:axer_repair.field_repair_issue_tag__write_uid
+#: model:ir.model.fields,field_description:axer_repair.field_repair_location__write_uid
+#: model:ir.model.fields,field_description:axer_repair.field_repair_message_wizard__write_uid
+#: model:ir.model.fields,field_description:axer_repair.field_repair_order_component_line__write_uid
+#: model:ir.model.fields,field_description:axer_repair.field_repair_printer_selection_wizard__write_uid
+#: model:ir.model.fields,field_description:axer_repair.field_update_bot_message__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_barcode_receive_wizard__write_date
+#: model:ir.model.fields,field_description:axer_repair.field_barcode_scan_wizard__write_date
+#: model:ir.model.fields,field_description:axer_repair.field_bulk_repair_line__write_date
+#: model:ir.model.fields,field_description:axer_repair.field_bulk_repair_wizard__write_date
+#: model:ir.model.fields,field_description:axer_repair.field_internal_transfer__write_date
+#: model:ir.model.fields,field_description:axer_repair.field_internal_transfer_line__write_date
+#: model:ir.model.fields,field_description:axer_repair.field_product_manufacturer__write_date
+#: model:ir.model.fields,field_description:axer_repair.field_repair_component__write_date
+#: model:ir.model.fields,field_description:axer_repair.field_repair_end_wizard__write_date
+#: model:ir.model.fields,field_description:axer_repair.field_repair_issue_tag__write_date
+#: model:ir.model.fields,field_description:axer_repair.field_repair_location__write_date
+#: model:ir.model.fields,field_description:axer_repair.field_repair_message_wizard__write_date
+#: model:ir.model.fields,field_description:axer_repair.field_repair_order_component_line__write_date
+#: model:ir.model.fields,field_description:axer_repair.field_repair_printer_selection_wizard__write_date
+#: model:ir.model.fields,field_description:axer_repair.field_update_bot_message__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_repair_order__last_whatsapp_state
+msgid "Last notified state"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_sim_reader
+msgid "Lector SIM"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_repair_order__olddata
+msgid "Legacy record"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_camera_lens
+msgid "Lente de Cámara"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_lidar_scanner
+msgid "LiDAR Scanner"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_ultrasonic_cleaning
+msgid "Limpieza Ultrasónica"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_liquid_damage_cleaning
+msgid "Limpieza por Daño de Líquidos"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,help:axer_repair.field_res_config_settings__rw_community_url
+msgid "Link offered to the customer once the repair is finished."
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.bulk_repair_portal_template
+msgid "Listos"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_logic_board
+msgid "Logic Board / Placa Base"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.bulk_repair_portal_template
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_label_template
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_track_template
+msgid "Logo"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_order_form_view_inherit
+msgid "Look up IMEI"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,help:axer_repair.field_res_config_settings__rw_imei_enabled
+msgid "Looks up the model and status of the device from its IMEI."
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.actions.act_window,help:axer_repair.action_repair_component
+msgid ""
+"Los componentes ayudan a los técnicos a registrar exactamente qué se reparó."
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_graphene_sheet
+msgid "Lámina de Grafeno"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_graphite_sheet
+msgid "Lámina de Grafito"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_magnetometer
+msgid "Magnetómetro / Brújula"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_bulk_repair_wizard_form
+msgid "Main fault"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_speaker_mesh
+msgid "Malla de Altavoz"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_product_manufacturer__name
+msgid "Manufacturer name"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_nand_flash
+msgid "Memoria NAND Flash"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_ram_memory
+msgid "Memoria RAM"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_barcode_receive_wizard__message
+#: model:ir.model.fields,field_description:axer_repair.field_barcode_scan_wizard__message
+msgid "Mensaje"
+msgstr ""
+
+#. module: axer_repair
+#. odoo-python
+#: code:addons/axer_repair/models/repair_integration.py:0
+#, python-format
+msgid "Mensaje enviado correctamente a %s."
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_repair_message_wizard__message
+#: model:ir.model.fields,field_description:axer_repair.field_update_bot_message__message
+msgid "Message"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_internal_transfer__message_has_error
+#: model:ir.model.fields,field_description:axer_repair.field_repair_location__message_has_error
+msgid "Message Delivery error"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_res_config_settings__rw_message_signature
+msgid "Message signature"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_update_bot_message_form
+msgid "Message to the customer"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_internal_transfer__message_ids
+#: model:ir.model.fields,field_description:axer_repair.field_repair_location__message_ids
+msgid "Messages"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_metal_shield_can
+msgid "Metal Shield Can"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.report_repairorder1
+#: model_terms:ir.ui.view,arch_db:axer_repair.report_repairorder_9
+msgid "Microfono"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_repair_end_wizard__microphone
+#: model:ir.model.fields,field_description:axer_repair.field_repair_order__microphone
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_repair_end_wizard_form
+msgid "Microphone"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_microsoldering
+msgid "Microsoldadura"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_primary_microphone
+msgid "Micrófono Principal (Inferior)"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_secondary_microphone
+msgid "Micrófono Secundario (Superior)"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_rear_microphone
+msgid "Micrófono Trasero"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_midframe
+msgid "Midframe / Marco Central"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_internal_transfer_search
+msgid "Mine"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields.selection,name:axer_repair.selection__repair_order__typerepair__cell
+msgid "Mobile phone"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_repair_end_wizard_form
+msgid "Mobile signal"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_bulk_repair_line__product_id
+#: model:ir.model.fields,field_description:axer_repair.field_res_config_settings__rw_ai_model
+msgid "Model"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_product_product__model_code
+#: model:ir.model.fields,field_description:axer_repair.field_product_template__model_code
+msgid "Model code"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_vibration_motor
+msgid "Motor de Vibración"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_internal_transfer__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.bulk_repair_portal_template
+msgid "My devices under repair"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_repair_order_search_analysis
+msgid "My repairs"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_bluetooth_module
+msgid "Módulo Bluetooth"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_front_camera_module
+msgid "Módulo Cámara Frontal"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_rear_camera_module
+msgid "Módulo Cámara Trasera Principal"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_wifi_module
+msgid "Módulo WiFi"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_repair_issue_tag__name
+#: model:ir.model.fields,field_description:axer_repair.field_repair_location__name
+msgid "Name"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,help:axer_repair.field_repair_location__receipt_printer_name
+msgid "Name of the CUPS queue of the receipt printer."
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,help:axer_repair.field_repair_location__printer_name
+msgid "Name of the CUPS queue, for example Brother_QL_810W."
+msgstr ""
+
+#. module: axer_repair
+#. odoo-python
+#: code:addons/axer_repair/models/transf.py:0
+#: code:addons/axer_repair/models/transf.py:0
+#: code:addons/axer_repair/models/transf.py:0
+#: code:addons/axer_repair/models/transf.py:0
+#, python-format
+msgid "New"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.actions.report,name:axer_repair.action_report_repair_order4
+msgid "New Label"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_internal_transfer__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_internal_transfer__activity_summary
+msgid "Next Activity Summary"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_internal_transfer__activity_type_id
+msgid "Next Activity Type"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_update_bot_message__next_step
+msgid "Next Step"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_order_form_view_inherit
+msgid "No SIM"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_bulk_repair_line__sim
+msgid "No SIM/SD"
+msgstr ""
+
+#. module: axer_repair
+#. odoo-python
+#: code:addons/axer_repair/models/transf.py:0
+#: code:addons/axer_repair/models/transf.py:0
+#, python-format
+msgid "No device found with code %s."
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.bulk_repair_portal_template
+msgid "No devices matched that search"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_track_template
+msgid "No disponible"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.bulk_repair_no_records
+msgid "No hay reparaciones recientes"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.bulk_repair_no_records
+msgid "No recent repairs found for"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.actions.act_window,help:axer_repair.action_repair_analysis
+msgid "No repairs to analyse yet"
+msgstr ""
+
+#. module: axer_repair
+#. odoo-python
+#: code:addons/axer_repair/models/printing.py:0
+#, python-format
+msgid ""
+"No se pudo imprimir en «%s».\n"
+"\n"
+"%s\n"
+"\n"
+"Revisa la impresora en Repairs → Branches."
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_repair_order_search_analysis
+msgid "No technician assigned"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_repair_end_wizard__note
+msgid "Nota Adicional"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_internal_transfer__notes
+#: model:ir.model.fields,field_description:axer_repair.field_repair_order_component_line__notes
+#: model_terms:ir.ui.view,arch_db:axer_repair.portal_my_repairs_details
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_internal_transfer_form
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_repair_end_wizard_form
+msgid "Notas"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_repair_order_tree_inherit
+msgid "Notified"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,help:axer_repair.field_res_config_settings__rw_whatsapp_enabled
+msgid "Notifies the customer whenever their repair changes state."
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_order_form_view_inherit
+msgid "Notify customer"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_internal_transfer__message_needaction_counter
+#: model:ir.model.fields,field_description:axer_repair.field_repair_location__message_needaction_counter
+msgid "Number of Actions"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_internal_transfer__message_has_error_counter
+#: model:ir.model.fields,field_description:axer_repair.field_repair_location__message_has_error_counter
+msgid "Number of errors"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,help:axer_repair.field_internal_transfer__message_needaction_counter
+#: model:ir.model.fields,help:axer_repair.field_repair_location__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,help:axer_repair.field_internal_transfer__message_has_error_counter
+#: model:ir.model.fields,help:axer_repair.field_repair_location__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_repair_location__repair_count
+msgid "Number of repairs"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_ois_stabilizer
+msgid "OIS / Estabilizador Óptico"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.report_repairorder1
+msgid "OK"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_repair_end_wizard_form
+msgid "Observaciones"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_repair_end_wizard_form
+msgid "Observaciones adicionales..."
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_res_config_settings__rw_community_url
+msgid "Offers and community"
+msgstr ""
+
+#. module: axer_repair
+#. odoo-python
+#: code:addons/axer_repair/models/repair_order.py:0
+#, python-format
+msgid "Only draft repairs can be confirmed."
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,help:axer_repair.field_res_config_settings__rw_whatsapp_token
+msgid "Optional. Sent as an Authorization: Bearer header."
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,help:axer_repair.field_res_config_settings__rw_ai_base_url
+msgid ""
+"Optional. To use a provider compatible with the OpenAI API or a local model "
+"(Ollama, LM Studio)."
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.bulk_repair_portal_template
+msgid "Orden"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_internal_transfer_search
+msgid "Origen"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_clock_oscillator
+msgid "Oscilador de Reloj"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields.selection,name:axer_repair.selection__repair_component__category__other
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_track_template
+msgid "Otro"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields.selection,name:axer_repair.selection__repair_order__statecell__out
+msgid "Out"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_repair_order_search_analysis
+msgid "Overdue"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_pmic_main_u3
+msgid "PMIC Principal (U3)"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_pmic_secondary
+msgid "PMIC Secundario"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_repair_order__pos_url
+msgid "POS link"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,help:axer_repair.field_res_config_settings__rw_warranty_url
+msgid ""
+"Page where the customer can read the warranty terms. It appears on the "
+"receipt and in handover notifications."
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_lcd_panel
+msgid "Panel LCD/OLED"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.report_repairorder_9
+msgid "Panic"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_repair_order__panic
+msgid "Panic button"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.report_repairorder1
+msgid "PanicFull"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.portal_my_repairs_details
+msgid "Partes"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_res_config_settings__rw_xmlrpc_password
+msgid "Password or API key"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_bulk_repair_wizard_form
+msgid "Paste several IMEI/SN and process them in one go:"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_bulk_repair_wizard_form
+msgid ""
+"Paste several IMEI/SN here (one per line, or separated by spaces or commas)"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,help:axer_repair.field_bulk_repair_wizard__bulk_scan_text
+msgid "Paste several IMEI/SN here, separated by spaces, commas or line breaks"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields.selection,name:axer_repair.selection__internal_transfer_line__receive_state__pending
+#: model:ir.model.fields.selection,name:axer_repair.selection__repair_order__signature_status__pending
+msgid "Pending"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.bulk_repair_portal_template
+msgid "Pendings"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_repair_location__phone
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_repair_order_tree_inherit
+msgid "Phone"
+msgstr ""
+
+#. module: axer_repair
+#. odoo-javascript
+#: code:addons/axer_repair/static/src/js/mobile.xml:0
+#, python-format
+msgid "Pick the delivery date and time"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_repair_order_form_inherit_portal
+msgid "Portal"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_repair_order__powerstate
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_repair_order_tree_inherit
+msgid "Powers on"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_order_form_view_inherit
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_repair_printer_selection_wizard
+msgid "Print"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_internal_transfer_form
+msgid "Print Label"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.actions.server,name:axer_repair.action_print_qr_simple
+msgid "Print etiqueta QR simple"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_bulk_repair_wizard__auto_print_labels
+msgid "Print labels automatically"
+msgstr ""
+
+#. module: axer_repair
+#. odoo-python
+#: code:addons/axer_repair/models/printing.py:0
+#, python-format
+msgid "Printer %s did not respond within %s seconds."
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_repair_location__printer_ip
+msgid "Printer IP"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model,name:axer_repair.model_repair_printer_selection_wizard
+msgid "Printer selection"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.portal_my_repairs_details
+msgid "Probadas"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.bulk_repair_portal_template
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_label_template
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_track_template
+msgid "Problema"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_bulk_repair_wizard__default_description
+msgid "Problema predeterminado"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.report_repairorder1
+msgid "Problema:"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_bulk_repair_line__repair_issues
+msgid "Problemas a reparar"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_a_series_cpu
+msgid "Procesador A-Series (A14/A15/A16)"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_bulk_repair_wizard_form
+msgid "Process IMEI/SN in bulk"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model,name:axer_repair.model_product_template
+msgid "Product"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model,name:axer_repair.model_product_product
+msgid "Product Variant"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_repair_order__product_exist
+msgid "Product exists"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model,name:axer_repair.model_product_manufacturer
+msgid "Product manufacturer"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_internal_transfer_line__product_id
+msgid "Producto"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,help:axer_repair.field_res_config_settings__rw_social_url
+msgid "Profile offered when a device could not be repaired."
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_repair_order__progress_percentage
+msgid "Progress"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.actions.server,name:axer_repair.ir_cron_publish_responsible_repair_points_ir_actions_server
+msgid "Publicar Metas resposables y colaboradores"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.actions.server,name:axer_repair.ir_cron_publish_pending_orders_ir_actions_server
+msgid "Publicar Órdenes Pendientes"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_test_points
+msgid "Puntos de Prueba"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_bulk_repair_wizard__quick_scan_imei
+msgid "Quick IMEI/SN scan"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_bulk_repair_wizard_form
+msgid "Quick scan mode"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields.selection,name:axer_repair.selection__repair_order__state__draft
+#: model_terms:ir.ui.view,arch_db:axer_repair.portal_my_repairs_details
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_order_form_view_inherit
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_repair_order_tree_inherit
+msgid "Quotation"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.report_repairorder1
+msgid "Quotation:"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.portal_my_repairs_details
+msgid "RD$:"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_rf_shield
+msgid "RF Shield / Blindaje"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields.selection,name:axer_repair.selection__repair_order__state__ready
+msgid "Ready to Repair"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_label_template
+msgid "Ready to print"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields.selection,name:axer_repair.selection__internal_transfer__state__ready
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_internal_transfer_form
+msgid "Ready to receive"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_internal_transfer_search
+msgid "Realizadas"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields.selection,name:axer_repair.selection__internal_transfer__state__done
+msgid "Realizado"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_repair_order__camera
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_repair_end_wizard_form
+msgid "Rear camera"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_reballing
+msgid "Reballing de IC"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields.selection,name:axer_repair.selection__repair_printer_selection_wizard__printer_type__receipt
+msgid "Receipt"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_repair_order_tree_inherit
+msgid "Receipt no."
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_repair_location__receipt_printer_name
+#: model:ir.model.fields,field_description:axer_repair.field_repair_printer_selection_wizard__custom_receipt_printer
+msgid "Receipt printer"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_internal_transfer_form
+msgid "Receive"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields.selection,name:axer_repair.selection__internal_transfer_line__receive_state__received
+msgid "Received"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_internal_transfer_line__received_by
+msgid "Received by"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_repair_order_search_analysis
+msgid "Received this month"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_internal_transfer_line__received_date
+msgid "Reception date"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_internal_transfer_line__receive_state
+msgid "Reception status"
+msgstr ""
+
+#. module: axer_repair
+#. odoo-python
+#: code:addons/axer_repair/models/transf.py:0
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_barcode_receive_wizard_form
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_internal_transfer_form
+#, python-format
+msgid "Recibir Devices"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.res_config_settings_view_form
+msgid ""
+"Recupera modelo, capacidad y estado a partir del IMEI. Estos servicios "
+"cobran por consulta."
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_internal_transfer__name
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_repair_order_search_analysis
+msgid "Reference"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,help:axer_repair.field_repair_order__battery
+msgid "Remaining battery life, as a percentage."
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model,name:axer_repair.model_repair_component
+msgid "Repair Component"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model,name:axer_repair.model_repair_end_wizard
+msgid "Repair End Wizard"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.actions.act_window,name:axer_repair.repair_message_wizard_action
+#: model:ir.model,name:axer_repair.model_repair_message_wizard
+msgid "Repair Message"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model,name:axer_repair.model_repair_order
+#: model:ir.model.fields,field_description:axer_repair.field_repair_end_wizard__repair_id
+#: model:ir.model.fields,field_description:axer_repair.field_repair_message_wizard__repair_id
+#: model:ir.model.fields,field_description:axer_repair.field_update_bot_message__repair_id
+msgid "Repair Order"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.res_config_settings_view_form
+msgid "Repair Workshop"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.actions.act_window,name:axer_repair.action_repair_analysis
+#: model:ir.ui.menu,name:axer_repair.menu_repair_analysis
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_repair_order_pivot
+msgid "Repair analysis"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model,name:axer_repair.model_repair_location
+msgid "Repair branch"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_repair_component_form
+msgid "Repair component"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.actions.act_window,name:axer_repair.action_repair_component
+#: model:ir.ui.menu,name:axer_repair.menu_repair_components
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_repair_component_tree
+msgid "Repair components"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_repair_issue_tag_form
+msgid "Repair issue"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_repair_issue_tag_tree
+msgid "Repair issues"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_label_template
+msgid "Repair label"
+msgstr ""
+
+#. module: axer_repair
+#. odoo-python
+#: code:addons/axer_repair/models/repair_order.py:0
+#, python-format
+msgid "Repair must be done before handover."
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_repair_order_component_line__repair_id
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_track_template
+msgid "Repair order"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_track_template
+#: model_terms:ir.ui.view,arch_db:axer_repair.report_repairorder1
+msgid "Repair tracking"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields.selection,name:axer_repair.selection__repair_order__state__done
+msgid "Repaired"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model,name:axer_repair.model_repair_order_component_line
+#: model:ir.model.fields,field_description:axer_repair.field_repair_end_wizard__selected_component_ids
+#: model:ir.model.fields,field_description:axer_repair.field_repair_order__repaired_component_ids
+msgid "Repaired components"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.portal_breadcrumbs_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.portal_my_home_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_repair_order_graph_analysis
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_repair_order_search_analysis
+msgid "Repairs"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_bootloader_repair
+msgid "Reparación Bootloader"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_board_level_repair
+msgid "Reparación a Nivel Board"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_repair_order_component_line__repaired
+#: model_terms:ir.ui.view,arch_db:axer_repair.bulk_repair_portal_template
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_label_template
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_track_template
+msgid "Reparado"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.bulk_repair_portal_template
+msgid "Reparados o entregados"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.res_config_settings_view_form
+msgid ""
+"Replica productos y contactos en una segunda instancia mediante XML-RPC."
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.res_config_settings_view_form
+msgid "Requests the signature of the quotation or the handover note."
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_internal_transfer__user_id
+msgid "Responsable"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_internal_transfer__activity_user_id
+msgid "Responsible User"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_repair_order__sd
+msgid "SD"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_repair_order__sim
+msgid "SIM"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_internal_transfer__message_has_sms_error
+#: model:ir.model.fields,field_description:axer_repair.field_repair_location__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_bulk_repair_wizard_form
+msgid "Scan IMEI/SN here"
+msgstr ""
+
+#. module: axer_repair
+#. odoo-python
+#: code:addons/axer_repair/models/transf.py:0
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_barcode_scan_wizard_form
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_internal_transfer_form
+#, python-format
+msgid "Scan barcode"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,help:axer_repair.field_bulk_repair_line__imei
+msgid "Scan or type the IMEI or serial number"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_barcode_receive_wizard_form
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_barcode_scan_wizard_form
+msgid "Scan or type the barcode"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,help:axer_repair.field_barcode_receive_wizard__barcode
+msgid "Scan or type the barcode of the device or the transfer"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,help:axer_repair.field_barcode_scan_wizard__barcode
+msgid "Scan or type the device barcode"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_bulk_repair_wizard_form
+msgid "Scan the IMEI/SN of each device and press Enter:"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.report_internal_transfer
+msgid "Scan to receive:"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_label_template
+msgid "Scan to track"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_repair_end_wizard__screen
+#: model:ir.model.fields,field_description:axer_repair.field_repair_order__screen
+#: model_terms:ir.ui.view,arch_db:axer_repair.report_repairorder1
+#: model_terms:ir.ui.view,arch_db:axer_repair.report_repairorder_9
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_repair_end_wizard_form
+msgid "Screen"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.portal_my_repairs_details
+msgid "Screen xsmax...RD$:1500"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_repair_end_wizard__screw
+msgid "Screw"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_repair_order__screw
+#: model_terms:ir.ui.view,arch_db:axer_repair.report_repairorder_9
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_repair_end_wizard_form
+msgid "Screws"
+msgstr ""
+
+#. module: axer_repair
+#. odoo-python
+#: code:addons/axer_repair/wizards/updatebot.py:0
+#, python-format
+msgid ""
+"Se le envió este mensaje al cliente %s (Phone: %s, Description: %s): %s"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_internal_transfer_line__sequence
+#: model:ir.model.fields,field_description:axer_repair.field_repair_component__sequence
+#: model:ir.model.fields,field_description:axer_repair.field_repair_order_component_line__sequence
+msgid "Secuencia"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_secure_enclave
+msgid "Secure Enclave"
+msgstr ""
+
+#. module: axer_repair
+#. odoo-python
+#: code:addons/axer_repair/wizards/verification.py:0
+#, python-format
+msgid "Select at least one component that was repaired."
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_repair_end_wizard_form
+msgid "Select every component you worked on in this repair"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,help:axer_repair.field_bulk_repair_line__repair_issues
+msgid "Select every fault the device shows"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_repair_printer_selection_wizard
+msgid "Select printer"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,help:axer_repair.field_repair_end_wizard__selected_component_ids
+msgid "Select the components that were repaired"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.report_repairorder1
+#: model_terms:ir.ui.view,arch_db:axer_repair.report_repairorder_9
+msgid "Senal"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_repair_order__send_api_whatsapp
+msgid "Send WhatsApp"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_bulk_repair_wizard__auto_whatsapp
+msgid "Send WhatsApp automatically"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.actions.act_window,name:axer_repair.action_update_bot_message_wizard
+msgid "Send a message to the customer"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.res_config_settings_view_form
+msgid "Send a test message"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_camera_sensor
+msgid "Sensor de Cámara"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_ambient_light_sensor
+msgid "Sensor de Luz Ambiental"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_proximity_sensor
+msgid "Sensor de Proximidad"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_bulk_repair_line__serial
+#: model:ir.model.fields,field_description:axer_repair.field_repair_order__serial
+msgid "Serial number"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_res_config_settings__rw_imei_url
+#: model:ir.model.fields,field_description:axer_repair.field_res_config_settings__rw_signature_url
+msgid "Service URL"
+msgstr ""
+
+#. module: axer_repair
+#. odoo-python
+#: code:addons/axer_repair/models/res_config_settings.py:0
+#, python-format
+msgid "Settings saved"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_repair_order_form_inherit_portal
+msgid "Share tracking link"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_repair_end_wizard__signal
+#: model:ir.model.fields,field_description:axer_repair.field_repair_order__signal
+msgid "Signal"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_order_form_view_inherit
+msgid "Signature"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_repair_order__signed_date
+msgid "Signature date"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_repair_order__docuseal_document_id
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_order_form_view_inherit
+msgid "Signature document"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_repair_order__signing_urlshow
+msgid "Signature link"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_repair_order__signature_status
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_repair_order_search_analysis
+msgid "Signature status"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_res_config_settings__rw_webhook_secret
+msgid "Signature webhook secret"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields.selection,name:axer_repair.selection__repair_order__signature_status__signed
+msgid "Signed"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_repair_order__signed_by_client
+msgid "Signed by the customer"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_repair_end_wizard_form
+msgid "Siguiente →"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.report_repairorder_9
+msgid "Sim"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.report_repairorder1
+msgid "Sim/m"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.bulk_repair_portal_template
+msgid "Sin identificar"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_repair_order__website1
+msgid "Sitio web"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields.selection,name:axer_repair.selection__bulk_repair_line__equipment_type__smartwatch
+#: model:ir.model.fields.selection,name:axer_repair.selection__bulk_repair_wizard__default_equipment_type__smartwatch
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_track_template
+msgid "SmartWatch"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields.selection,name:axer_repair.selection__repair_order__typerepair__smartwatch
+msgid "Smartwatch"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_res_config_settings__rw_social_url
+msgid "Social media"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields.selection,name:axer_repair.selection__repair_component__category__software
+msgid "Software"
+msgstr ""
+
+#. module: axer_repair
+#. odoo-python
+#: code:addons/axer_repair/models/transf.py:0
+#: code:addons/axer_repair/models/transf.py:0
+#, python-format
+msgid "Source and destination branches cannot be the same."
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_internal_transfer__location_origin_id
+msgid "Source branch"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_repair_end_wizard__speaker
+#: model:ir.model.fields,field_description:axer_repair.field_repair_order__speaker
+msgid "Speaker"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_standoffs
+msgid "Standoffs / Espaciadores"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_barcode_receive_wizard__state
+#: model:ir.model.fields,field_description:axer_repair.field_internal_transfer__state
+#: model:ir.model.fields,field_description:axer_repair.field_internal_transfer_line__state
+#: model_terms:ir.ui.view,arch_db:axer_repair.bulk_repair_portal_template
+#: model_terms:ir.ui.view,arch_db:axer_repair.portal_my_repairs_details
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_label_template
+#: model_terms:ir.ui.view,arch_db:axer_repair.report_repairorder1
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_internal_transfer_search
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_repair_order_search_analysis
+msgid "State"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_update_bot_message__state_actual
+msgid "State Actual"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_update_bot_message_form
+msgid "State actual?"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_repair_order__state
+msgid "Status"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,help:axer_repair.field_internal_transfer__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_repair_order__bands
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_order_form_view_inherit
+msgid "Strap"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_repair_order__sizewatch
+msgid "Strap size"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_rf_switch
+msgid "Switch RF"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_mute_switch
+msgid "Switch de Silencio"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_order_form_view_inherit
+msgid "Synchronisation"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_res_config_settings__rw_xmlrpc_enabled
+msgid "Synchronise with another Odoo"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields.selection,name:axer_repair.selection__bulk_repair_line__equipment_type__tablet
+#: model:ir.model.fields.selection,name:axer_repair.selection__bulk_repair_wizard__default_equipment_type__tablet
+#: model:ir.model.fields.selection,name:axer_repair.selection__repair_order__typerepair__tablet
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_track_template
+msgid "Tablet"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_repair_order_search_analysis
+msgid "Tags"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.actions.server,name:axer_repair.ir_cron_dias_en_taller_ir_actions_server
+msgid "Taller: actualizar los días en taller"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_taptic_engine
+msgid "Taptic Engine"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_repair_order__ncf_invoice_related
+msgid "Tax receipt"
+msgstr ""
+
+#. module: axer_repair
+#. odoo-python
+#: code:addons/axer_repair/models/repair_order.py:0
+#, python-format
+msgid "Tech service %s"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_repair_order_search_analysis
+msgid "Technician"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_partner_form_inherit_repair
+msgid "Technician portal"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.report_repairorder1
+msgid "Tel.:"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_res_config_settings__rw_signature_template_id
+msgid "Template"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields.selection,name:axer_repair.selection__repair_order__state__test
+msgid "Test"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.report_repairorder1
+msgid "Test Funciones"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.report_repairorder_9
+msgid "Test V."
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.res_config_settings_view_form
+msgid "Test connection"
+msgstr ""
+
+#. module: axer_repair
+#. odoo-python
+#: code:addons/axer_repair/models/repair_integration.py:0
+#, python-format
+msgid "Test message from Odoo."
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_res_config_settings__rw_whatsapp_test_phone
+msgid "Test phone number"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_order_form_view_inherit
+msgid "Tested"
+msgstr ""
+
+#. module: axer_repair
+#. odoo-python
+#: code:addons/axer_repair/models/repair_integration.py:0
+#, python-format
+msgid "The AI assistant did not answer: %s"
+msgstr ""
+
+#. module: axer_repair
+#. odoo-python
+#: code:addons/axer_repair/models/repair_integration.py:0
+#, python-format
+msgid "The AI assistant is not configured."
+msgstr ""
+
+#. module: axer_repair
+#. odoo-python
+#: code:addons/axer_repair/models/repair_integration.py:0
+#, python-format
+msgid "The AI assistant is responding."
+msgstr ""
+
+#. module: axer_repair
+#. odoo-python
+#: code:addons/axer_repair/models/repair_order.py:0
+#, python-format
+msgid "The IMEI service API key is missing."
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.constraint,message:axer_repair.constraint_repair_issue_tag_code_uniq
+msgid "The code must be unique."
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.constraint,message:axer_repair.constraint_repair_component_code_unique
+msgid "The component code must be unique."
+msgstr ""
+
+#. module: axer_repair
+#. odoo-python
+#: code:addons/axer_repair/wizards/verification.py:0
+#, python-format
+msgid ""
+"The fields ticked as repaired do not match the values on the repair order. "
+"Please review them and try again."
+msgstr ""
+
+#. module: axer_repair
+#. odoo-python
+#: code:addons/axer_repair/wizards/verification.py:0
+#: code:addons/axer_repair/wizards/verification.py:0
+#, python-format
+msgid "The following fields were ticked on completion: %s"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.bulk_repair_invalid_token
+msgid "The link you are trying to open is not valid or has expired."
+msgstr ""
+
+#. module: axer_repair
+#. odoo-python
+#: code:addons/axer_repair/models/repair_integration.py:0
+#, python-format
+msgid "The message could not be sent."
+msgstr ""
+
+#. module: axer_repair
+#. odoo-python
+#: code:addons/axer_repair/wizards/updatebot.py:0
+#, python-format
+msgid ""
+"The message could not be sent. Revisa la configuración de WhatsApp en "
+"Ajustes → Repair Workshop."
+msgstr ""
+
+#. module: axer_repair
+#. odoo-python
+#: code:addons/axer_repair/models/repair_order.py:0
+#, python-format
+msgid "The repair has no customer."
+msgstr ""
+
+#. module: axer_repair
+#. odoo-python
+#: code:addons/axer_repair/models/repair_order.py:0
+#, python-format
+msgid "The repair has no reference yet."
+msgstr ""
+
+#. module: axer_repair
+#. odoo-python
+#: code:addons/axer_repair/models/transf.py:0
+#, python-format
+msgid "The selected device is not at the source branch."
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,help:axer_repair.field_res_config_settings__rw_webhook_secret
+msgid ""
+"The signature service must send it in the X-Webhook-Secret header. Without "
+"it, anyone could mark a repair as signed."
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.res_config_settings_view_form
+msgid "The team at My Workshop"
+msgstr ""
+
+#. module: axer_repair
+#. odoo-python
+#: code:addons/axer_repair/models/transf.py:0
+#, python-format
+msgid ""
+"The transfer cannot be completed: %s devices are still awaiting reception."
+msgstr ""
+
+#. module: axer_repair
+#. odoo-python
+#: code:addons/axer_repair/models/transf.py:0
+#, python-format
+msgid "The transfer must be in state \"Ready to receive\"."
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_thermal_pad
+msgid "Thermal Pad / Almohadilla Térmica"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,help:axer_repair.field_res_config_settings__rw_imei_key
+msgid ""
+"These services usually charge per lookup: check the rate before using them "
+"in bulk."
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_label_template
+msgid ""
+"This is the label for your device under repair. You can print it and keep it"
+" for reference."
+msgstr ""
+
+#. module: axer_repair
+#. odoo-python
+#: code:addons/axer_repair/models/printing.py:0
+#, python-format
+msgid "This server does not have the CUPS «lp» command installed."
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_bulk_repair_wizard_form
+msgid ""
+"This wizard lets you quickly create several repair orders for one customer."
+msgstr ""
+
+#. module: axer_repair
+#. odoo-python
+#: code:addons/axer_repair/wizards/verification.py:0
+#, python-format
+msgid "Tick at least one field before confirming the repair."
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,help:axer_repair.field_bulk_repair_line__sim
+msgid "Tick if the device was checked and has neither SIM nor SD card"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_bulk_repair_wizard_form
+msgid ""
+"Tip: to add devices quickly, scan an IMEI, press Tab, pick the type, "
+"describe the fault and press Enter to move to the next line."
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_vertical_magnet_strip
+msgid "Tira Magnética Vertical"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields.selection,name:axer_repair.selection__repair_order__state__2binvoiced
+msgid "To be Invoiced"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.bulk_repair_portal_template
+msgid "Todos"
+msgstr ""
+
+#. module: axer_repair
+#. odoo-python
+#: code:addons/axer_repair/models/transf.py:0
+#, python-format
+msgid ""
+"Todos los equipos han sido recibidos. Puede finalizar la transferencia."
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_res_config_settings__rw_whatsapp_token
+msgid "Token"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.report_repairorder1
+msgid "Tornillo"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_pentalobe_screws
+msgid "Tornillos Pentalobe"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_phillips_screws
+msgid "Tornillos Phillips"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_tri_point_screws
+msgid "Tornillos Tri-point"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_repair_order__amount_total
+msgid "Total amount"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_barcode_receive_wizard__items_total
+msgid "Total devices"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.bulk_repair_portal_template
+msgid "Total equipos"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,help:axer_repair.field_repair_order__amount_total
+msgid ""
+"Total of the linked sales order. If there is no order yet, the estimated "
+"quotation is used."
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_repair_end_wizard__touch
+#: model:ir.model.fields,field_description:axer_repair.field_repair_order__touch
+#: model_terms:ir.ui.view,arch_db:axer_repair.report_repairorder1
+#: model_terms:ir.ui.view,arch_db:axer_repair.report_repairorder_9
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_repair_end_wizard_form
+msgid "Touch"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_touch_id_sensor
+msgid "Touch ID Sensor"
+msgstr ""
+
+#. module: axer_repair
+#. odoo-python
+#: code:addons/axer_repair/models/transf.py:0
+#, python-format
+msgid "Transfer %s verified. Now scan the devices."
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.actions.report,name:axer_repair.action_report_internal_transfer
+msgid "Transfer label"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_internal_transfer__transfer_line_ids
+msgid "Transfer lines"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_barcode_receive_wizard__transfer_id
+#: model:ir.model.fields,field_description:axer_repair.field_barcode_scan_wizard__transfer_id
+#: model:ir.model.fields,field_description:axer_repair.field_internal_transfer_line__transfer_id
+msgid "Transferencia"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_barcode_receive_wizard__transfer_scanned
+msgid "Transferencia Escaneada"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_internal_transfer_form
+msgid "Transferencia Interna"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.ui.menu,name:axer_repair.menu_internal_transfer_root
+msgid "Transfers"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_tristar_u2
+msgid "Tristar / IC de Carga (U2)"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_repair_end_wizard__truetone
+#: model:ir.model.fields,field_description:axer_repair.field_repair_order__truetone
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_repair_end_wizard_form
+msgid "True Tone"
+msgstr ""
+
+#. module: axer_repair
+#: model:repair.component,name:axer_repair.component_truedepth_camera
+msgid "TrueDepth Camera System"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.report_repairorder_9
+msgid "TrueTone"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_update_bot_message_form
+msgid "Tu Recomendacion?"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.portal_my_repairs
+msgid "Tus equipos"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,help:axer_repair.field_internal_transfer__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_res_config_settings__rw_xmlrpc_url
+msgid "URL"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.report_repairorder1
+msgid "USB/Charging"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields.selection,name:axer_repair.selection__repair_order__state__under_repair
+msgid "Under Repair"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.bulk_repair_portal_template
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_label_template
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_track_template
+msgid "Under repair"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_order_form_view_inherit
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_repair_order_search_analysis
+msgid "Under warranty"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_order_form_view_inherit
+msgid "Under warranty claim"
+msgstr ""
+
+#. module: axer_repair
+#. odoo-python
+#: code:addons/axer_repair/models/repair_integration.py:0
+#, python-format
+msgid "Unknown service: %s"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_repair_order__passcode
+msgid "Unlock code"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model,name:axer_repair.model_update_bot_message
+msgid "Update Bot Message"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_res_config_settings__rw_xmlrpc_user
+msgid "User"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.bulk_repair_portal_template
+msgid "Ver detalle <i class=\"fa fa-arrow-right ms-1\"/>"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields.selection,name:axer_repair.selection__repair_end_wizard__wizard_step__verification
+msgid "Verification"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_internal_transfer_form
+msgid "Volver a Draft"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.report_repairorder1
+msgid "WIFI"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.bulk_repair_portal_template
+msgid "Waiting to be seen"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_track_template
+msgid "Warranty"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_repair_order__warranty_fields
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_order_form_view_inherit
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_repair_order_tree_inherit
+msgid "Warranty (days)"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_order_form_view_inherit
+msgid "Warranty and branch"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_repair_order__guarantee_limit
+msgid "Warranty expiry"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_res_config_settings__rw_warranty_url
+#: model_terms:ir.ui.view,arch_db:axer_repair.report_repairorder1
+msgid "Warranty policy"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_internal_transfer__website_message_ids
+#: model:ir.model.fields,field_description:axer_repair.field_repair_location__website_message_ids
+msgid "Website Messages"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,help:axer_repair.field_internal_transfer__website_message_ids
+#: model:ir.model.fields,help:axer_repair.field_repair_location__website_message_ids
+msgid "Website communication history"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_repair_printer_selection_wizard__printer_type
+msgid "What to print"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.res_config_settings_view_form
+msgid "WhatsApp"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_repair_order__whatsapp_notification_sent
+msgid "WhatsApp notification sent"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_res_config_settings__rw_whatsapp_enabled
+msgid "WhatsApp notifications"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_repair_order__whatsapp_sent
+msgid "WhatsApp sent"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_repair_printer_selection_wizard__printer_location
+msgid "Where to print"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_message_wizard
+msgid "Why it is being cancelled"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_repair_end_wizard_form
+msgid "WiFi"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_repair_end_wizard__wifi
+#: model:ir.model.fields,field_description:axer_repair.field_repair_order__wifi
+#: model_terms:ir.ui.view,arch_db:axer_repair.report_repairorder_9
+msgid "Wifi"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_bulk_repair_line__wizard_id
+msgid "Wizard principal"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_repair_end_wizard__wizard_step
+msgid "Wizard step"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model,name:axer_repair.model_repair_printing
+msgid "Workshop document printing"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.res_config_settings_view_form
+msgid "Workshop identity"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.res_config_settings_view_form
+msgid "Workshop links"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.actions.act_window,name:axer_repair.action_axer_repair_config
+msgid "Workshop settings"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_order_form_view_inherit
+msgid "Write history"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.res_config_settings_view_form
+msgid ""
+"You are a technician at my workshop. You explain diagnoses clearly and "
+"kindly, in short messages."
+msgstr ""
+
+#. module: axer_repair
+#. odoo-python
+#: code:addons/axer_repair/models/repair_order.py:0
+#, python-format
+msgid "You cannot cancel a completed repair order."
+msgstr ""
+
+#. module: axer_repair
+#. odoo-python
+#: code:addons/axer_repair/models/transf.py:0
+#, python-format
+msgid "You cannot carry out a transfer with no lines."
+msgstr ""
+
+#. module: axer_repair
+#. odoo-python
+#: code:addons/axer_repair/models/transf.py:0
+#, python-format
+msgid "You cannot confirm a transfer with no lines."
+msgstr ""
+
+#. module: axer_repair
+#. odoo-python
+#: code:addons/axer_repair/models/transf.py:0
+#, python-format
+msgid "You cannot prepare a transfer with no lines."
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.bulk_repair_portal_template
+msgid "Your device is being worked on"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_track_template
+msgid ""
+"Your device is in good hands. Our technicians are working to sort it out as "
+"soon as possible."
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.report_repairorder1
+msgid "_____________________________<br/>"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.report_repairorder1
+msgid "calendar days."
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.bulk_repair_portal_template
+msgid "equipos"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.report_repairorder_9
+msgid "faceid"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.res_config_settings_view_form
+msgid "gpt-4o-mini"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_update_bot_message_form
+msgid "history of the original fault"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.res_config_settings_view_form
+msgid "http://servidor:3005/send-message"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.res_config_settings_view_form
+msgid "https://firma.midominio.com/api"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.res_config_settings_view_form
+msgid "https://instagram.com/mitaller"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.res_config_settings_view_form
+msgid "https://mitaller.com/garantia"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.res_config_settings_view_form
+msgid "https://mitaller.com/ofertas"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.res_config_settings_view_form
+msgid "https://otra-instancia.odoo.com"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.res_config_settings_view_form
+msgid "https://sickw.com/api.php"
+msgstr ""
+
+#. module: axer_repair
+#. odoo-python
+#: code:addons/axer_repair/models/repair_order.py:0
+#, python-format
+msgid "mobile"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_repair_order__name2
+msgid "name3"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.report_repairorder1
+msgid ""
+"no se hace responsable de los equipos\n"
+"  abandonados después de"
+msgstr ""
+
+#. module: axer_repair
+#. odoo-python
+#: code:addons/axer_repair/models/repair_order.py:0
+#, python-format
+msgid "phone"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.report_internal_transfer
+msgid "ud"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.report_internal_transfer
+msgid "uds"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.res_config_settings_view_form
+msgid "usuario@dominio.com"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_repair_end_wizard_form
+msgid "← Anterior"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_repair_end_wizard_form
+msgid ""
+"⚠️ <strong>Device no pudo ser probado completamente</strong><br/>\n"
+"                                Motivos válidos: pantalla no funciona, touch no responde, reinicios constantes, \n"
+"                                clave no suministrada, equipo no enciende."
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_repair_end_wizard_form
+msgid "⚠️ Casos Especiales"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_repair_end_wizard_form
+msgid "✓ Finish repair"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields.selection,name:axer_repair.selection__bulk_repair_wizard__lead_source__local
+#: model:ir.model.fields.selection,name:axer_repair.selection__repair_order__lead_source__local
+msgid "🏪 Walk-in"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields.selection,name:axer_repair.selection__bulk_repair_wizard__lead_source__recomendacion
+#: model:ir.model.fields.selection,name:axer_repair.selection__repair_order__lead_source__recomendacion
+msgid "👥 Word of mouth"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields.selection,name:axer_repair.selection__bulk_repair_wizard__lead_source__tiktok
+#: model:ir.model.fields.selection,name:axer_repair.selection__repair_order__lead_source__tiktok
+msgid "📌 TikTok"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields.selection,name:axer_repair.selection__bulk_repair_wizard__lead_source__facebook
+#: model:ir.model.fields.selection,name:axer_repair.selection__repair_order__lead_source__facebook
+msgid "📘 Facebook"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields.selection,name:axer_repair.selection__bulk_repair_wizard__lead_source__otro
+#: model:ir.model.fields.selection,name:axer_repair.selection__repair_order__lead_source__otro
+msgid "📝 Other"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields.selection,name:axer_repair.selection__bulk_repair_wizard__lead_source__google_maps
+#: model:ir.model.fields.selection,name:axer_repair.selection__repair_order__lead_source__google_maps
+msgid "📢 Google Maps"
+msgstr ""
+
+#. module: axer_repair
+#: model:ir.model.fields.selection,name:axer_repair.selection__bulk_repair_wizard__lead_source__instagram
+#: model:ir.model.fields.selection,name:axer_repair.selection__repair_order__lead_source__instagram
+msgid "📱 Instagram"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_repair_end_wizard_form
+msgid "📱 Screen y Entrada"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_repair_end_wizard_form
+msgid "📷 Cameras"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_repair_end_wizard_form
+msgid "🔗 Conectividad"
+msgstr ""
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_repair_end_wizard_form
+msgid "🔘 Controles y Audio"
+msgstr ""

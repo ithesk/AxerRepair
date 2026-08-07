@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_repair_printer_selection_wizard" model="ir.ui.view">
+        <field name="name">repair.printer.selection.wizard.form</field>
+        <field name="model">repair.printer.selection.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Select printer">
+                <sheet>
+                    <group>
+                        <field name="printer_type" widget="radio"/>
+                        <field name="printer_location" widget="radio"/>
+                    </group>
+                    
+                    <!-- Muestra la selección de sucursal cuando se elige 'other_branch' -->
+                    <group invisible="printer_location != 'other_branch'">
+                        <field name="branch_id" options="{'no_create': True}" required="printer_location == 'other_branch'"/>
+                    </group>
+                    
+                    <!-- Configuración personalizada de impresora -->
+                    <group invisible="printer_location != 'custom'">
+                        <field name="custom_cups_server_ip" required="printer_location == 'custom'"/>
+                        <field name="custom_label_printer" required="printer_location == 'custom' and printer_type in ['label', 'both']"/>
+                        <field name="custom_receipt_printer" required="printer_location == 'custom' and printer_type in ['receipt', 'both']"/>
+                    </group>
+                </sheet>
+                <footer>
+                    <button name="action_print" string="Print" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

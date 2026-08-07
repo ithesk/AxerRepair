@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Branch inicial: el taller necesita al menos una, porque es un
+             dato obligatorio de cada reparación. Se puede renombrar o añadir
+             más desde Repairs → Branches. -->
+        <record id="repair_location_default" model="repair.location">
+            <field name="name">Main workshop</field>
+        </record>
+
+        <!-- Common faults predefinidos -->
+        <record id="repair_issue_screen" model="repair.issue.tag">
+            <field name="name">Screen</field>
+            <field name="code">screen</field>
+            <field name="color">1</field>
+            <field name="icon">fa-tv</field>
+            <field name="description">Screen problems (cracks, stains, dead pixels)</field>
+            <field name="related_field">screen</field>
+        </record>
+        
+        <record id="repair_issue_battery" model="repair.issue.tag">
+            <field name="name">Battery</field>
+            <field name="code">battery</field>
+            <field name="color">3</field>
+            <field name="icon">fa-battery-half</field>
+            <field name="description">Battery problems (does not charge, drains quickly)</field>
+            <field name="related_field">battery</field>
+        </record>
+        
+        <record id="repair_issue_charging" model="repair.issue.tag">
+            <field name="name">Charging</field>
+            <field name="code">charging</field>
+            <field name="color">2</field>
+            <field name="icon">fa-plug</field>
+            <field name="description">Charging problems (damaged port, does not charge)</field>
+            <field name="related_field">charging</field>
+        </record>
+        
+        <record id="repair_issue_touch" model="repair.issue.tag">
+            <field name="name">Touch</field>
+            <field name="code">touch</field>
+            <field name="color">4</field>
+            <field name="icon">fa-hand-pointer</field>
+            <field name="description">Touch problems (unresponsive, ghost touch)</field>
+            <field name="related_field">touch</field>
+        </record>
+        
+        <record id="repair_issue_camera" model="repair.issue.tag">
+            <field name="name">Camera</field>
+            <field name="code">camera</field>
+            <field name="color">5</field>
+            <field name="icon">fa-camera</field>
+            <field name="description">Camera problems (not working, out of focus)</field>
+            <field name="related_field">camera</field>
+        </record>
+        
+        <record id="repair_issue_wifi" model="repair.issue.tag">
+            <field name="name">WiFi</field>
+            <field name="code">wifi</field>
+            <field name="color">6</field>
+            <field name="icon">fa-wifi</field>
+            <field name="description">WiFi problems (does not connect, weak signal)</field>
+            <field name="related_field">wifi</field>
+        </record>
+        
+        <record id="repair_issue_signal" model="repair.issue.tag">
+            <field name="name">Signal</field>
+            <field name="code">signal</field>
+            <field name="color">7</field>
+            <field name="icon">fa-signal</field>
+            <field name="description">Mobile signal problems</field>
+            <field name="related_field">signal</field>
+        </record>
+        
+        <record id="repair_issue_speaker" model="repair.issue.tag">
+            <field name="name">Speaker</field>
+            <field name="code">speaker</field>
+            <field name="color">8</field>
+            <field name="icon">fa-volume-up</field>
+            <field name="description">Speaker problems</field>
+            <field name="related_field">speaker</field>
+        </record>
+        
+        <record id="repair_issue_microphone" model="repair.issue.tag">
+            <field name="name">Microphone</field>
+            <field name="code">microphone</field>
+            <field name="color">9</field>
+            <field name="icon">fa-microphone</field>
+            <field name="description">Microphone problems</field>
+            <field name="related_field">microphone</field>
+        </record>
+        
+        <record id="repair_issue_buttons" model="repair.issue.tag">
+            <field name="name">Buttons</field>
+            <field name="code">buttons</field>
+            <field name="color">10</field>
+            <field name="icon">fa-toggle-on</field>
+            <field name="description">Physical button problems</field>
+            <field name="related_field">buttons</field>
+        </record>
+        
+        <record id="repair_issue_sim" model="repair.issue.tag">
+            <field name="name">SIM</field>
+            <field name="code">sim</field>
+            <field name="color">11</field>
+            <field name="icon">fa-sim-card</field>
+            <field name="description">SIM or SIM reader problems</field>
+            <field name="related_field">sim</field>
+        </record>
+        
+        <record id="repair_issue_backglass" model="repair.issue.tag">
+            <field name="name">Back glass</field>
+            <field name="code">backglass</field>
+            <field name="color">5</field>
+            <field name="icon">fa-mobile-alt</field>
+            <field name="description">Back glass problems</field>
+        </record>
+    </data>
+</odoo>

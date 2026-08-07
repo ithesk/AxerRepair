@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- Las transferencias llevan compañía pero no tenían ninguna regla:
+             en una instalación con varias compañías, cualquier usuario veía
+             las de todas. -->
+        <record id="rule_internal_transfer_company" model="ir.rule">
+            <field name="name">Transferencias internas: solo las de mi compañía</field>
+            <field name="model_id" ref="model_internal_transfer"/>
+            <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
+            <field name="global" eval="True"/>
+        </record>
+
+        <record id="rule_internal_transfer_line_company" model="ir.rule">
+            <field name="name">Líneas de transferencia: solo las de mi compañía</field>
+            <field name="model_id" ref="model_internal_transfer_line"/>
+            <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
+            <field name="global" eval="True"/>
+        </record>
+
+    </data>
+</odoo>

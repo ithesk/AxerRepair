@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Definir formato de papel continuo de 38mm para etiquetas -->
+    <record id="paperformat_axer_repair_label" model="report.paperformat">
+        <field name="name">Workshop label 38 mm</field>
+        <field name="default" eval="False" />
+        <field name="format">custom</field>
+        <field name="page_height">50</field>
+        <field name="page_width">38</field>
+        <field name="orientation">Landscape</field>
+        <field name="margin_top">1</field>
+        <field name="margin_bottom">1</field>
+        <field name="margin_left">1</field>
+        <field name="margin_right">1</field>
+        <field name="header_line" eval="False" />
+        <field name="header_spacing">0</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <template id="report_repair_order_qr_simple">
+        <t t-call="web.basic_layout">
+            <t t-foreach="docs" t-as="o">
+                <div class="page" style="font-size: 10px; padding: 0mm; margin: 0mm; width: 38mm;">
+                    <!-- Encabezado con el número de orden -->
+                    <div class="row" style="margin-top: 0mm; padding: 0mm;">
+                        <div class="col-12 text-center" style="padding: 0mm;">
+                            <strong><span t-field="o.name" style="font-size: 14px;"/></strong>
+                        </div>
+                    </div>
+                    
+                    <!-- Logo de la empresa -->
+                    <div class="row" style="margin-top: 1mm; padding: 0mm;">
+                        <div class="col-12 text-center" style="padding: 0mm;">
+                            <span style="font-size: 11px; font-weight: bold;" t-field="o.company_id.name"/>
+                        </div>
+                    </div>
+                    
+                    <!-- Code QR -->
+                    <div class="row" style="margin-top: 1mm; padding: 0mm;">
+                        <div class="col-12 text-center" style="padding: 0mm;">
+                            <img t-att-src="'/report/barcode/QR/'+o.name" style="height:60px; width:60px;" alt="Barcode"/>
+                        </div>
+                    </div>
+                    
+                    <!-- Model del equipo -->
+                    <div class="row" style="margin-top: 1mm; padding: 0mm;">
+                        <div class="col-12 text-center" style="padding: 0mm; font-size: 9px;">
+                            <t t-if="o.product_id">
+                                <span t-field="o.product_id.name"/>
+                            </t>
+                        </div>
+                    </div>
+                    
+                    <!-- Description del problema -->
+                    <div class="row" style="margin-top: 1mm; padding: 0mm;">
+                        <div class="col-12 text-center" style="padding: 0mm; font-size: 8px;">
+                            <t t-if="o.description">
+                                <span t-field="o.description"/>
+                            </t>
+                        </div>
+                    </div>
+                    
+                    <!-- Creation date -->
+                    <div class="row" style="margin-top: 1mm; padding: 0mm;">
+                        <div class="col-12 text-center" style="padding: 0mm; font-size: 7px;">
+                            <t t-if="o.create_date">
+                                <span t-field="o.create_date" t-options='{"format": "dd/MM/yyyy"}'/>
+                            </t>
+                        </div>
+                    </div>
+                    
+                    <!-- IMEI si está disponible -->
+                    <div class="row" style="margin-top: 1mm; padding: 0mm;">
+                        <div class="col-12 text-center" style="padding: 0mm; font-size: 7px;">
+                            <t t-if="o.imei">
+                                <span t-field="o.imei"/>
+                            </t>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </t>
+    </template>
+    
+    <record id="action_report_repair_order_qr_simple" model="ir.actions.report">
+        <field name="name">Label QR simple</field>
+        <field name="model">repair.order</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">axer_repair.report_repair_order_qr_simple</field>
+        <field name="report_file">axer_repair.report_repair_order_qr_simple</field>
+        <field name="print_report_name">'Label QR - %s' % (object.name)</field>
+        <field name="binding_model_id" ref="repair.model_repair_order"/>
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="axer_repair.paperformat_axer_repair_label"/>
+    </record>
+    
+    <!-- Acción del servidor para imprimir etiqueta QR simple -->
+    <record id="action_print_qr_simple" model="ir.actions.server">
+        <field name="name">Print etiqueta QR simple</field>
+        <field name="model_id" ref="repair.model_repair_order"/>
+        <field name="binding_model_id" ref="repair.model_repair_order"/>
+        <field name="binding_view_types">form</field>
+        <field name="state">code</field>
+        <field name="code">
+            action = records.print_label(simple_qr=True)
+        </field>
+    </record>
+</odoo>

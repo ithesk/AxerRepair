@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<odoo>
+
+    <!-- Inherint form view to modify -->
+<record id="repair_order_form_view_inherit" model="ir.ui.view">
+    <field name="name">repair.order.form.inherit</field>
+    <field name="model">repair.order</field>
+    <field name="inherit_id" ref="repair.view_repair_order_form"/>
+    <field name="arch" type="xml">
+
+
+      <header>
+        <!-- Acciones del flujo: cada una aparece solo en su momento, y la que
+             toca ahora es la única resaltada. -->
+        <button name="action_repair_test" type="object" string="Tested"
+                confirm="Have you tested every function of the device?"
+                invisible="state not in ('under_repair',)" class="oe_highlight" data-hotkey="t"/>
+        <button name="action_repair_end" type="object" string="Finish repair"
+                invisible="state not in ('test',)" class="oe_highlight" data-hotkey="x"/>
+        <button name="action_repair_handover" type="object" string="Hand over to customer"
+                invisible="state not in ('done',)" class="oe_highlight" data-hotkey="k"/>
+        <button name="action_repair_guarantee" type="object" string="Under warranty claim"
+                confirm="Are you sure this repair is a warranty claim?"
+                invisible="state not in ('handover',)" data-hotkey="g"/>
+
+        <!-- Herramientas del taller -->
+        <button name="%(action_update_bot_message_wizard)d" type="action"
+                string="Notify customer" class="btn-secondary" data-hotkey="u"
+                invisible="state in ('draft', 'cancel')"/>
+        <button name="generate_signing_url" type="object" string="Signature"
+                class="btn-secondary" data-hotkey="6"
+                invisible="state in ('draft', 'cancel')"/>
+        <button name="button_query_imei_service_103" type="object" string="Look up IMEI"
+                class="btn-secondary" invisible="not imei"/>
+        <button name="action_print_select_printer" type="object" string="Print"
+                class="btn-secondary" data-hotkey="p"/>
+    </header>
+
+
+        <!-- ================= Datos del equipo (columna izquierda) =========
+             En Odoo 17 'description' ya no está en la vista de repair, así que
+             estos campos se anclan a 'product_id', que sí existe. -->
+        <field name="partner_id" position="attributes">
+            <attribute name="required">1</attribute>
+            <attribute name="readonly">state in ('handover', 'done', 'under_repair')</attribute>
+        </field>
+
+        <div name="button_box" position="inside">
+            <button name="action_abrir_portal" type="object" class="oe_stat_button"
+                    icon="fa-external-link" invisible="state == 'draft'">
+                <div class="o_stat_info">
+                    <span class="o_stat_text">Tracking</span>
+                    <span class="o_stat_text">for the customer</span>
+                </div>
+            </button>
+        </div>
+
+        <!-- Distintivo visible cuando la reparación vuelve por garantía -->
+        <div name="button_box" position="before">
+            <widget name="web_ribbon" title="Under warranty" bg_color="text-bg-warning"
+                    invisible="state != 'guarantee'"/>
+        </div>
+
+        <field name="partner_id" position="before">
+            <separator string="Customer"/>
+        </field>
+
+        <field name="partner_id" position="after">
+            <field name="partner1_phone"/>
+            <field name="lead_source" widget="selection"
+                   readonly="state in ('handover', 'done', 'under_repair')" required="1"/>
+        </field>
+
+        <field name="product_id" position="before">
+            <separator string="Device"/>
+            <field name="imei" readonly="state in ('handover', 'done', 'under_repair')" required="1"/>
+        </field>
+
+        <field name="product_id" position="after">
+            <field name="typerepair" readonly="state in ('handover', 'done', 'under_repair')"/>
+            <field name="bands" string="Strap" invisible="typerepair != 'smartwatch'"/>
+            <field name="sizewatch" invisible="typerepair != 'smartwatch'"/>
+            <field name="description" widget="common_issues"
+                   readonly="state in ('handover', 'done', 'under_repair')" required="1"/>
+            <field name="historia_check" widget="boolean_toggle" invisible="historia_check == True"/>
+            <field name="complete_description" string="Write history"
+                   invisible="not historia_check or state in ['confirmed', 'ready']"/>
+        </field>
+
+        <!-- La ubicación de stock no se usa: el taller trabaja por sucursales -->
+        <field name="location_id" position="replace"/>
+
+        <field name="under_warranty" position="before">
+            <separator string="Warranty and branch"/>
+        </field>
+
+        <field name="under_warranty" position="after">
+            <field name="branch_id" options="{'no_create': True}" required="1"/>
+            <!-- La garantía del taller se concede al entregar el equipo
+                 reparado, así que no estorba durante la recepción. -->
+            <field name="warranty_fields" string="Warranty (days)"
+                   invisible="state not in ('test', '2binvoiced', 'done', 'handover', 'guarantee')"/>
+            <field name="guarantee_limit" readonly="state in 'handover'"
+                   invisible="state not in ('test', '2binvoiced', 'done', 'handover', 'guarantee')"/>
+        </field>
+
+        <!-- 'Cantidad de producto' y 'Devolución' son de Odoo y no aplican a un
+             taller: cada equipo es una orden, y los equipos no vienen de un
+             albarán de devolución sino que los trae el cliente. Se ocultan sin
+             tocar el modelo, así conservan su valor por defecto. -->
+        <xpath expr="//label[@for='product_qty']" position="replace"/>
+        <xpath expr="//div[hasclass('o_row')][field[@name='product_qty']]" position="replace">
+            <field name="product_qty" invisible="1"/>
+            <field name="product_uom" invisible="1"/>
+        </xpath>
+        <field name="picking_id" position="replace"/>
+
+        <!-- ================= Delivery y presupuesto (columna derecha) ======= -->
+        <field name="schedule_date" position="replace">
+            <separator string="Delivery"/>
+            <field name="schedule_date_str" widget="delivery_date_picker" required="1"/>
+            <field name="schedule_date" invisible="1"/>
+        </field>
+
+        <field name="user_id" position="attributes">
+            <attribute name="readonly">state in 'handover'</attribute>
+            <attribute name="widget">many2one_avatar_user</attribute>
+        </field>
+
+        <field name="user_id" position="after">
+            <field name="user_ids" widget="many2many_tags_avatar"
+                   invisible="state in ('draft', 'confirmed', 'ready')"/>
+            <separator string="Quotation"/>
+            <field name="estimated_budget" widget="quick_budget"
+                   options="{'currency_field': 'currency_id'}"
+                   readonly="state in ('handover', 'done')" required="1"/>
+        </field>
+
+        <!-- ================= Pestañas propias ============================= -->
+        <page name="parts" position="before">
+            <page string="Device intake" name="rw_recepcion">
+                <group>
+                    <group string="Access and condition">
+                        <field name="evaluation"
+                               decoration-warning="evaluation == '1/10 Maco'"
+                               decoration-success="evaluation == '10/10 NITIDO'"/>
+                        <field name="passcode" readonly="state in ('handover', 'done', 'under_repair')"/>
+                        <field name="powerstate" widget="boolean_toggle"
+                               readonly="state in ('handover', 'done', 'under_repair')"/>
+                        <label for="battery" string="Battery (%)" invisible="not powerstate"/>
+                        <div class="o_row" invisible="not powerstate">
+                            <field name="battery" nolabel="1"
+                                   readonly="state in ('handover', 'done', 'under_repair')"/>
+                            <span class="ms-1">%</span>
+                        </div>
+                        <field name="screw" invisible="typerepair == 'smartwatch'"
+                               readonly="state in ('handover', 'done', 'under_repair')"/>
+                        <field name="sim" string="No SIM" invisible="typerepair == 'smartwatch'"
+                               readonly="state in ('handover', 'done', 'under_repair')"/>
+                        <field name="cover" widget="boolean_toggle" invisible="typerepair == 'smartwatch'"
+                               readonly="state in ('handover', 'done', 'under_repair')"/>
+                        <field name="accessories" widget="boolean_toggle" invisible="typerepair == 'smartwatch'"
+                               readonly="state in ('handover', 'done', 'under_repair')"/>
+                    </group>
+                    <group string="Checks" invisible="not powerstate">
+                        <field name="screen" readonly="state in ('handover', 'done', 'under_repair')"/>
+                        <field name="touch" readonly="state in ('handover', 'done', 'under_repair')"/>
+                        <field name="truetone" readonly="state in ('handover', 'done', 'under_repair')"/>
+                        <field name="faceid" readonly="state in ('handover', 'done', 'under_repair')"/>
+                        <field name="camera" readonly="state in ('handover', 'done', 'under_repair')"/>
+                        <field name="camerafront" readonly="state in ('handover', 'done', 'under_repair')"/>
+                        <field name="flash" readonly="state in ('handover', 'done', 'under_repair')"/>
+                        <field name="signal" readonly="state in ('handover', 'done', 'under_repair')"/>
+                        <field name="wifi" readonly="state in ('handover', 'done', 'under_repair')"/>
+                        <field name="microphone" readonly="state in ('handover', 'done', 'under_repair')"/>
+                        <field name="speaker" readonly="state in ('handover', 'done', 'under_repair')"/>
+                        <field name="earphone" readonly="state in ('handover', 'done', 'under_repair')"/>
+                        <field name="charging" readonly="state in ('handover', 'done', 'under_repair')"/>
+                        <field name="buttons" readonly="state in ('handover', 'done', 'under_repair')"/>
+                        <field name="panic" readonly="state in ('handover', 'done', 'under_repair')"/>
+                    </group>
+                </group>
+            </page>
+
+            <page string="Invoicing and notifications" name="rw_seguimiento">
+                <group>
+                    <group string="Invoicing">
+                        <field name="ncf_invoice_related" widget="badge" readonly="1"/>
+                        <field name="pos_created" readonly="1"/>
+                        <field name="amount_paid" widget="monetary" readonly="1"/>
+                        <field name="pos_url" widget="url" readonly="1"/>
+                    </group>
+                    <group string="Avisos y firma">
+                        <field name="whatsapp_sent"/>
+                        <field name="send_api_whatsapp"
+                               invisible="state in ('cancel', 'draft', 'handover', 'done', 'under_repair')"/>
+                        <field name="docuseal_document_id" string="Signature document" readonly="1"/>
+                        <field name="signature_status" widget="badge" readonly="1"/>
+                    </group>
+                    <group string="Synchronisation" invisible="state in ('cancel', 'draft', 'handover', 'done', 'under_repair')">
+                        <field name="olddata"/>
+                        <field name="product_exist"/>
+                    </group>
+                </group>
+            </page>
+        </page>
+
+               
+
+    </field>
+</record>
+
+<record id="repair_order2_search_view_inherit" model="ir.ui.view">
+  <field name="name">repair.order.search.inherit</field>
+  <field name="model">repair.order</field>
+  <field name="inherit_id" ref="repair.view_repair_order_form_filter"/>
+  <field name="arch" type="xml">
+
+
+    <search>
+      <field name="name" position="after">
+        <field name="imei"/>
+        <field name="partner1_phone"/>
+        <field name="partner1_email"/>
+        <field name="partner_id"/>
+    </field>
+    <group expand="1" string="Group By">
+      <filter name="group_by_imei" string="IMEI" context="{'group_by':'imei'}"/>
+      <filter name="group_by_partner" string="Customer" context="{'group_by':'partner_id'}"/>
+  </group>
+
+    </search>
+
+  </field>
+</record>
+
+</odoo>

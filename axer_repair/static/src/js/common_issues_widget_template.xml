@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-name="axer_repair.CommonIssuesWidget">
+        <div class="common-issues-widget o_common_issues_widget">
+            <input type="text" t-ref="inputField" t-on-input="onInput"
+                   class="o_common_issues_input" t-att-readonly="props.readonly"/>
+            <ul class="o_common_issues_suggestions" t-if="state.suggestions.length">
+                <li t-foreach="state.suggestions" t-as="suggestion"
+                    t-key="suggestion"
+                    t-on-click="() => this.onSuggestionClick(suggestion)">
+                    <t t-out="suggestion"/>
+                </li>
+            </ul>
+        </div>
+    </t>
+
+</templates>

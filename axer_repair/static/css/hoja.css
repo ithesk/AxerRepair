@@ -1,0 +1,137 @@
+
+
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Silkscreen:wght@700&display=swap');
+
+
+
+.hoja{
+    width: 77mm;
+    height: 230mm;
+    
+}
+
+.logo{
+    position: absolute;
+    top: 10px; 
+    left: 100px;
+    font-family: 'Anton', sans-serif;
+}
+
+.addrs{
+    position: absolute;
+    top: 60px; 
+    left: 100px;
+    width: 200px;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 15px;
+}
+
+.etiqueta{
+    position: absolute;
+    top: 10px;
+    left: 450px;
+    font-family: 'Anton', sans-serif;
+    font-size: 20px;
+    text-align: center;
+    width: 100px;
+    background-color: black;
+    color: white;
+}
+
+
+
+h2{
+    content: '';
+    position: absolute;
+    height: 3px;
+    width: 100%;
+    left: -1px;
+    background-color: black;
+    border: 2px solid black;
+    top: 183px;
+}
+
+
+.custumer{
+    position: absolute;
+    top: 200px;
+    left: 10px;
+    font-family: 'Anton', sans-serif;
+    font-size: 15px;
+}
+
+h4{
+    content: '';
+    position: absolute;
+    height: 3px;
+ 
+    width: 100%;
+    left: -1px;
+    background-color: black;
+    border: 2px solid black;
+    top: 763px;
+}
+
+.qr{
+    position: absolute;
+    top: 820px;
+    left: 10px;
+    width: 150px;
+    height: 150px    ;
+    
+}
+
+.attention{
+    position: absolute;
+    top: 620px;
+    width: 490px;
+    left: 50px;
+    font-family: 'silkscreen', sans-serif;
+    font-size: 15px;
+}
+
+.conchetes1{
+    position: absolute;
+    top: 550px;
+    left: 0px;
+    font-family: 'silkscreen', sans-serif;
+    font-size: 90px;
+}
+
+.conchetes2{
+    position: absolute;
+    top: 670px;
+    left: 530px;
+    font-family: 'silkscreen', sans-serif;
+    font-size: 90px;
+}
+
+.attbox{
+    position: absolute;
+    top: 230px;
+    left: 200px;
+    width: 230px;
+    height: 100px;
+    border: 1px solid black;
+    font-family: 'Anton', sans-serif;
+    font-size: 15px;
+}
+
+
+.barcode{
+    position: absolute;
+    top: 815px;
+    left: 200px;
+    width: 230px;
+    
+}
+
+.date{
+    position: absolute;
+    top: 935px;
+    left: 250px;
+    font-family: 'Anton', sans-serif;
+    font-size: 15px;
+}

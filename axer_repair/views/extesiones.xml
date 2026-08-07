@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!--* Añadir botón en la vista de partner para compartir el portal de reparaciones *-->
+    <record id="view_partner_form_inherit_repair" model="ir.ui.view">
+        <field name="name">res.partner.form.inherit.repair</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <div name="button_box" position="inside">
+                <button name="action_share_bulk_repair_portal"
+                    type="object"
+                    class="oe_stat_button"
+                    icon="fa-share-alt"
+                    string="Compartir Portal"
+                    invisible="not phone">
+                </button>
+            </div>
+            
+            <!-- Añadir campo signup_token en una pestaña técnica -->
+            <notebook position="inside">
+                <page string="Technician portal" groups="base.group_system">
+                    <group>
+                        <field name="signup_token" readonly="1"/>
+                    </group>
+                </page>
+            </notebook>
+        </field>
+    </record>
+    
+    <!--* Añadir botón en la vista de reparación para compartir el enlace de seguimiento *-->
+    <record id="view_repair_order_form_inherit_portal" model="ir.ui.view">
+        <field name="name">repair.order.form.inherit.portal</field>
+        <field name="model">repair.order</field>
+        <field name="inherit_id" ref="repair.view_repair_order_form"/>
+        <field name="arch" type="xml">
+            <header position="inside">
+                <button name="action_share_tracking_url"
+                    type="object"
+                    string="Share tracking link"
+                    class="btn-primary"
+                    icon="fa-share-alt"
+                    invisible="not partner_id"/>
+            </header>
+            <!--* Añadir campos de acceso en una pestaña técnica *-->
+            <notebook position="inside">
+                <page string="Portal" groups="base.group_system">
+                    <group>
+                        <field name="access_token" readonly="1"/>
+                        <field name="created_from_wizard"/>
+                    </group>
+                </page>
+            </notebook>
+        </field>
+    </record>
+</odoo>

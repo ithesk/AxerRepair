@@ -1,0 +1,29 @@
+<odoo>
+    <data noupdate="1">
+
+        <!-- Definición de la tarea programada (Cron Job) -->
+        <record id="ir_cron_dias_en_taller" model="ir.cron">
+            <field name="name">Workshop: refresh days in workshop</field>
+            <field name="model_id" ref="repair.model_repair_order"/>
+            <field name="state">code</field>
+            <field name="code">model.cron_actualizar_dias_en_taller()</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="ir_cron_publish_pending_orders" model="ir.cron">
+            <field name="name">Publish pending orders</field>
+            <field name="model_id" ref="repair.model_repair_order"/>  <!-- Refiere al modelo 'RepairOrder' -->
+            <field name="state">code</field>
+            <field name="code">model.cron_publish_pending_orders()</field>  <!-- Función a ejecutar -->
+            <field name="interval_number">1</field>  <!-- Intervalo de tiempo (1 día) -->
+            <field name="interval_type">days</field>  <!-- Tipo de intervalo (días) -->
+            <field name="numbercall">-1</field>  <!-- Ejecución infinita -->
+            <field name="nextcall" eval="(DateTime.now() + relativedelta(hours=9, minutes=10)).strftime('%Y-%m-%d %H:%M:%S')"/>  <!-- Fecha y hora de la próxima ejecución -->
+            <field name="doall" eval="False"/>  <!-- No ejecutar las tareas omitidas -->
+            <field name="active" eval="True"/>  <!-- Active por defecto -->
+        </record>
+    </data>
+</odoo>

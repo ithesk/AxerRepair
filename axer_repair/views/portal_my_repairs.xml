@@ -1,0 +1,434 @@
+<odoo>
+    <template id="portal_my_repairs" name="My Repairs">
+      <link rel="stylesheet" href="/axer_repair/static/css/table2.css"/>
+        <t t-call="portal.portal_layout">
+            <div class="container">
+                <h1>Tus equipos</h1>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                  <thead class="thead-light">
+                        <tr>
+                            <th>Entrada</th>
+                            <th class="col-6 col-md-8">Device</th>
+                            <th>Descripcion</th>
+                            <!-- <th>Status</th> -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="repairs" t-as="repair">
+                            <tr>
+                                <td>
+                                    <a t-attf-href="/my/repair/#{repair.id}">
+                                        <t t-out="repair.name"/> <br></br>
+                                        <div t-att-class="'state ' + 'state-' + repair.state">
+                                        <t t-out="repair.state"/>
+                                        </div>
+                                    </a>
+                                </td>
+                                <td>
+                                    <t t-out="repair.product_id.name"/>
+                                </td>
+                                <td>
+                                    <t t-out="repair.description"/>
+                                </td>
+                                <!-- <td>
+                                    <t t-out="repair.state"/>
+                                </td> -->
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+                <t t-call="portal.pager" t-vars="pager=pager"/>
+            </div>
+            </div>
+        </t>
+    </template>
+
+    <template id="portal_my_repairs_details" name="My Repairs Details">
+        <script type="text/javascript" src="/axer_repair/static/css/script.js"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet"/>
+        <link rel="stylesheet" href="/axer_repair/static/css/global.css"/>
+        <link rel="stylesheet" href="/axer_repair/static/css/index.css"/>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue:wght@400&amp;display=swap"/>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800&amp;display=swap"/>
+        <t t-call="portal.portal_layout">
+            <!-- <section class="vh-100" style="background-color: #f4f5f7;">
+                <div class="container py-5 h-100">
+                    <div class="row d-flex justify-content-center align-items-center h-100">
+                        <div class="col col-lg-6 mb-4 mb-lg-0">
+                            <div class="card mb-3" style="border-radius: .5rem;">
+                                <div class="row g-0">
+                                    
+
+
+                                    <div class="col-md-4 gradient-custom text-left text-white"
+                                    style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
+    
+                                    <div class="p-4 d-flex align-items-center">
+                                        <img src="/axer_repair/static/img/cell.png" alt="Avatar" class="img-fluid me-1" style="width: 45px;" />
+                                        <h2 class="mb-0 repair-title ">Reparacion</h2>
+                                    </div>
+    
+                                       <h3> <span class="badge bg-info text-dark">
+                                           <i class="bi bi-file-earmark-post"></i>
+                                           <t t-out="repair.name"/>
+                                       </span> 
+                                         </h3>
+                                       <h3>
+                                        <span class="badge bg-info text-dark">
+                                            <i class="bi bi-phone"></i>
+                                            <t t-out="repair.product_id.name"/>
+                                        </span>
+                                    </h3>
+    
+                                    <h3>
+                                        <span class="badge bg-warning text-dark">
+                                            <i class="bi bi-battery-half"></i>
+                                            <t t-out="repair.battery"/>
+                                        </span>
+                                    </h3>
+                                     
+    
+                                    <h3>
+                                        <span class="badge bg-warning text-dark">
+                                            <i class="bi bi-clipboard2-pulse-fill"></i>
+                                            <t t-out="repair.evaluation"/>
+                                        </span>
+                                    </h3>
+                                    <div class="progress mt-3">
+                                       <div class="col-md-8 your_progress_bar_selector"/>
+                                        
+                                    </div>
+
+
+
+
+                                    </div>
+                                    <div class="col-md-8">
+
+                                        <t t-out="repair.name"/>
+                                        <t t-out="repair.description"/>
+                                     
+
+                                        <table class="table">
+                                            <thead class="thead-dark">
+                                              <tr>
+                                                <th scope="col">Funcion</th>
+                                                <th scope="col"></th>
+                                                <th scope="col">Funcion</th>
+                                                <th scope="col"></th>
+                                              </tr>
+                                            </thead>
+                                            <tbody>
+                                              <tr>
+                                                <th scope="row">1</th>
+                                                <td>Faceid</td>
+                                                <td></td>
+                                                <td>Wifi</td>
+                                              </tr>
+                                              <tr>
+                                                <th scope="row">2</th>
+                                                <td>Camara.T</td>
+                                                <td></td>
+                                                <td>Camara.F</td>
+                                              </tr>
+                                              <tr>
+                                                <th scope="row">3</th>
+                                                <td>Charging</td>
+                                                <td>the Bird</td>
+                                                <td>Touch</td>
+                                              </tr>
+                                            </tbody>
+                                          </table>
+                                          
+                                          <table class="table">
+                                            <thead class="thead-light">
+                                              <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">First</th>
+                                                <th scope="col">Last</th>
+                                                <th scope="col">Handle</th>
+                                              </tr>
+                                            </thead>
+                                            <tbody>
+                                              <tr>
+                                                <th scope="row">1</th>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                                <td>@mdo</td>
+                                              </tr>
+                                              <tr>
+                                                <th scope="row">2</th>
+                                                <td>Jacob</td>
+                                                <td>Thornton</td>
+                                                <td>@fat</td>
+                                              </tr>
+                                              <tr>
+                                                <th scope="row">3</th>
+                                                <td>Larry</td>
+                                                <td>the Bird</td>
+                                                <td>@twitter</td>
+                                              </tr>
+                                            </tbody>
+                                          </table> -->
+
+                                        <!-- Aqui Termina el contenido de la tarjeta -->
+                                       <!-- codigo test -->
+                                       <body>
+                                        <div class="iphone-14-15-pro-max-1">
+                                          <header class="iphone-14-15-pro-max-1-inner">
+                                            <div class="chrome-browser-bar-parent">
+                                              <img
+                                                class="chrome-browser-bar"
+                                                loading="lazy"
+                                                alt=""
+                                                src="/axer_repair/static/css/public/ellipse-1@2x.png"
+                                              />
+                                    
+                                              <div class="juan-de-los-palotes-wrapper">
+                                                <h3 class="juan-de-los"><t t-out="repair.partner_id.name"/></h3>
+                                           
+                                              </div>
+                                              
+                                              <div class="frame-wrapper">
+                                                <div class="forward-parent">
+                                                  <div class="forward"></div>
+                                                  <img
+                                                    class="search-more-icon"
+                                                    loading="lazy"
+                                                    alt=""
+                                                    src="/axer_repair/static/css/public/search-more@2x.png"
+                                                  />
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </header>
+                                          <section class="parts-container">
+                                            <div class="parts-container-inner">
+                                              <div class="frame-parent6">
+                                                <div class="frame-parent7">
+                                                  <div class="rectangle-parent6">
+                                                    <div class="frame-child14"></div>
+                                                    <button class="battery-and-screen">
+                                                      <div class="battery-and-screen-child"></div>
+                                                      <b class="b"><t t-out="repair.name"></t></b>
+                                                    </button>
+                                                    <div class="div1"><t t-out="repair.imei"></t></div>
+                                                    <img
+                                                      class="page-icon"
+                                                      loading="lazy"
+                                                      alt=""
+                                                      src="/axer_repair/static/css/public/page@2x.png"
+                                                    />
+                                    
+                                                    <b class="promax"><t t-out="repair.product_id.name"></t></b>
+                                                  </div>
+                                                  <img
+                                                    class="iphone-14-icon"
+                                                    loading="lazy"
+                                                    alt=""
+                                                    src="/axer_repair/static/css/public/iphone-14@2x.png"
+                                                  />
+                                    
+                                                  <div class="div2"><t t-out="repair.create_date"></t></div>
+                                                </div>
+                                                <div class="status-bar">
+                                                  <div class="line-parent">
+                                                    <div class="line-div"></div>
+                                                    <div class="bateria">Bateria</div>
+                                                    <div class="frame-parent8">
+                                                      <div class="frame-parent9">
+                                                        <div class="ellipse-parent7">
+                                                          <div class="frame-child15"></div>
+                                                          <img
+                                                            class="battery-icon1"
+                                                            loading="lazy"
+                                                            alt=""
+                                                            src="/axer_repair/static/css/public/battery@2x.png"
+                                                          />
+                                                        </div>
+                                                        <div class="empty-padding-wrapper">
+                                                          <div class="empty-padding"><t t-out="repair.battery"></t>%</div>
+                                                        </div>
+                                                      </div>
+                                                      <div class="rectangle-parent7">
+                                                        <div class="frame-child16"></div>
+                                                        <img
+                                                          class="mask-group-icon"
+                                                          loading="lazy"
+                                                          alt=""
+                                                          src="/axer_repair/static/css/public/mask-group@2x.png"
+                                                        />
+                                    
+                                                        <div class="pantalla-en-blanco-wrapper">
+                                                          <div class="pantalla-en-blanco"><t t-out="repair.description"></t></div>
+                                                        </div>
+                                                      </div>
+                                                    </div>
+                                                  </div>
+                                                  <div class="status-bar-inner">
+                                                    <div class="rectangle-parent8">
+                                                      <div class="frame-child17"></div>
+                                                      <img
+                                                        class="mask-group-icon1"
+                                                        loading="lazy"
+                                                        alt=""
+                                                        src="/axer_repair/static/css/public/mask-group-1@2x.png"
+                                                      />
+                                                      <button>
+                                                       <a  t-att-href="repair.signing_urlshow">
+                                                      <div class="blank-screen">
+                                                        <div class="autorizar">Autorizar!</div>
+                                                      </div>
+                                                      </a>
+                                                    </button>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            </div>
+                                            <h1 class="datos-importates">Datos Importates</h1>
+                                            <div class="frame-parent10">
+                                              <div class="rectangle-parent9">
+                                                <div class="frame-child18"></div>
+                                                <div class="evaluacion-parent">
+                                                  <h2 class="evaluacion">Evaluacion</h2>
+                                                  <div class="evaluation-content">
+                                                    <div class="notas-container">
+                                                      <div class="star-parent">
+                                                        <div class="star"></div>
+                                                        <img
+                                                          class="fat-emoji-icon"
+                                                          loading="lazy"
+                                                          alt=""
+                                                          src="/axer_repair/static/css/public/fat-emoji@2x.png"
+                                                        />
+                                                      </div>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                                <div class="avatar"><t t-out="repair.evaluation"></t></div>
+                                              </div>
+                                              <div class="rectangle-parent10">
+                                                <div class="frame-child19"></div>
+                                                <div class="rectangle-parent11">
+                                                  <div class="frame-child20"></div>
+                                                  <div class="presupuesto-wrapper">
+                                                    <h2 class="presupuesto1">Quotation</h2>
+                                                  </div>
+                                                  <div class="frame-parent11">
+                                                    <div class="rd500000-wrapper">
+                                                      <div class="rd500000">RD$:<t t-out="repair.amount_total"></t></div>
+                                                    </div>
+                                                    <div class="frame-parent12">
+                                                      <div class="frame-wrapper1">
+                                                        <div class="rectangle-parent12">
+                                                          <div class="frame-child21"></div>
+                                                          <div class="partes">Partes</div>
+                                                        </div>
+                                                      </div>
+                                                      <div class="bicycle-grips-parent">
+                                                        <img
+                                                          class="bicycle-grips-icon"
+                                                          loading="lazy"
+                                                          alt=""
+                                                          src="/axer_repair/static/css/public/bicycle-grips@2x.png"
+                                                        />
+                                    
+                                                        <img
+                                                          class="bicycle-grips-icon1"
+                                                          loading="lazy"
+                                                          alt=""
+                                                          src="/axer_repair/static/css/public/bicycle-grips@2x.png"
+                                                        />
+                                                      </div>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                                <div class="frame-child22"></div>
+                                                <div class="backglass-11promax-verderd">
+                                                  Backglass 11promax verde...RD$:1500
+                                                </div>
+                                                <div class="pantalla-xsmaxrd1500">Screen xsmax...RD$:1500</div>
+                                                <img
+                                                  class="edit-file-icon1"
+                                                  loading="lazy"
+                                                  alt=""
+                                                  src="/axer_repair/static/css/public/edit-file1@2x.png"
+                                                />
+                                              </div>
+                                            </div>
+                                            <div class="parts-container-child">
+                                              <div class="frame-parent13">
+                                                <div class="funciones-parent">
+                                                  <b class="funciones1">Functions</b>
+                                                  <div class="rectangle-parent13">
+                                                    <div class="frame-child23"></div>
+                                                    <div class="probadas">Probadas</div>
+                                                  </div>
+                                                </div>
+                                                <input class="rectangle-input" type="text" />
+                                              </div>
+                                            </div>
+                                            <textarea
+                                              class="confirmation-container"
+                                              placeholder="Notas"
+                                              rows="{6}"
+                                              cols="{20}"
+                                            >
+                                            </textarea>
+                                          </section>
+                                          <section class="status-container-parent">
+                                            <div class="status-container">
+                                              <div class="emoji-container">
+                                                <div class="emoji-container-child"></div>
+                                                <img
+                                                  class="process-icon"
+                                                  loading="lazy"
+                                                  alt=""
+                                                  src="/axer_repair/static/css/public/process@2x.png"
+                                                />
+                                              </div>
+                                              <div class="estado-wrapper">
+                                                <h1 class="estado">State</h1>
+                                              </div>
+                                            </div>
+                                            <div class="frame-wrapper2">
+                                             
+                                              <progress max="100" t-att-value="repair.progress_percentage" class="barra"></progress>
+
+                                              <!-- <div class="rectangle-parent14">
+                                                <div class="frame-child24"></div>
+                                               <div class="frame-child25"></div>
+                                              </div> -->
+                                            </div>
+                                            <div class="frame-parent14">
+                                              <div class="confirmado-wrapper">
+                                                <div class="confirmado"><t t-out="repair.state"></t></div>
+                                              </div>
+                                              <div class="div3"><t t-out="repair.progress_percentage"></t>%</div>
+                                            </div>
+                                          </section>
+                                        </div>
+                                      </body>
+       
+                                      
+<!-- 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section> -->
+        </t>
+
+
+        
+
+
+
+    </template>
+
+
+</odoo>

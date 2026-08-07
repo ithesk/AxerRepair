@@ -1,0 +1,101 @@
+/* static/src/css/custom_styles.css */
+.btn-primary1 {
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-weight: bold;
+}
+
+.btn-primary1:hover {
+    background-color: #0056b3;
+}
+
+.o_form_field.o_row {
+    display: flex;
+    align-items: center;
+}
+.o_field_widget.o_field_char {
+    margin-right: 10px;
+}
+
+.my-button-container {
+    display: inline-block;
+}
+
+.my-button {
+    background-color: blue;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.align-right {
+    text-align: right;
+    align-items: flex-end;
+}
+
+.modern-label {
+    background-color: #f0f0f0; /* Fondo gris claro para contraste */
+    border: 2px solid #12B3C2; /* Borde azul verdoso */
+    border-radius: 5px;
+    padding: 10px;
+    color: #333; /* Texto gris oscuro */
+}
+
+.modern-label:hover {
+    outline: none;
+    box-shadow: 0 0 5px #12B3C2; /* Sombra al enfocar */
+}
+
+ /* Contenedor principal del campo presupuesto */
+.budget-field-container {
+    position: relative;
+    margin: 8px 0;
+    max-width: 300px;
+}
+
+/* Icono del presupuesto */
+.budget-field-container::before {
+    content: '💰';
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px;
+    z-index: 2;
+}
+
+/* Estilos para el campo monetario */
+.budget-field-container .o_field_monetary {
+    padding: 8px 8px 8px 40px !important;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    background-color: white;
+    transition: all 0.3s ease;
+    font-size: 16px;
+}
+
+/* Efecto hover */
+.budget-field-container .o_field_monetary:hover {
+    border-color: #cbd5e1;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+/* Efecto focus */
+.budget-field-container .o_field_monetary:focus-within {
+    border-color: #6366f1;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+    outline: none;
+}
+
+/* Animación cuando cambia el valor */
+.budget-field-container .o_field_monetary.o_field_changed {
+    animation: highlight-budget 1s ease;
+}
+
+@keyframes highlight-budget {
+    0% { background-color: #eff6ff; }
+    100% { background-color: white; }
+}

@@ -1,0 +1,29 @@
+<odoo>
+
+    <!-- Tarjeta de acceso a las reparaciones en el portal for the customer.
+         Desde Odoo 17 el portal se compone de tarjetas 'portal_docs_entry'
+         agrupadas por categoría, no de una lista de enlaces. -->
+    <template id="portal_my_home_repair" name="Portal: my repairs"
+              inherit_id="portal.portal_my_home" priority="20">
+        <xpath expr="//div[@id='portal_common_category']" position="inside">
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="icon" t-value="'/axer_repair/static/description/icon.png'"/>
+                <t t-set="title">Repairs</t>
+                <t t-set="text">Check the status of your devices</t>
+                <t t-set="url" t-value="'/my/repairs'"/>
+                <t t-set="placeholder_count" t-value="'repair_count'"/>
+            </t>
+        </xpath>
+    </template>
+
+    <!-- Migas de pan dentro de las páginas de reparación -->
+    <template id="portal_breadcrumbs_repair" name="Portal: repair breadcrumbs"
+              inherit_id="portal.portal_breadcrumbs" priority="30">
+        <xpath expr="//ol[hasclass('o_portal_submenu')]" position="inside">
+            <li t-if="page_name == 'repair'" class="breadcrumb-item active">
+                Repairs
+            </li>
+        </xpath>
+    </template>
+
+</odoo>

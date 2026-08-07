@@ -1,0 +1,47 @@
+/* Widget de averías frecuentes.
+   Se integra con el ancho del formulario: sin caja propia ni márgenes, para
+   que quede alineado con el resto de campos de la columna. */
+.o_common_issues_widget {
+    position: relative;
+    width: 100%;
+}
+
+.o_common_issues_input {
+    width: 100%;
+    padding: 2px 4px;
+    border: 0;
+    border-bottom: 1px solid #b1a5c8;
+    background: transparent;
+    outline: none;
+}
+
+.o_common_issues_input:focus {
+    border-bottom-color: #714b67;
+}
+
+/* Las sugerencias flotan sobre el formulario en lugar de empujarlo */
+.o_common_issues_suggestions {
+    position: absolute;
+    z-index: 1000;
+    top: 100%;
+    left: 0;
+    right: 0;
+    max-height: 220px;
+    overflow-y: auto;
+    list-style: none;
+    padding: 0;
+    margin: 2px 0 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.o_common_issues_suggestions li {
+    padding: 6px 10px;
+    cursor: pointer;
+}
+
+.o_common_issues_suggestions li:hover {
+    background-color: #f0eef3;
+}

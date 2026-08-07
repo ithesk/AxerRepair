@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Tree View -->
+    <record id="view_internal_transfer_tree" model="ir.ui.view">
+        <field name="name">internal.transfer.tree</field>
+        <field name="model">internal.transfer</field>
+        <field name="arch" type="xml">
+            <tree string="Internal transfers" decoration-info="state == 'draft'" decoration-muted="state == 'cancel'" decoration-success="state == 'done'">
+                <field name="name"/>
+                <field name="date"/>
+                <field name="location_origin_id"/>
+                <field name="location_dest_id"/>
+                <field name="user_id"/>
+                <field name="state" widget="badge" decoration-info="state == 'draft'" decoration-success="state == 'done'" decoration-warning="state == 'confirmed'" decoration-danger="state == 'cancel'"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_internal_transfer_form" model="ir.ui.view">
+        <field name="name">internal.transfer.form</field>
+        <field name="model">internal.transfer</field>
+        <field name="arch" type="xml">
+            <form string="Transferencia Interna">
+                <header>
+                    <button name="action_confirm" type="object" string="Confirm" class="oe_highlight" invisible="state != 'draft'"/>
+                    <button name="action_ready_to_receive" type="object" string="Ready to receive" class="oe_highlight" invisible="state != 'confirmed'"/>
+                    <button name="action_scan_receive" type="object" string="Recibir Devices" class="oe_highlight" invisible="state != 'ready'"/>
+                    <button name="action_done" type="object" string="Finalizar" class="oe_highlight" invisible="state != 'ready'"/>
+                    <button name="action_cancel" type="object" string="Cancel" invisible="state in ['done', 'cancel']"/>
+                    <button name="action_draft" type="object" string="Volver a Draft" invisible="state != 'cancel'"/>
+                    <button name="action_scan_barcode" type="object" string="Scan barcode" class="btn-primary" invisible="state not in ['draft', 'confirmed']"/>
+                    <button name="action_print_label" type="object" string="Print Label" class="btn-primary" invisible="state == 'draft'"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,confirmed,ready,done"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1" class="oe_inline"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="date"/>
+                            <field name="location_origin_id" options="{'no_create': True}" domain="[('active', '=', True)]"/>
+                            <field name="location_dest_id" options="{'no_create': True}" domain="[('active', '=', True), ('id', '!=', location_origin_id)]"/>
+                        </group>
+                        <group>
+                            <field name="user_id"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                            <field name="barcode" invisible="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Devices" name="transfer_lines">
+                            <field name="transfer_line_ids" readonly="state in ['done', 'cancel']">
+                                <tree string="Devices" editable="bottom" decoration-success="receive_state == 'received'" decoration-danger="receive_state == 'pending' and parent.state == 'ready'">
+                                    <field name="sequence" widget="handle"/>
+                                    <field name="repair_order_id" domain="[('branch_id', '=', parent.location_origin_id), ('state', 'not in', ['cancel'])]" options="{'no_create': True}"/>
+                                    <field name="product_id" readonly="1"/>
+                                    <field name="imei" readonly="1"/>
+                                    <field name="description" readonly="1"/>
+                                    <field name="quantity"/>
+                                    <field name="receive_state" widget="badge" decoration-success="receive_state == 'received'" decoration-danger="receive_state == 'pending'" column_invisible="parent.state not in ['ready', 'done']"/>
+                                    <field name="received_date" column_invisible="parent.state not in ['ready', 'done']"/>
+                                    <field name="received_by" column_invisible="parent.state not in ['ready', 'done']"/>
+                                    <button name="action_receive" string="Receive" type="object" icon="fa-check" invisible="(parent.state != 'ready' or receive_state == 'received')"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Notas" name="notes">
+                            <field name="notes" placeholder="Add further notes here..."/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="view_internal_transfer_search" model="ir.ui.view">
+        <field name="name">internal.transfer.search</field>
+        <field name="model">internal.transfer</field>
+        <field name="arch" type="xml">
+            <search string="Buscar Transfers">
+                <field name="name"/>
+                <field name="location_origin_id"/>
+                <field name="location_dest_id"/>
+                <field name="user_id"/>
+                <filter string="Draftes" name="draft" domain="[('state', '=', 'draft')]"/>
+                <filter string="Confirmadas" name="confirmed" domain="[('state', '=', 'confirmed')]"/>
+                <filter string="Realizadas" name="done" domain="[('state', '=', 'done')]"/>
+                <filter string="Canceladas" name="cancel" domain="[('state', '=', 'cancel')]"/>
+                <separator/>
+                <filter string="Mine" name="my_transfers" domain="[('user_id', '=', uid)]"/>
+                <group expand="0" string="Group by">
+                    <filter string="State" name="group_by_state" context="{'group_by': 'state'}"/>
+                    <filter string="Origen" name="group_by_origin" context="{'group_by': 'location_origin_id'}"/>
+                    <filter string="Destino" name="group_by_dest" context="{'group_by': 'location_dest_id'}"/>
+                    <filter string="Fecha" name="group_by_date" context="{'group_by': 'date'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Kanban View -->
+    <record id="view_internal_transfer_kanban" model="ir.ui.view">
+        <field name="name">internal.transfer.kanban</field>
+        <field name="model">internal.transfer</field>
+        <field name="arch" type="xml">
+            <kanban class="o_kanban_mobile" default_group_by="state">
+                <field name="name"/>
+                <field name="date"/>
+                <field name="location_origin_id"/>
+                <field name="location_dest_id"/>
+                <field name="user_id"/>
+                <field name="state"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_card oe_kanban_global_click">
+                            <div class="row">
+                                <div class="col-6">
+                                    <strong><field name="name"/></strong>
+                                </div>
+                                <div class="col-6 text-right">
+                                    <field name="date"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <span><field name="location_origin_id"/></span> <i class="fa fa-arrow-right"/> <span><field name="location_dest_id"/></span>
+                                </div>
+                                <div class="col-6 text-right">
+                                    <field name="user_id"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 text-right">
+                                    <field name="state" widget="label_selection" options="{'classes': {'draft': 'info', 'confirmed': 'warning', 'done': 'success', 'cancel': 'danger'}}"/>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- Barcode Scan Wizard -->
+    <record id="view_barcode_scan_wizard_form" model="ir.ui.view">
+        <field name="name">barcode.scan.wizard.form</field>
+        <field name="model">barcode.scan.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Scan barcode">
+                <sheet>
+                    <div class="alert alert-info" role="status" invisible="not message">
+                        <field name="message"/>
+                    </div>
+                    <group>
+                        <field name="transfer_id" invisible="1"/>
+                        <field name="barcode" string="Barcode" placeholder="Scan or type the barcode" autofocus="autofocus"/>
+                    </group>
+                    <footer>
+                        <button string="Close" class="btn-primary" special="cancel"/>
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    
+    <!-- Barcode Receive Wizard -->
+    <record id="view_barcode_receive_wizard_form" model="ir.ui.view">
+        <field name="name">barcode.receive.wizard.form</field>
+        <field name="model">barcode.receive.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Recibir Devices">
+                <sheet>
+                    <div class="alert alert-info text-center" role="status" invisible="state != 'transfer'">
+                        <span>Scan the transfer barcode</span>
+                        <strong><field name="transfer_id" readonly="1"/></strong>
+                    </div>
+                    
+                    <div class="alert alert-success text-center" role="status" invisible="state != 'items'">
+                        <span>Transfer verified. Now scan the devices.</span>
+                        <div class="mt-2">
+                            <strong>Receiveds: </strong><field name="items_received" class="oe_inline" readonly="1"/> / <field name="items_total" class="oe_inline" readonly="1"/>
+                        </div>
+                    </div>
+                    
+                    <div class="alert alert-warning" role="status" invisible="not message">
+                        <field name="message"/>
+                    </div>
+                    
+                    <group>
+                        <field name="state" invisible="1"/>
+                        <field name="transfer_scanned" invisible="1"/>
+                        <field name="barcode" string="Barcode" placeholder="Scan or type the barcode" autofocus="autofocus"/>
+                    </group>
+                    <footer>
+                        <button string="Finalizar" class="btn-primary" special="cancel"/>
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action and Menu -->
+    <record id="action_internal_transfer" model="ir.actions.act_window">
+        <field name="name">Internal transfers</field>
+        <field name="res_model">internal.transfer</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field name="context">{'search_default_my_transfers': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new internal transfer
+            </p>
+            <p>
+                Las transferencias internas permiten mover equipos entre ubicaciones.
+            </p>
+        </field>
+    </record>
+
+    <!-- Menú en Repairs -->
+    <menuitem 
+        id="menu_internal_transfer_root" 
+        name="Transfers" 
+        parent="repair.menu_repair_order"
+        sequence="30"/>
+
+    <menuitem 
+        id="menu_internal_transfer" 
+        name="Internal transfers" 
+        action="action_internal_transfer" 
+        parent="menu_internal_transfer_root"
+        sequence="10"/>
+</odoo>

@@ -1,0 +1,10 @@
+<odoo>
+
+    <!-- La página de inicio del portal lleva al listado de reparaciones -->
+    <template id="custom_portal_breadcrumbs" inherit_id="portal.portal_breadcrumbs">
+        <xpath expr="//li[@class='breadcrumb-item ms-1']/a[@href='/my/home']" position="attributes">
+            <attribute name="href">/my/repairs</attribute>
+        </xpath>
+    </template>
+
+</odoo>

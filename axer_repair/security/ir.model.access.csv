@@ -1,0 +1,24 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_repair_message_wizard,access_repair_message_wizard,model_repair_message_wizard,base.group_user,1,1,1,1
+access_repair_end_wizard,access_repair_end_wizard,model_repair_end_wizard,base.group_user,1,1,1,1
+access_update_bot_message,access_update_bot_message,model_update_bot_message,base.group_user,1,1,1,1
+access_product_manufacturer_user,access_product_manufacturer_user,model_product_manufacturer,base.group_user,1,1,1,1
+access_product_manufacturer_public,access_product_manufacturer_public,model_product_manufacturer,,1,0,0,0
+access_repair_location_user,repair.location user,axer_repair.model_repair_location,base.group_user,1,1,1,1
+access_repair_printer_selection_wizard,access_repair_printer_selection_wizard,model_repair_printer_selection_wizard,base.group_user,1,1,1,1
+access_internal_transfer_user,internal.transfer.user,model_internal_transfer,base.group_user,1,1,1,1
+access_internal_transfer_manager,internal.transfer.manager,model_internal_transfer,stock.group_stock_manager,1,1,1,1
+access_internal_transfer_line_user,internal.transfer.line.user,model_internal_transfer_line,base.group_user,1,1,1,1
+access_internal_transfer_line_manager,internal.transfer.line.manager,model_internal_transfer_line,stock.group_stock_manager,1,1,1,1
+access_barcode_scan_wizard_user,barcode.scan.wizard.user,model_barcode_scan_wizard,base.group_user,1,1,1,1
+access_barcode_scan_wizard_manager,barcode.scan.wizard.manager,model_barcode_scan_wizard,stock.group_stock_manager,1,1,1,1
+access_internal_transfer_all,internal.transfer.all,model_internal_transfer,base.group_user,1,1,1,1
+access_internal_transfer_line_all,internal.transfer.line.all,model_internal_transfer_line,base.group_user,1,1,1,1
+access_barcode_scan_wizard_all,barcode.scan.wizard.all,model_barcode_scan_wizard,base.group_user,1,1,1,1
+access_barcode_receive_wizard_all,barcode.receive.wizard.all,model_barcode_receive_wizard,base.group_user,1,1,1,1
+access_repair_issue_tag_user,repair.issue.tag.user,model_repair_issue_tag,stock.group_stock_user,1,0,0,0
+access_repair_issue_tag_manager,repair.issue.tag.manager,model_repair_issue_tag,stock.group_stock_manager,1,1,1,1
+access_bulk_repair_wizard_user,bulk.repair.wizard.user,model_bulk_repair_wizard,stock.group_stock_user,1,1,1,1
+access_bulk_repair_line_user,bulk.repair.line.user,model_bulk_repair_line,stock.group_stock_user,1,1,1,1
+access_repair_component_all,repair.component.all,model_repair_component,,1,1,1,1
+access_repair_order_component_line_all,repair.order.component.line.all,model_repair_order_component_line,,1,1,1,1

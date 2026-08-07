@@ -1,0 +1,31 @@
+<odoo>
+    <record id="view_update_bot_message_form" model="ir.ui.view">
+        <field name="name">update_bot_message_form</field>
+        <field name="model">update.bot.message</field>
+        <field name="arch" type="xml">
+            <form string="Actualizar mensaje a cliente">
+                <group>
+                    <field name="history_message" string="history of the original fault"/>
+                    <field name="action_result" string="Acciones realizadas?"/>
+                    <field name="state_actual" string="State actual?"/>
+                    <field name="next_step" string="Tu Recomendacion?"/>
+                    <field name="message" string="Message to the customer"/>
+                    <field name="customer_name" string="Customer name"/>
+                    <field name="customer_phone" string="Customer phone"/>
+                    <field name="customer_desc" string="Customer description"/>
+                </group>
+                <footer>
+                    <button string="Confirm" type="object" name="action_updatebot_message" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+  
+    <record id="action_update_bot_message_wizard" model="ir.actions.act_window">
+        <field name="name">Send a message to the customer</field>
+        <field name="res_model">update.bot.message</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

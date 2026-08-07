@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ================================================================
+         Repair analysis.
+
+         La tabla dinámica y el gráfico se reconfiguran desde la propia
+         pantalla: el usuario elige qué poner en filas, en columnas y qué
+         medir, sin tocar código. Lo que se define aquí es solo el punto de
+         partida y las agrupaciones que tienen sentido en un taller.
+         ================================================================ -->
+
+    <!-- ================================================================
+         Lista de reparaciones.
+
+         Odoo solo muestra en la lista las columnas declaradas. Aquí se añaden
+         las del taller como columnas opcionales: no estorban de entrada, y
+         cada usuario activa las que necesite con el botón de columnas, arriba
+         a la derecha de la lista. La elección se recuerda por usuario.
+         ================================================================ -->
+    <record id="view_repair_order_tree_inherit" model="ir.ui.view">
+        <field name="name">repair.order.tree.inherit</field>
+        <field name="model">repair.order</field>
+        <field name="inherit_id" ref="repair.view_repair_order_tree"/>
+        <field name="arch" type="xml">
+
+            <!-- El IMEI es lo que se busca a diario: va visible -->
+            <field name="product_id" position="after">
+                <field name="imei" string="IMEI / Serial number" optional="show"/>
+                <field name="typerepair" optional="hide"/>
+                <field name="description" string="Fault" optional="show"/>
+            </field>
+
+            <field name="partner_id" position="after">
+                <field name="partner1_phone" string="Phone" optional="hide"/>
+                <field name="lead_source" optional="hide"/>
+            </field>
+
+            <field name="state" position="before">
+                <field name="branch_id" optional="hide"/>
+                <field name="user_ids" widget="many2many_tags_avatar" optional="hide"/>
+                <field name="estimated_budget" widget="monetary" optional="show" sum="Quotation"/>
+                <field name="amount_paid" widget="monetary" optional="hide" sum="Collected"/>
+                <field name="days_elapsed" string="Days in workshop" optional="show" sum="Days"/>
+                <field name="evaluation" optional="hide"/>
+                <field name="powerstate" string="Powers on" optional="hide"/>
+                <field name="battery" string="Battery %" optional="hide"/>
+                <field name="signature_status" widget="badge" optional="hide"/>
+                <field name="whatsapp_sent" string="Notified" optional="hide"/>
+                <field name="ncf_invoice_related" string="Receipt no." optional="hide"/>
+                <field name="label_printed" string="Label printed" optional="hide"/>
+                <field name="guarantee_limit" optional="hide"/>
+                <field name="warranty_fields" string="Warranty (days)" optional="hide"/>
+                <field name="currency_id" column_invisible="True"/>
+            </field>
+
+            <!-- Las mismas que se ocultan en la ficha: no aplican a un taller -->
+            <field name="product_qty" position="replace"/>
+            <field name="product_uom" position="replace"/>
+            <field name="picking_id" position="replace"/>
+            <field name="is_returned" position="replace"/>
+            <field name="location_id" position="replace"/>
+
+            <!-- Las que van fuera de plazo se ven de un vistazo -->
+            <tree position="attributes">
+                <attribute name="decoration-danger">schedule_date and schedule_date &lt; now and state not in ('done', 'handover', 'cancel')</attribute>
+                <attribute name="decoration-muted">state == 'cancel'</attribute>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_repair_order_pivot" model="ir.ui.view">
+        <field name="name">repair.order.pivot</field>
+        <field name="model">repair.order</field>
+        <field name="arch" type="xml">
+            <pivot string="Repair analysis" sample="1">
+                <field name="user_id" type="row"/>
+                <field name="state" type="col"/>
+                <field name="estimated_budget" type="measure"/>
+                <field name="days_elapsed" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="view_repair_order_graph_analysis" model="ir.ui.view">
+        <field name="name">repair.order.graph.analysis</field>
+        <field name="model">repair.order</field>
+        <field name="arch" type="xml">
+            <graph string="Repairs" type="bar" sample="1">
+                <field name="typerepair"/>
+                <field name="state" type="col"/>
+            </graph>
+        </field>
+    </record>
+
+    <!-- Búsqueda: filtros del día a día y todas las formas de agrupar -->
+    <record id="view_repair_order_search_analysis" model="ir.ui.view">
+        <field name="name">repair.order.search.analysis</field>
+        <field name="model">repair.order</field>
+        <field name="arch" type="xml">
+            <search string="Repairs">
+                <field name="name" string="Reference"/>
+                <field name="imei" string="IMEI or serial number"
+                       filter_domain="['|', ('imei', 'ilike', self), ('name', 'ilike', self)]"/>
+                <field name="partner_id" string="Customer"/>
+                <field name="description" string="Fault"/>
+                <field name="user_id" string="Technician"/>
+                <field name="branch_id" string="Branch"/>
+                <field name="product_id" string="Device"/>
+
+                <filter name="mias" string="My repairs"
+                        domain="[('user_id', '=', uid)]"/>
+                <filter name="sin_tecnico" string="No technician assigned"
+                        domain="[('user_id', '=', False)]"/>
+                <separator/>
+                <filter name="abiertas" string="In progress"
+                        domain="[('state', 'not in', ('done', 'handover', 'cancel'))]"/>
+                <filter name="entregadas" string="Handed over"
+                        domain="[('state', '=', 'handover')]"/>
+                <filter name="en_garantia" string="Under warranty"
+                        domain="[('state', '=', 'guarantee')]"/>
+                <separator/>
+                <!-- Comparar la fecha prometida con la de hoy es la consulta
+                     que más se repite en un taller. -->
+                <filter name="retrasadas" string="Overdue"
+                        domain="[('schedule_date', '&lt;', context_today().strftime('%Y-%m-%d %H:%M:%S')),
+                                 ('state', 'not in', ('done', 'handover', 'cancel'))]"/>
+                <filter name="entregar_hoy" string="Due today"
+                        domain="[('schedule_date', '&gt;=', datetime.datetime.combine(context_today(), datetime.time(0,0,0)).strftime('%Y-%m-%d %H:%M:%S')),
+                                 ('schedule_date', '&lt;=', datetime.datetime.combine(context_today(), datetime.time(23,59,59)).strftime('%Y-%m-%d %H:%M:%S'))]"/>
+                <separator/>
+                <filter name="recibidas_mes" string="Received this month"
+                        domain="[('create_date', '&gt;=', (context_today() + relativedelta(day=1)).strftime('%Y-%m-%d'))]"/>
+
+                <group expand="0" string="Group by">
+                    <filter name="g_tecnico" string="Technician" context="{'group_by': 'user_id'}"/>
+                    <filter name="g_estado" string="State" context="{'group_by': 'state'}"/>
+                    <filter name="g_tipo" string="Device type" context="{'group_by': 'typerepair'}"/>
+                    <filter name="g_equipo" string="Device" context="{'group_by': 'product_id'}"/>
+                    <filter name="g_averia" string="Fault" context="{'group_by': 'description'}"/>
+                    <filter name="g_imei" string="IMEI" context="{'group_by': 'imei'}"/>
+                    <filter name="g_cliente" string="Customer" context="{'group_by': 'partner_id'}"/>
+                    <filter name="g_sucursal" string="Branch" context="{'group_by': 'branch_id'}"/>
+                    <filter name="g_origen" string="How they heard about us" context="{'group_by': 'lead_source'}"/>
+                    <filter name="g_firma" string="Signature status" context="{'group_by': 'signature_status'}"/>
+                    <filter name="g_etiquetas" string="Tags" context="{'group_by': 'tag_ids'}"/>
+                    <separator/>
+                    <filter name="g_entrada" string="Intake date" context="{'group_by': 'create_date'}"/>
+                    <filter name="g_entrega" string="Delivery date" context="{'group_by': 'schedule_date'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_repair_analysis" model="ir.actions.act_window">
+        <field name="name">Repair analysis</field>
+        <field name="res_model">repair.order</field>
+        <field name="view_mode">pivot,graph,list,form</field>
+        <field name="search_view_id" ref="view_repair_order_search_analysis"/>
+        <field name="context">{'search_default_g_tecnico': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No repairs to analyse yet
+            </p>
+            <p>
+                Desde aquí puede cruzar los datos como necesite: arrastre a
+                filas y columnas el técnico, el tipo de equipo, la avería o la
+                sucursal, y elija qué medir. El resultado se guarda como
+                favorito y se exporta a hoja de cálculo.
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_repair_analysis"
+              name="Repair analysis"
+              parent="repair.repair_menu_reporting"
+              action="action_repair_analysis"
+              sequence="5"/>
+
+</odoo>

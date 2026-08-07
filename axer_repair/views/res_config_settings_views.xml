@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.repair.workshop</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="40"/>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="inside">
+                <app data-string="Repair Workshop" string="Repair Workshop"
+                     name="axer_repair" logo="/axer_repair/static/description/icon.png">
+
+                    <block title="Workshop identity" name="rw_identidad">
+                        <setting id="rw_marca" string="Workshop links"
+                                 help="El nombre, el logotipo y los datos de contacto se toman de la ficha de tu compañía. Aquí van los enlaces que aparecen en los recibos y en los avisos al cliente.">
+                            <div class="content-group">
+                                <div class="row mt16">
+                                    <label for="rw_warranty_url" class="col-lg-4 o_light_label"/>
+                                    <field name="rw_warranty_url" placeholder="https://mitaller.com/garantia"/>
+                                </div>
+                                <div class="row">
+                                    <label for="rw_community_url" class="col-lg-4 o_light_label"/>
+                                    <field name="rw_community_url" placeholder="https://mitaller.com/ofertas"/>
+                                </div>
+                                <div class="row">
+                                    <label for="rw_social_url" class="col-lg-4 o_light_label"/>
+                                    <field name="rw_social_url" placeholder="https://instagram.com/mitaller"/>
+                                </div>
+                                <div class="row">
+                                    <label for="rw_message_signature" class="col-lg-4 o_light_label"/>
+                                    <field name="rw_message_signature" placeholder="The team at My Workshop"/>
+                                </div>
+                                <div class="row">
+                                    <label for="rw_abandoned_days" class="col-lg-4 o_light_label"/>
+                                    <field name="rw_abandoned_days"/>
+                                </div>
+                            </div>
+                        </setting>
+                    </block>
+
+                    <block title="Customer notifications" name="rw_avisos">
+                        <setting id="rw_whatsapp" string="WhatsApp"
+                                 help="Avisa al cliente por WhatsApp cuando cambia el estado de su reparación.">
+                            <field name="rw_whatsapp_enabled"/>
+                            <div class="content-group" invisible="not rw_whatsapp_enabled">
+                                <div class="row mt16">
+                                    <label for="rw_whatsapp_url" class="col-lg-4 o_light_label"/>
+                                    <field name="rw_whatsapp_url" placeholder="http://servidor:3005/send-message"/>
+                                </div>
+                                <div class="row">
+                                    <label for="rw_whatsapp_token" class="col-lg-4 o_light_label"/>
+                                    <field name="rw_whatsapp_token" password="True"/>
+                                </div>
+                                <div class="row">
+                                    <label for="rw_whatsapp_test_phone" class="col-lg-4 o_light_label"/>
+                                    <field name="rw_whatsapp_test_phone" placeholder="18095551234"/>
+                                </div>
+                                <div class="mt8">
+                                    <button name="action_test_whatsapp" type="object"
+                                            string="Send a test message"
+                                            class="btn-secondary" icon="fa-paper-plane"/>
+                                </div>
+                            </div>
+                        </setting>
+                    </block>
+
+                    <block title="Digital signature" name="rw_firma">
+                        <setting id="rw_signature" string="Customer signature"
+                                 help="Requests the signature of the quotation or the handover note.">
+                            <field name="rw_signature_enabled"/>
+                            <div class="content-group" invisible="not rw_signature_enabled">
+                                <div class="row mt16">
+                                    <label for="rw_signature_url" class="col-lg-4 o_light_label"/>
+                                    <field name="rw_signature_url" placeholder="https://firma.midominio.com/api"/>
+                                </div>
+                                <div class="row">
+                                    <label for="rw_signature_token" class="col-lg-4 o_light_label"/>
+                                    <field name="rw_signature_token" password="True"/>
+                                </div>
+                                <div class="row">
+                                    <label for="rw_signature_template_id" class="col-lg-4 o_light_label"/>
+                                    <field name="rw_signature_template_id" placeholder="3"/>
+                                </div>
+                                <div class="mt8">
+                                    <button name="action_test_signature" type="object"
+                                            string="Check" class="btn-secondary" icon="fa-check"/>
+                                </div>
+                            </div>
+                        </setting>
+                    </block>
+
+                    <block title="External access" name="rw_api">
+                        <setting id="rw_api" string="External applications"
+                                 help="Claves que protegen las direcciones públicas del módulo. Mientras estén vacías, esos accesos permanecen cerrados.">
+                            <div class="content-group">
+                                <div class="row mt16">
+                                    <label for="rw_api_key" class="col-lg-4 o_light_label"/>
+                                    <field name="rw_api_key" password="True"/>
+                                </div>
+                                <div class="row">
+                                    <label for="rw_webhook_secret" class="col-lg-4 o_light_label"/>
+                                    <field name="rw_webhook_secret" password="True"/>
+                                </div>
+                            </div>
+                        </setting>
+                    </block>
+
+                    <block title="IMEI lookup" name="rw_imei">
+                        <setting id="rw_imei" string="Device data from IMEI"
+                                 help="Recupera modelo, capacidad y estado a partir del IMEI. Estos servicios cobran por consulta.">
+                            <field name="rw_imei_enabled"/>
+                            <div class="content-group" invisible="not rw_imei_enabled">
+                                <div class="row mt16">
+                                    <label for="rw_imei_url" class="col-lg-4 o_light_label"/>
+                                    <field name="rw_imei_url" placeholder="https://sickw.com/api.php"/>
+                                </div>
+                                <div class="row">
+                                    <label for="rw_imei_key" class="col-lg-4 o_light_label"/>
+                                    <field name="rw_imei_key" password="True"/>
+                                </div>
+                            </div>
+                        </setting>
+                    </block>
+
+                    <block title="AI assistant" name="rw_ia">
+                        <setting id="rw_ai" string="Automatic drafting"
+                                 help="Genera los mensajes de seguimiento a partir del estado de la reparación.">
+                            <field name="rw_ai_enabled"/>
+                            <div class="content-group" invisible="not rw_ai_enabled">
+                                <div class="row mt16">
+                                    <label for="rw_ai_api_key" class="col-lg-4 o_light_label"/>
+                                    <field name="rw_ai_api_key" password="True"/>
+                                </div>
+                                <div class="row">
+                                    <label for="rw_ai_model" class="col-lg-4 o_light_label"/>
+                                    <field name="rw_ai_model" placeholder="gpt-4o-mini"/>
+                                </div>
+                                <div class="row">
+                                    <label for="rw_ai_base_url" class="col-lg-4 o_light_label"/>
+                                    <field name="rw_ai_base_url" placeholder="(opcional) http://localhost:11434/v1"/>
+                                </div>
+                                <div class="mt8">
+                                    <label for="rw_ai_instruction" class="o_light_label"/>
+                                    <field name="rw_ai_instruction" class="w-100"
+                                           placeholder="You are a technician at my workshop. You explain diagnoses clearly and kindly, in short messages."/>
+                                </div>
+                                <div class="mt8">
+                                    <button name="action_test_ai" type="object"
+                                            string="Test connection" class="btn-secondary" icon="fa-magic"/>
+                                </div>
+                            </div>
+                        </setting>
+                    </block>
+
+                    <block title="External synchronisation" name="rw_sync">
+                        <setting id="rw_xmlrpc" string="Another Odoo database"
+                                 help="Replica productos y contactos en una segunda instancia mediante XML-RPC.">
+                            <field name="rw_xmlrpc_enabled"/>
+                            <div class="content-group" invisible="not rw_xmlrpc_enabled">
+                                <div class="row mt16">
+                                    <label for="rw_xmlrpc_url" class="col-lg-4 o_light_label"/>
+                                    <field name="rw_xmlrpc_url" placeholder="https://otra-instancia.odoo.com"/>
+                                </div>
+                                <div class="row">
+                                    <label for="rw_xmlrpc_db" class="col-lg-4 o_light_label"/>
+                                    <field name="rw_xmlrpc_db"/>
+                                </div>
+                                <div class="row">
+                                    <label for="rw_xmlrpc_user" class="col-lg-4 o_light_label"/>
+                                    <field name="rw_xmlrpc_user" placeholder="usuario@dominio.com"/>
+                                </div>
+                                <div class="row">
+                                    <label for="rw_xmlrpc_password" class="col-lg-4 o_light_label"/>
+                                    <field name="rw_xmlrpc_password" password="True"/>
+                                </div>
+                                <div class="mt8">
+                                    <button name="action_test_xmlrpc" type="object"
+                                            string="Test connection" class="btn-secondary" icon="fa-plug"/>
+                                </div>
+                            </div>
+                        </setting>
+                    </block>
+
+                </app>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="action_axer_repair_config" model="ir.actions.act_window">
+        <field name="name">Workshop settings</field>
+        <field name="res_model">res.config.settings</field>
+        <field name="view_mode">form</field>
+        <field name="target">inline</field>
+        <field name="context">{'module': 'axer_repair'}</field>
+    </record>
+
+</odoo>
