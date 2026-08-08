@@ -8,7 +8,7 @@ _logger = logging.getLogger(__name__)
 
 class DocuSealController(http.Controller):
 
-    @http.route('/docuseal/webhook/', type='json', auth='public', methods=['POST'], csrf=False)
+    @http.route('/docuseal/webhook/', type='jsonrpc', auth='public', methods=['POST'], csrf=False)
     def docuseal_webhook(self, **kwargs):
         """Aviso del servicio de firma de que el cliente ha firmado.
 
