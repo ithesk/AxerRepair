@@ -45,6 +45,11 @@ class RepairLocation(models.Model):
     phone = fields.Char('Phone', tracking=True)
     active = fields.Boolean('Active', default=True, tracking=True)
     printer_ip = fields.Char('Printer IP', tracking=True)
+    # Definición de los campos adicionales que este taller anota en cada
+    # reparación. El administrador los crea desde la ficha de la sucursal —una
+    # casilla «hélices» para un taller de drones, un desplegable «operador»—
+    # y aparecen en la recepción de cada equipo, sin tocar código.
+    axer_field_definition = fields.PropertiesDefinition('Additional intake fields')
     cups_server_ip = fields.Char(
         'CUPS server',
         help="Address of the print server. If left empty, documents are downloaded as PDF instead of printed.")
@@ -520,7 +525,14 @@ class RepairP(models.Model):
     branch_id = fields.Many2one(
         'repair.location', string='Branch',
         default=lambda self: self.env['repair.location']._sucursal_por_defecto())
-    
+
+    # Campos adicionales que cada taller define en su sucursal. Su lista sale
+    # de branch_id.axer_field_definition, así que cada reparación muestra los
+    # que correspondan a su sucursal.
+    axer_properties = fields.Properties(
+        'Additional checks', definition='branch_id.axer_field_definition',
+        copy=True)
+
 
 ###############para compatir el enlace de seguimiento por whatsapp######################
     def action_abrir_portal(self):
