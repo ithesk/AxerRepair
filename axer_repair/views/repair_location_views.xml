@@ -38,10 +38,17 @@
                             <field name="printer_ip"/>
                             <field name="active"/>
                             <field name="cups_server_ip"/>
-                            <field name="printer_name"/>
                             <field name="receipt_printer_name"/>
                         </group>
                     </group>
+                    <separator string="Additional intake fields"/>
+                    <p class="text-muted">
+                        Define here the extra fields your workshop records for
+                        every device — for instance a checkbox, a selection or a
+                        date. They appear on the intake of each repair booked at
+                        this branch, with no need to change any code.
+                    </p>
+                    <field name="axer_field_definition" nolabel="1"/>
                 </sheet>
             </form>
         </field>

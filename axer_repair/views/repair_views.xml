@@ -180,6 +180,9 @@
                         <field name="panic" readonly="state in ('handover', 'done', 'under_repair')"/>
                     </group>
                 </group>
+                <!-- Campos que cada taller define en su sucursal. Solo se ven
+                     si esa sucursal tiene alguno configurado. -->
+                <field name="axer_properties" nolabel="1" columns="2"/>
             </page>
 
             <page string="Invoicing and notifications" name="rw_seguimiento">
