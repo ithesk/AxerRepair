@@ -43,12 +43,13 @@
                     </group>
                     <separator string="Additional intake fields"/>
                     <p class="text-muted">
-                        Define here the extra fields your workshop records for
-                        every device — for instance a checkbox, a selection or a
-                        date. They appear on the intake of each repair booked at
-                        this branch, with no need to change any code.
+                        This branch can record extra fields on every device it
+                        takes in — for instance a checkbox, a dropdown or a date.
+                        You add them from any repair: open its
+                        <b>Device intake</b> tab and use <b>Add a Property</b> at
+                        the bottom. Once created they apply to every repair booked
+                        at this branch, with no need to change any code.
                     </p>
-                    <field name="axer_field_definition" nolabel="1"/>
                 </sheet>
             </form>
         </field>
