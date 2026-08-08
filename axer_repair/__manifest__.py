@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Axer Repair',
-    'version': '17.0.1.0.0',
+    'version': '19.0.1.0.0',
     'summary': 'Portal de cliente, avisos, firma digital y reparaciones masivas',
     'description': """
 Axer Repair — gestión de taller de reparación

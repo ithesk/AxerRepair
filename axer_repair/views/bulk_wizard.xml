@@ -54,7 +54,7 @@
                             </div>
                             
                             <field name="repair_line_ids" widget="one2many">
-                                <tree editable="bottom">
+                                <list editable="bottom">
                                     <field name="imei" placeholder="Escanee IMEI/SN"/>
                                     <field name="serial" placeholder="Additional serial"/>
                                     <field name="equipment_type"/>
@@ -63,7 +63,7 @@
                                     <field name="sim" widget="boolean_toggle"/>
                                     <field name="condition"/>
                                     <field name="product_id"/>
-                                </tree>
+                                </list>
                             </field>
                             <!-- Sin la clase 'oe_chatter': el cliente web la
                                  interpreta como un chatter real y pide sus
@@ -133,12 +133,12 @@
         <field name="name">repair.issue.tag.tree</field>
         <field name="model">repair.issue.tag</field>
         <field name="arch" type="xml">
-            <tree string="Repair issues">
+            <list string="Repair issues">
                 <field name="name"/>
                 <field name="code"/>
                 <field name="description"/>
                 <field name="related_field"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -146,7 +146,7 @@
     <record id="action_repair_issue_tag" model="ir.actions.act_window">
         <field name="name">Common faults</field>
         <field name="res_model">repair.issue.tag</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <!-- Cuelga del menú de configuración que ya trae Odoo, para no repetir

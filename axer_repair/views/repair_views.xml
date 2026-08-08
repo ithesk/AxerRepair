@@ -217,19 +217,18 @@
   <field name="arch" type="xml">
 
 
-    <search>
-      <field name="name" position="after">
-        <field name="imei"/>
-        <field name="partner1_phone"/>
-        <field name="partner1_email"/>
-        <field name="partner_id"/>
+    <!-- Los campos van dentro del bloque de campos y las agrupaciones dentro
+         del <group> que ya trae Odoo: desde la 19 el orden de los elementos
+         de una vista de búsqueda se valida y no admite un <group> suelto. -->
+    <field name="name" position="after">
+      <field name="imei"/>
+      <field name="partner1_phone"/>
+      <field name="partner1_email"/>
     </field>
-    <group expand="1" string="Group By">
-      <filter name="group_by_imei" string="IMEI" context="{'group_by':'imei'}"/>
-      <filter name="group_by_partner" string="Customer" context="{'group_by':'partner_id'}"/>
-  </group>
 
-    </search>
+    <filter name="partner" position="after">
+      <filter name="group_by_imei" string="IMEI" context="{'group_by': 'imei'}"/>
+    </filter>
 
   </field>
 </record>

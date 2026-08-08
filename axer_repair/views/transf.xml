@@ -5,14 +5,14 @@
         <field name="name">internal.transfer.tree</field>
         <field name="model">internal.transfer</field>
         <field name="arch" type="xml">
-            <tree string="Internal transfers" decoration-info="state == 'draft'" decoration-muted="state == 'cancel'" decoration-success="state == 'done'">
+            <list string="Internal transfers" decoration-info="state == 'draft'" decoration-muted="state == 'cancel'" decoration-success="state == 'done'">
                 <field name="name"/>
                 <field name="date"/>
                 <field name="location_origin_id"/>
                 <field name="location_dest_id"/>
                 <field name="user_id"/>
                 <field name="state" widget="badge" decoration-info="state == 'draft'" decoration-success="state == 'done'" decoration-warning="state == 'confirmed'" decoration-danger="state == 'cancel'"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -54,7 +54,7 @@
                     <notebook>
                         <page string="Devices" name="transfer_lines">
                             <field name="transfer_line_ids" readonly="state in ['done', 'cancel']">
-                                <tree string="Devices" editable="bottom" decoration-success="receive_state == 'received'" decoration-danger="receive_state == 'pending' and parent.state == 'ready'">
+                                <list string="Devices" editable="bottom" decoration-success="receive_state == 'received'" decoration-danger="receive_state == 'pending' and parent.state == 'ready'">
                                     <field name="sequence" widget="handle"/>
                                     <field name="repair_order_id" domain="[('branch_id', '=', parent.location_origin_id), ('state', 'not in', ['cancel'])]" options="{'no_create': True}"/>
                                     <field name="product_id" readonly="1"/>
@@ -65,7 +65,7 @@
                                     <field name="received_date" column_invisible="parent.state not in ['ready', 'done']"/>
                                     <field name="received_by" column_invisible="parent.state not in ['ready', 'done']"/>
                                     <button name="action_receive" string="Receive" type="object" icon="fa-check" invisible="(parent.state != 'ready' or receive_state == 'received')"/>
-                                </tree>
+                                </list>
                             </field>
                         </page>
                         <page string="Notas" name="notes">
@@ -73,11 +73,9 @@
                         </page>
                     </notebook>
                 </sheet>
-                <div class="oe_chatter">
-                    <field name="message_follower_ids"/>
-                    <field name="activity_ids"/>
-                    <field name="message_ids"/>
-                </div>
+                <!-- Desde Odoo 18 el chatter es una etiqueta propia: los tres
+                     campos sueltos dentro de un div dejaron de funcionar. -->
+                <chatter/>
             </form>
         </field>
     </record>
@@ -98,7 +96,7 @@
                 <filter string="Canceladas" name="cancel" domain="[('state', '=', 'cancel')]"/>
                 <separator/>
                 <filter string="Mine" name="my_transfers" domain="[('user_id', '=', uid)]"/>
-                <group expand="0" string="Group by">
+                <group>
                     <filter string="State" name="group_by_state" context="{'group_by': 'state'}"/>
                     <filter string="Origen" name="group_by_origin" context="{'group_by': 'location_origin_id'}"/>
                     <filter string="Destino" name="group_by_dest" context="{'group_by': 'location_dest_id'}"/>
@@ -213,7 +211,7 @@
     <record id="action_internal_transfer" model="ir.actions.act_window">
         <field name="name">Internal transfers</field>
         <field name="res_model">internal.transfer</field>
-        <field name="view_mode">tree,form,kanban</field>
+        <field name="view_mode">list,form,kanban</field>
         <field name="context">{'search_default_my_transfers': 1}</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">

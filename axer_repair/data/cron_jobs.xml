@@ -9,7 +9,6 @@
             <field name="code">model.cron_actualizar_dias_en_taller()</field>
             <field name="interval_number">1</field>
             <field name="interval_type">days</field>
-            <field name="numbercall">-1</field>
             <field name="active" eval="True"/>
         </record>
 
@@ -20,9 +19,7 @@
             <field name="code">model.cron_publish_pending_orders()</field>  <!-- Función a ejecutar -->
             <field name="interval_number">1</field>  <!-- Intervalo de tiempo (1 día) -->
             <field name="interval_type">days</field>  <!-- Tipo de intervalo (días) -->
-            <field name="numbercall">-1</field>  <!-- Ejecución infinita -->
             <field name="nextcall" eval="(DateTime.now() + relativedelta(hours=9, minutes=10)).strftime('%Y-%m-%d %H:%M:%S')"/>  <!-- Fecha y hora de la próxima ejecución -->
-            <field name="doall" eval="False"/>  <!-- No ejecutar las tareas omitidas -->
             <field name="active" eval="True"/>  <!-- Active por defecto -->
         </record>
     </data>

@@ -25,11 +25,11 @@
                         </div>
                         
                         <field name="selected_component_ids" nolabel="1">
-                            <tree>
+                            <list>
                                 <field name="sequence" invisible="1"/>
                                 <field name="name" string="Componente" readonly="1"/>
                                 <field name="category" string="Category" readonly="1"/>
-                            </tree>
+                            </list>
                         </field>
                         
                         <group>

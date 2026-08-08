@@ -16,11 +16,11 @@
                 </button>
             </div>
             
-            <!-- Añadir campo signup_token en una pestaña técnica -->
+            <!-- Token del portal, en una pestaña técnica -->
             <notebook position="inside">
                 <page string="Technician portal" groups="base.group_system">
                     <group>
-                        <field name="signup_token" readonly="1"/>
+                        <field name="axer_portal_token" readonly="1"/>
                     </group>
                 </page>
             </notebook>

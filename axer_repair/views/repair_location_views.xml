@@ -5,7 +5,7 @@
         <field name="name">repair.location.tree</field>
         <field name="model">repair.location</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name"/>
                 <field name="address"/>
                 <field name="phone"/>
@@ -16,7 +16,7 @@
                 <field name="printer_name"/>
                 <field name="receipt_printer_name"/>
 
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -51,7 +51,7 @@
     <record id="action_repair_location" model="ir.actions.act_window">
         <field name="name">Branches</field>
         <field name="res_model">repair.location</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <!-- Elemento de menú -->

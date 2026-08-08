@@ -191,7 +191,8 @@
         <field name="name">Workshop settings</field>
         <field name="res_model">res.config.settings</field>
         <field name="view_mode">form</field>
-        <field name="target">inline</field>
+        <!-- Odoo 19 dejó de admitir target='inline' -->
+        <field name="target">current</field>
         <field name="context">{'module': 'axer_repair'}</field>
     </record>
 

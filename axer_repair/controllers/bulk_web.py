@@ -21,7 +21,7 @@ class BulkRepairPortal(http.Controller):
         try:
             # Obtener el partner sin verificar token
             Partner = request.env['res.partner'].sudo().browse(partner_id)
-            if not Partner or Partner.signup_token != token:
+            if not Partner or Partner.axer_portal_token != token:
                 return request.render('axer_repair.bulk_repair_invalid_token', {})
             
             
@@ -205,8 +205,8 @@ class BulkRepairPortal(http.Controller):
             
             # Generar URL de retorno al listado bulk
             bulk_url = ''
-            if Repair.partner_id and Repair.partner_id.signup_token:
-                bulk_url = f"{request.httprequest.url_root.rstrip('/')}/repair/bulk/{Repair.partner_id.id}/{Repair.partner_id.signup_token}"
+            if Repair.partner_id and Repair.partner_id.axer_portal_token:
+                bulk_url = f"{request.httprequest.url_root.rstrip('/')}/repair/bulk/{Repair.partner_id.id}/{Repair.partner_id.axer_portal_token}"
 
             # Devolver la página web
             return request.render('axer_repair.repair_track_template', {

@@ -58,14 +58,14 @@
             <field name="product_qty" position="replace"/>
             <field name="product_uom" position="replace"/>
             <field name="picking_id" position="replace"/>
-            <field name="is_returned" position="replace"/>
+            <!-- 'is_returned' desapareció de la lista en Odoo 19 -->
             <field name="location_id" position="replace"/>
 
             <!-- Las que van fuera de plazo se ven de un vistazo -->
-            <tree position="attributes">
+            <list position="attributes">
                 <attribute name="decoration-danger">schedule_date and schedule_date &lt; now and state not in ('done', 'handover', 'cancel')</attribute>
                 <attribute name="decoration-muted">state == 'cancel'</attribute>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -132,7 +132,7 @@
                 <filter name="recibidas_mes" string="Received this month"
                         domain="[('create_date', '&gt;=', (context_today() + relativedelta(day=1)).strftime('%Y-%m-%d'))]"/>
 
-                <group expand="0" string="Group by">
+                <group>
                     <filter name="g_tecnico" string="Technician" context="{'group_by': 'user_id'}"/>
                     <filter name="g_estado" string="State" context="{'group_by': 'state'}"/>
                     <filter name="g_tipo" string="Device type" context="{'group_by': 'typerepair'}"/>

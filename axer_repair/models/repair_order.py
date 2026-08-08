@@ -13,7 +13,6 @@ from dateutil import parser
 
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError, UserError
-from odoo.osv import expression
 
 # La conexión con servicios externos (WhatsApp, firma, IA y el Odoo remoto)
 # se hace a través del modelo 'repair.integration', que lee sus credenciales
@@ -293,14 +292,15 @@ class ResPartner(models.Model):
     # a la numeración de un país concreto.
     _FORMATO_TELEFONO = re.compile(r'^\d{7,15}$')
 
-    @api.constrains('phone', 'mobile')
+    @api.constrains('phone')
     def _check_unique_phone_mobile(self):
         for record in self:
             # Solo se vigilan los clientes: en el resto de contactos de Odoo
             # el módulo no tiene por qué entrometerse.
             if not record.customer_rank:
                 continue
-            for campo, etiqueta in (('phone', _('phone')), ('mobile', _('mobile'))):
+            # Odoo 19 unificó teléfono y móvil en un solo campo
+            for campo, etiqueta in (('phone', _('phone')),):
                 valor = record[campo]
                 if not valor:
                     continue
@@ -320,19 +320,29 @@ class ResPartner(models.Model):
     # contactos. Desde Odoo 17 esto se declara así en lugar de reescribir
     # _name_search, cuya firma cambió.
     _rec_names_search = ['complete_name', 'email', 'ref', 'vat',
-                         'company_registry', 'phone', 'mobile']
+                         'company_registry', 'phone']
+
+    axer_portal_token = fields.Char(
+        string='Portal token', copy=False, readonly=True,
+        groups='base.group_system',
+        help='Identifica al cliente en su página de seguimiento. '
+             'Se genera solo la primera vez que se comparte el enlace.')
 
 
     def _generate_portal_token(self):
-        """Genera un token seguro para acceso al portal"""
+        """Devuelve el token con el que el cliente entra a su portal.
+
+        Antes se reutilizaba 'signup_token', un campo interno de auth_signup
+        pensado para invitar usuarios. Odoo 19 lo eliminó de res.partner —el
+        token pasó a generarse bajo demanda— así que el módulo lleva el suyo,
+        que además es lo que debió hacer desde el principio: el portal del
+        taller no tiene que depender del registro de usuarios de Odoo.
+        """
         self.ensure_one()
-        # Usamos el mismo método que usa Odoo internamente para generar signup_token
-        if not self.signup_token:
-            # Generamos un token nuevo
+        if not self.axer_portal_token:
             import uuid
-            token = uuid.uuid4().hex
-            self.signup_token = token
-        return self.signup_token
+            self.sudo().axer_portal_token = uuid.uuid4().hex
+        return self.axer_portal_token
     
     def get_portal_url(self):
         """Genera la URL para acceder al portal de reparaciones"""
