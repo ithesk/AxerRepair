@@ -446,19 +446,32 @@ class RepairP(models.Model):
                                    ('49', '49mm'),
                                     ], string='Strap size', default="40")
     
-    state = fields.Selection([
-        ('draft', 'Quotation'),
-        ('confirmed', 'Confirmed'),
-        ('ready', 'Ready to Repair'),
-        ('under_repair', 'Under Repair'),
-        ('2binvoiced', 'To be Invoiced'),
-        ('done', 'Repaired'),
-        ('test', 'Test'),
-        ('cancel', 'Cancelled'),
-        ('handover', 'Handed over'),
-        ('guarantee', 'Guarantee')],  string='Status',
-        copy=False, default='draft', readonly=True, tracking=True,
-        help="* The \'Draft\' status is used when a user is encoding a new and unconfirmed repair order.\n* The \'Confirmed\' status is used when a user confirms the repair order.\n* The \'Ready to Repair\' status is used to start to repairing, user can start repairing only after repair order is confirmed.\n* The \'Under Repair\' status is used when the repair is ongoing.\n* The \'To be Invoiced\' status is used to generate the invoice before or after repairing done.\n* The \'Done\' status is set when repairing is completed.\n* The \'Test\' status is used when the equipment is under test.\n* The \'Cancelled\' status is used when user cancel repair order.* The \'Handed over\' status is used when the equipment is delivered to the customer.\n* The \'Guarantee\' status is used when the equipment is under guarantee.\n")
+    # Se amplían los estados de Odoo en lugar de redefinirlos.
+    #
+    # Antes el módulo reemplazaba la lista entera de 'state', lo que hacía que
+    # Odoo avisara en cada arranque y que el módulo fuese incompatible con
+    # cualquier otro que también tocara este campo. Con 'selection_add' se
+    # heredan los cinco estados de Odoo (draft, confirmed, under_repair, done,
+    # cancel) y se añaden solo los tres propios del taller.
+    #
+    # El orden lo fija la posición relativa a los anclas existentes: 'test' se
+    # inserta antes de 'done'; 'handover' y 'guarantee', después. Así la barra
+    # de estado queda: Nuevo · Confirmado · En reparación · Probado · Reparado ·
+    # Entregado · En garantía.
+    state = fields.Selection(
+        selection_add=[
+            ('under_repair',),
+            ('test', 'Tested'),
+            ('done',),
+            ('handover', 'Handed over'),
+            ('guarantee', 'Guarantee'),
+        ],
+        ondelete={
+            'test': 'set default',
+            'handover': 'set default',
+            'guarantee': 'set default',
+        },
+        tracking=True)
     
     guarantee_limit = fields.Date('Warranty expiry')
     # En Odoo 17 'amount_total' desapareció de repair.order: la facturación
