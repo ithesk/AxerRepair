@@ -89,6 +89,7 @@ Todas las integraciones externas son opcionales y se configuran desde
             'axer_repair/static/src/js/mobiledate.js',
             'axer_repair/static/src/js/mobile.xml',
             'axer_repair/static/src/js/date.css',
+            'axer_repair/static/src/js/edit_properties_button.js',
         ],
     },
     # Portada del catálogo: la primera imagen de 'images' es la que

@@ -181,7 +181,13 @@
                     </group>
                 </group>
                 <!-- Campos que cada taller define en su sucursal. Solo se ven
-                     si esa sucursal tiene alguno configurado. -->
+                     si esa sucursal tiene alguno configurado. El botón activa el
+                     modo edición del widget (equivale al engranaje ⚙ → "Editar
+                     propiedades"), que de otro modo los operarios no encuentran. -->
+                <separator string="Branch-specific fields"/>
+                <div class="mb-2">
+                    <widget name="axer_edit_properties"/>
+                </div>
                 <field name="axer_properties" nolabel="1" columns="2"/>
             </page>
 

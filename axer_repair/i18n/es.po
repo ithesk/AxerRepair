@@ -5004,3 +5004,25 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:axer_repair.view_repair_end_wizard_form
 msgid "🔘 Controles y Audio"
 msgstr ""
+
+#. module: axer_repair
+#. odoo-javascript
+#: code:addons/axer_repair/static/src/js/edit_properties_button.js:0
+msgid "Add / edit intake fields"
+msgstr "Añadir / editar campos de recepción"
+
+#. module: axer_repair
+#. odoo-javascript
+#: code:addons/axer_repair/static/src/js/edit_properties_button.js:0
+msgid "Add or edit the extra intake fields defined for this branch"
+msgstr "Añadir o editar los campos de recepción definidos para esta sucursal"
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.repair_order_form_view_inherit
+msgid "Branch-specific fields"
+msgstr "Campos propios de la sucursal"
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.view_repair_location_form
+msgid "Additional intake fields"
+msgstr "Campos de recepción adicionales"

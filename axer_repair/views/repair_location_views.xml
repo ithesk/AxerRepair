@@ -45,10 +45,12 @@
                     <p class="text-muted">
                         This branch can record extra fields on every device it
                         takes in — for instance a checkbox, a dropdown or a date.
-                        You add them from any repair: open its
-                        <b>Device intake</b> tab and use <b>Add a Property</b> at
-                        the bottom. Once created they apply to every repair booked
-                        at this branch, with no need to change any code.
+                        To add them, open any repair booked at this branch, click
+                        the <b>gear icon (⚙)</b> next to the record name at the top
+                        and choose <b>Edit Properties</b>: an <b>Add a Property</b>
+                        button then appears at the bottom of the
+                        <b>Device intake</b> tab. Once created, the fields apply to
+                        every repair at this branch, with no need to change any code.
                     </p>
                 </sheet>
             </form>
