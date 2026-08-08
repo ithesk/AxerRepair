@@ -91,6 +91,9 @@ Todas las integraciones externas son opcionales y se configuran desde
             'axer_repair/static/src/js/date.css',
         ],
     },
+    # Portada del catálogo: la primera imagen de 'images' es la que
+    # se muestra como miniatura en el listado de aplicaciones.
+    'images': ['static/description/banner.png'],
     'installable': True,
     'application': False,
     'auto_install': False,
