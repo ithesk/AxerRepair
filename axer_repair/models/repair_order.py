@@ -216,6 +216,18 @@ class ResPartner(models.Model):
             return telefono
         pais = self.country_id or self.env.company.country_id
         prefijo = str(pais.phone_code or "")
+        # Norteamérica y el Caribe comparten el prefijo 1; Odoo guarda en esos
+        # países el prefijo con el código de área pegado (República Dominicana
+        # es 1849, Puerto Rico 1787). El código de área ya va en el número
+        # nacional de 10 dígitos, así que el prefijo real es solo el 1: de otro
+        # modo 809-555-0199 se convertía en 18498095550199.
+        if len(prefijo) == 4 and prefijo.startswith("1"):
+            prefijo = "1"
+            if len(limpio) == 11 and limpio.startswith("1"):
+                return limpio
+            if len(limpio) == 10:
+                return prefijo + limpio
+            return limpio
         if prefijo and not limpio.startswith(prefijo):
             limpio = prefijo + limpio
         return limpio

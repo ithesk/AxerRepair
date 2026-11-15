@@ -102,9 +102,11 @@ class PruebaCicloReparacion(ComunTaller):
         from datetime import timedelta
         from odoo import fields
 
+        # Una hora de margen: now() de la base lleva microsegundos y la hora de
+        # Odoo no, y sin margen la resta daba 11 días según el instante.
         abierta = self._crear_reparacion()
         self.env.cr.execute(
-            "UPDATE repair_order SET create_date = now() - interval '12 days' WHERE id = %s",
+            "UPDATE repair_order SET create_date = now() - interval '12 days 1 hour' WHERE id = %s",
             (abierta.id,))
         abierta.invalidate_recordset()
         self.env.add_to_compute(abierta._fields["days_elapsed"], abierta)
@@ -113,7 +115,7 @@ class PruebaCicloReparacion(ComunTaller):
 
         cerrada = self._crear_reparacion(imei="350000000000009")
         self.env.cr.execute(
-            "UPDATE repair_order SET create_date = now() - interval '30 days' WHERE id = %s",
+            "UPDATE repair_order SET create_date = now() - interval '30 days 1 hour' WHERE id = %s",
             (cerrada.id,))
         cerrada.invalidate_recordset()
         cerrada.write({"state": "handover",
@@ -133,3 +135,20 @@ class PruebaCicloReparacion(ComunTaller):
         """Sin pedido de venta, el importe es el presupuesto estimado."""
         reparacion = self._crear_reparacion(estimated_budget=4500)
         self.assertEqual(reparacion.amount_total, 4500)
+
+    def test_telefono_de_republica_dominicana(self):
+        """Odoo guarda 1849 como prefijo de RD; el número no debe llevarlo pegado."""
+        dominicana = self.env.ref("base.do")
+        casos = {
+            "809-555-0199": "18095550199",
+            "(829) 555 0199": "18295550199",
+            "8495550199": "18495550199",
+            "1 809 555 0199": "18095550199",
+            "+1 (809) 555-0199": "18095550199",
+        }
+        for i, (escrito, esperado) in enumerate(casos.items()):
+            contacto = self.env["res.partner"].create({
+                "name": "Dominicano %s" % i, "phone": escrito,
+                "country_id": dominicana.id})
+            self.assertEqual(contacto.phone, esperado, escrito)
+
