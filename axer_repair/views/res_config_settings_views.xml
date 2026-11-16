@@ -153,6 +153,36 @@
                         </setting>
                     </block>
 
+                    <block title="Working alongside sales" name="rw_convivencia">
+                        <setting id="rw_telefonos" string="Customer phone numbers"
+                                 help="Si el taller comparte los contactos con la caja o la tienda en línea, puede dejar los teléfonos como se escriben y que un número repetido solo avise. Los mensajes salen siempre con dígitos y prefijo de país.">
+                            <div class="content-group">
+                                <div class="row mt16">
+                                    <label for="rw_phone_storage" class="col-lg-5 o_light_label"/>
+                                    <field name="rw_phone_storage" required="1"/>
+                                </div>
+                                <div class="row">
+                                    <label for="rw_phone_unique" class="col-lg-5 o_light_label"/>
+                                    <field name="rw_phone_unique" required="1"/>
+                                </div>
+                            </div>
+                        </setting>
+                        <setting id="rw_numeracion" string="Own repair numbering"
+                                 help="Numera las reparaciones con una secuencia propia del taller (por ejemplo R000123) en lugar de la del almacén.">
+                            <field name="rw_own_numbering"/>
+                            <div class="content-group" invisible="not rw_own_numbering">
+                                <div class="mt8">
+                                    <button name="action_rw_open_sequence" type="object" string="Prefix and next number"
+                                            class="btn-link" icon="fa-arrow-right"/>
+                                </div>
+                            </div>
+                        </setting>
+                        <setting id="rw_equipos" string="Customer devices can also be sold"
+                                 help="Apagado, los modelos de equipo que se crean desde una reparación no aparecen en ventas, compras, la caja ni la tienda en línea, y van a la categoría «Equipos de clientes».">
+                            <field name="rw_devices_for_sale"/>
+                        </setting>
+                    </block>
+
                     <block title="External synchronisation" name="rw_sync">
                         <setting id="rw_xmlrpc" string="Another Odoo database"
                                  help="Replica productos y contactos en una segunda instancia mediante XML-RPC.">

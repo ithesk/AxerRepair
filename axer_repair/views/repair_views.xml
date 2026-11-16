@@ -76,6 +76,12 @@
             <field name="imei" readonly="state in ('handover', 'done', 'under_repair')" required="1"/>
         </field>
 
+        <!-- El modelo que se da de alta aquí es el equipo de un cliente, no
+             mercancía: la marca de contexto lo deja fuera de la venta. -->
+        <field name="product_id" position="attributes">
+            <attribute name="context">{'default_detailed_type': 'product', 'axer_repair_device': True}</attribute>
+        </field>
+
         <field name="product_id" position="after">
             <field name="typerepair" readonly="state in ('handover', 'done', 'under_repair')"/>
             <field name="bands" string="Strap" invisible="typerepair != 'smartwatch'"/>

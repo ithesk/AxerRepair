@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <!-- Numeración propia del taller; solo se usa si se activa en Ajustes -->
+    <record id="sequence_repair_own" model="ir.sequence">
+        <field name="name">Repairs (workshop numbering)</field>
+        <field name="code">axer.repair.order</field>
+        <field name="prefix">R</field>
+        <field name="padding">6</field>
+        <field name="company_id" eval="False"/>
+    </record>
+    <!-- Modelos de equipo que traen los clientes: no son mercancía en venta -->
+    <record id="product_category_customer_devices" model="product.category">
+        <field name="name">Customer devices</field>
+    </record>
+</odoo>

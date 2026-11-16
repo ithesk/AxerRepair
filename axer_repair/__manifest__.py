@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Axer Repair',
-    'version': '17.0.1.0.0',
+    'version': '17.0.1.1.0',
     'summary': 'Portal de cliente, avisos, firma digital y reparaciones masivas',
     'description': """
 Axer Repair — gestión de taller de reparación
@@ -47,6 +47,7 @@ Todas las integraciones externas son opcionales y se configuran desde
         'data/cron_jobs2.xml',
         'data/data_transf.xml',
         'data/data_repair.xml',
+        'data/data_convivencia.xml',
         'data/components.xml',
         # asistentes: definen acciones que las vistas referencian,
         # por eso se cargan antes que ellas

@@ -163,6 +163,49 @@ class ResConfigSettings(models.TransientModel):
     )
 
     # ------------------------------------------------------------------ #
+    # Convivencia con el resto de Odoo                                    #
+    # ------------------------------------------------------------------ #
+    # Un taller que además vende (caja, tienda en línea, facturación)
+    # comparte contactos y productos con esas aplicaciones. Estas opciones
+    # deciden cuánto se mete el módulo en ellos. Los valores de fábrica son
+    # el comportamiento de siempre.
+    rw_phone_storage = fields.Selection(
+        [("digits", "Digits only, with country code"), ("keep", "As typed")],
+        string="Phone storage",
+        config_parameter=PREFIJO + "phone_storage",
+        default="digits",
+        help="How the phone number is saved on contacts. Messages are always sent with digits and country code, whichever you choose.",
+    )
+    rw_phone_unique = fields.Selection(
+        [("block", "Do not allow it"), ("warn", "Warn only"), ("off", "Do not check")],
+        string="Two customers with the same phone",
+        config_parameter=PREFIJO + "phone_unique",
+        default="block",
+        help="What happens when a customer is saved with a phone number another customer already has.",
+    )
+    rw_own_numbering = fields.Boolean(
+        string="Own repair numbering",
+        config_parameter=PREFIJO + "own_numbering",
+        help="Numbers repairs with the workshop's own sequence instead of the warehouse operation sequence.",
+    )
+    rw_devices_for_sale = fields.Boolean(
+        string="Customer devices can also be sold",
+        config_parameter=PREFIJO + "devices_for_sale",
+        help="When off, device models created from a repair are kept out of sales, purchases, the point of sale and the online shop.",
+    )
+
+    def action_rw_open_sequence(self):
+        """Abre la secuencia propia para fijar prefijo y siguiente número."""
+        secuencia = self.env.ref("axer_repair.sequence_repair_own")
+        return {
+            "type": "ir.actions.act_window",
+            "res_model": "ir.sequence",
+            "res_id": secuencia.id,
+            "view_mode": "form",
+            "target": "new",
+        }
+
+    # ------------------------------------------------------------------ #
     # External access                                                  #
     # ------------------------------------------------------------------ #
     rw_api_key = fields.Char(
@@ -184,6 +227,8 @@ class ResConfigSettings(models.TransientModel):
         res["rw_ai_instruction"] = self.env["ir.config_parameter"].sudo().get_param(
             PREFIJO + "ai_instruction", ""
         )
+        res["rw_phone_storage"] = res.get("rw_phone_storage") or "digits"
+        res["rw_phone_unique"] = res.get("rw_phone_unique") or "block"
         return res
 
     def set_values(self):
