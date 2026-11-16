@@ -5026,3 +5026,111 @@ msgstr "Campos propios de la sucursal"
 #: model_terms:ir.ui.view,arch_db:axer_repair.view_repair_location_form
 msgid "Additional intake fields"
 msgstr "Campos de recepción adicionales"
+
+#. module: axer_repair
+#: model:ir.model.fields.selection,name:axer_repair.selection__res_config_settings__rw_phone_storage__keep
+msgid "As typed"
+msgstr "Como se escribe"
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_res_config_settings__rw_devices_for_sale
+#: model_terms:ir.ui.view,arch_db:axer_repair.res_config_settings_view_form
+msgid "Customer devices can also be sold"
+msgstr "Los equipos de clientes también se venden"
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.res_config_settings_view_form
+msgid "Customer phone numbers"
+msgstr "Teléfonos de los clientes"
+
+#. module: axer_repair
+#: model:ir.model.fields.selection,name:axer_repair.selection__res_config_settings__rw_phone_storage__digits
+msgid "Digits only, with country code"
+msgstr "Solo dígitos, con prefijo de país"
+
+#. module: axer_repair
+#: model:ir.model.fields.selection,name:axer_repair.selection__res_config_settings__rw_phone_unique__block
+msgid "Do not allow it"
+msgstr "No permitirlo"
+
+#. module: axer_repair
+#: model:ir.model.fields.selection,name:axer_repair.selection__res_config_settings__rw_phone_unique__off
+msgid "Do not check"
+msgstr "No comprobarlo"
+
+#. module: axer_repair
+#: model:ir.model.fields,help:axer_repair.field_res_config_settings__rw_phone_storage
+msgid ""
+"How the phone number is saved on contacts. Messages are always sent with "
+"digits and country code, whichever you choose."
+msgstr "Cómo se guarda el teléfono en los contactos. Los mensajes salen siempre con dígitos y prefijo de país, elija lo que elija."
+
+#. module: axer_repair
+#: model:ir.model.fields,help:axer_repair.field_res_config_settings__rw_own_numbering
+msgid ""
+"Numbers repairs with the workshop's own sequence instead of the warehouse "
+"operation sequence."
+msgstr "Numera las reparaciones con la secuencia propia del taller en lugar de la del tipo de operación del almacén."
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_res_config_settings__rw_own_numbering
+#: model_terms:ir.ui.view,arch_db:axer_repair.res_config_settings_view_form
+msgid "Own repair numbering"
+msgstr "Numeración propia de las reparaciones"
+
+#. module: axer_repair
+#. odoo-python
+#: code:addons/axer_repair/models/repair_order.py:0
+msgid "Phone number already in use"
+msgstr "Ese teléfono ya está en uso"
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_res_config_settings__rw_phone_storage
+msgid "Phone storage"
+msgstr "Cómo se guarda el teléfono"
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.res_config_settings_view_form
+msgid "Prefix and next number"
+msgstr "Prefijo y siguiente número"
+
+#. module: axer_repair
+#. odoo-python
+#: code:addons/axer_repair/models/repair_order.py:0
+msgid "The phone number must have between 7 and 15 digits."
+msgstr "El teléfono debe tener entre 7 y 15 dígitos."
+
+#. module: axer_repair
+#. odoo-python
+#: code:addons/axer_repair/models/repair_order.py:0
+msgid "This phone number already belongs to: %s"
+msgstr "Este teléfono ya es de: %s"
+
+#. module: axer_repair
+#: model:ir.model.fields,field_description:axer_repair.field_res_config_settings__rw_phone_unique
+msgid "Two customers with the same phone"
+msgstr "Dos clientes con el mismo teléfono"
+
+#. module: axer_repair
+#: model:ir.model.fields.selection,name:axer_repair.selection__res_config_settings__rw_phone_unique__warn
+msgid "Warn only"
+msgstr "Solo avisar"
+
+#. module: axer_repair
+#: model:ir.model.fields,help:axer_repair.field_res_config_settings__rw_phone_unique
+msgid ""
+"What happens when a customer is saved with a phone number another customer "
+"already has."
+msgstr "Qué ocurre al guardar un cliente con un teléfono que ya tiene otro cliente."
+
+#. module: axer_repair
+#: model:ir.model.fields,help:axer_repair.field_res_config_settings__rw_devices_for_sale
+msgid ""
+"When off, device models created from a repair are kept out of sales, "
+"purchases, the point of sale and the online shop."
+msgstr "Apagado, los modelos de equipo creados desde una reparación quedan fuera de ventas, compras, el punto de venta y la tienda en línea."
+
+#. module: axer_repair
+#: model_terms:ir.ui.view,arch_db:axer_repair.res_config_settings_view_form
+msgid "Working alongside sales"
+msgstr "Convivencia con ventas"

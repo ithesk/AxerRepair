@@ -152,3 +152,60 @@ class PruebaCicloReparacion(ComunTaller):
                 "country_id": dominicana.id})
             self.assertEqual(contacto.phone, esperado, escrito)
 
+    # ------------------------------------------------------------------
+    # Convivencia con ventas: opciones de Ajustes
+    # ------------------------------------------------------------------
+    def test_telefono_tal_como_se_escribe(self):
+        """Con «como se escribe» el contacto no se toca, pero el envío sale limpio."""
+        self._ajustar("phone_storage", "keep")
+        contacto = self.env["res.partner"].create({
+            "name": "Cliente de la caja", "phone": "809-555-0142",
+            "country_id": self.env.ref("base.do").id, "customer_rank": 1})
+        self.assertEqual(contacto.phone, "809-555-0142")
+        self.assertEqual(contacto._rw_telefono_whatsapp(), "18095550142")
+
+    def test_telefono_repetido_se_reconoce_con_otro_formato(self):
+        """El mismo número escrito de otra forma sigue siendo el mismo número."""
+        self._ajustar("phone_storage", "keep")
+        self.env["res.partner"].create({
+            "name": "Primero", "phone": "809-555-0143", "customer_rank": 1})
+        with self.assertRaises(ValidationError):
+            self.env["res.partner"].create({
+                "name": "Segundo", "phone": "(809) 555 0143", "customer_rank": 1})
+
+    def test_telefono_repetido_permitido_si_se_desactiva(self):
+        for modo in ("warn", "off"):
+            self._ajustar("phone_unique", modo)
+            numero = "80955501%s" % (44 if modo == "warn" else 45)
+            uno = self.env["res.partner"].create({
+                "name": "Uno %s" % modo, "phone": numero, "customer_rank": 1})
+            dos = self.env["res.partner"].create({
+                "name": "Dos %s" % modo, "phone": numero, "customer_rank": 1})
+            self.assertTrue(uno.id and dos.id)
+            aviso = dos._onchange_rw_telefono_repetido()
+            self.assertEqual(bool(aviso), modo == "warn")
+
+    def test_numeracion_propia(self):
+        normal = self._crear_reparacion()
+        self.assertFalse(normal.name.startswith("R0"))
+        self._ajustar("own_numbering", "True")
+        primera = self._crear_reparacion(imei="350000000000017")
+        segunda = self._crear_reparacion(imei="350000000000018")
+        self.assertRegex(primera.name, r"^R\d{6}$")
+        self.assertEqual(int(segunda.name[1:]), int(primera.name[1:]) + 1)
+
+    def test_equipo_de_cliente_fuera_de_la_venta(self):
+        Producto = self.env["product.product"].with_context(axer_repair_device=True)
+        equipo = Producto.create({"name": "Equipo de un cliente", "type": "consu"})
+        self.assertFalse(equipo.sale_ok)
+        self.assertFalse(equipo.purchase_ok)
+        self.assertEqual(equipo.categ_id,
+                         self.env.ref("axer_repair.product_category_customer_devices"))
+        # Un producto normal no cambia
+        normal = self.env["product.product"].create({"name": "Mercancía", "type": "consu"})
+        self.assertTrue(normal.sale_ok)
+        # Y el taller que vende esos modelos puede desactivarlo
+        self._ajustar("devices_for_sale", "True")
+        vendible = Producto.create({"name": "Equipo que también se vende", "type": "consu"})
+        self.assertTrue(vendible.sale_ok)
+

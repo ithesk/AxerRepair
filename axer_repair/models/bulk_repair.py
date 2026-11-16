@@ -112,7 +112,7 @@ class BulkRepairWizard(models.TransientModel):
                                             _logger.info(f"Fabricante creado: {manufacturer.name}")
                                     
                                     # Crear el producto
-                                    product = self.env['product.product'].create({
+                                    product = self.env['product.product'].with_context(axer_repair_device=True).create({
                                         'name': product_description,
                                         'type': 'product',
                                         'categ_id': self.env.ref('product.product_category_all').id,
@@ -279,7 +279,7 @@ class BulkRepairWizard(models.TransientModel):
             repair_info += f"• {product_name}: {description}\n"
         
         # Preparar el mensaje de WhatsApp
-        phone_number = self.partner_id.phone.replace(" ","").replace("-", "").replace("+", "")
+        phone_number = self.partner_id._rw_telefono_whatsapp()
         company_name = self.env.company.name
         
         message = f"""Hola {self.partner_id.name},
@@ -378,7 +378,7 @@ class BulkRepairWizard(models.TransientModel):
                                             })
                                     
                                     # Crear el producto
-                                    product = self.env['product.product'].create({
+                                    product = self.env['product.product'].with_context(axer_repair_device=True).create({
                                         'name': product_description,
                                         'type': 'product',
                                         'categ_id': self.env.ref('product.product_category_all').id,

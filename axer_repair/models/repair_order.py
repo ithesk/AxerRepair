@@ -93,6 +93,32 @@ class ProductTemplate(models.Model):
     )
 
 
+    @api.model_create_multi
+    def create(self, vals_list):
+        """Los modelos de equipo creados desde una reparación no son mercancía.
+
+        El teléfono de un cliente no se vende ni se compra: sin esto, cada
+        modelo dado de alta en recepción aparecía en la caja, en la tienda en
+        línea y en los pedidos. Se puede desactivar en Ajustes para el taller
+        que también vende esos mismos modelos.
+        """
+        if self.env.context.get('axer_repair_device') and not self._rw_equipos_en_venta():
+            categoria = self.env.ref('axer_repair.product_category_customer_devices', raise_if_not_found=False)
+            for vals in vals_list:
+                vals['sale_ok'] = False
+                vals['purchase_ok'] = False
+                for campo in ('available_in_pos', 'is_published'):
+                    if campo in self._fields:
+                        vals[campo] = False
+                if categoria:
+                    vals['categ_id'] = categoria.id
+        return super().create(vals_list)
+
+    @api.model
+    def _rw_equipos_en_venta(self):
+        return self.env['repair.integration']._param('devices_for_sale', 'False') in ('True', 'true', '1')
+
+
 class ProductManufacturer(models.Model):
     _name = 'product.manufacturer'
     _description = 'Product manufacturer'
@@ -134,7 +160,7 @@ class ResPartner(models.Model):
         portal_url = self.get_portal_url()
         
         # Preparar el mensaje de WhatsApp
-        phone_number = self.phone.replace(" ","").replace("-", "").replace("+", "")
+        phone_number = self._rw_telefono_whatsapp()
         company_name = self.env.company.name
         message = f"""Hola {self.name},
         
@@ -232,16 +258,29 @@ class ResPartner(models.Model):
             limpio = prefijo + limpio
         return limpio
 
+    @api.model
+    def _rw_guardar_solo_digitos(self):
+        """Si el teléfono se guarda reescrito (de fábrica) o como se escribe."""
+        return self.env['repair.integration']._param('phone_storage', 'digits') != 'keep'
+
+    def _rw_telefono_whatsapp(self):
+        """El teléfono listo para la pasarela, se guarde como se guarde."""
+        if len(self) != 1:
+            return ''
+        return self._rw_formato_telefono(self.phone) or ''
+
     @api.model_create_multi
     def create(self, vals_list):
-        for vals in vals_list:
-            if vals.get('phone'):
-                vals['phone'] = self._rw_formato_telefono(vals['phone'])
+        if self._rw_guardar_solo_digitos():
+            for vals in vals_list:
+                if vals.get('phone'):
+                    pais = self.env['res.country'].browse(vals.get('country_id') or 0)
+                    vals['phone'] = self.new({'country_id': pais.id})._rw_formato_telefono(vals['phone'])
         return super().create(vals_list)
 
     def write(self, vals):
-        if vals.get('phone'):
-            vals['phone'] = self._rw_formato_telefono(vals['phone'])
+        if vals.get('phone') and self._rw_guardar_solo_digitos():
+            vals['phone'] = self[:1]._rw_formato_telefono(vals['phone'])
         return super().write(vals)
 
     #####fin de la funcion de grabar el telefono en la base de datos####
@@ -309,29 +348,59 @@ class ResPartner(models.Model):
     # a la numeración de un país concreto.
     _FORMATO_TELEFONO = re.compile(r'^\d{7,15}$')
 
+    def _rw_otros_clientes_con_telefono(self):
+        """Clientes distintos de este con el mismo número, se escriba como se escriba.
+
+        Compara los últimos diez dígitos: 809-555-0199, (809) 555 0199 y
+        18095550199 son el mismo teléfono.
+        """
+        self.ensure_one()
+        digitos = re.sub(r'\D', '', self.phone or '')
+        if len(digitos) < 7:
+            return self.browse()
+        clave = digitos[-10:]
+        self.env['res.partner'].flush_model(['phone', 'customer_rank', 'active'])
+        self.env.cr.execute("""
+            SELECT id FROM res_partner
+             WHERE customer_rank > 0 AND active AND id != %s AND phone IS NOT NULL
+               AND right(regexp_replace(phone, '\\D', '', 'g'), %s) = %s
+        """, (self._origin.id or self.id or 0, len(clave), clave))
+        return self.browse([fila[0] for fila in self.env.cr.fetchall()])
+
     @api.constrains('phone')
     def _check_unique_phone_mobile(self):
+        integracion = self.env['repair.integration']
+        solo_digitos = self._rw_guardar_solo_digitos()
+        repetidos = integracion._param('phone_unique', 'block')
         for record in self:
             # Solo se vigilan los clientes: en el resto de contactos de Odoo
             # el módulo no tiene por qué entrometerse.
-            if not record.customer_rank:
+            if not record.customer_rank or not record.phone:
                 continue
-            # Odoo 19 unificó teléfono y móvil en un solo campo
-            for campo, etiqueta in (('phone', _('phone')),):
-                valor = record[campo]
-                if not valor:
-                    continue
-                if not self._FORMATO_TELEFONO.match(valor):
+            valor = record.phone if solo_digitos else re.sub(r'\D', '', record.phone)
+            if not self._FORMATO_TELEFONO.match(valor):
+                if solo_digitos:
                     raise ValidationError(
                         _('El número de %s sólo puede contener dígitos, entre 7 y 15, '
-                          'sin espacios ni símbolos (ej: 18092742666).') % etiqueta
+                          'sin espacios ni símbolos (ej: 18092742666).') % _('phone')
                     )
-                if self.search_count([(campo, '=', valor),
-                                      ('id', '!=', record.id),
-                                      ('customer_rank', '>', 0)]):
-                    raise ValidationError(
-                        _('Another customer already has that %s.') % etiqueta
-                    )
+                raise ValidationError(_('The phone number must have between 7 and 15 digits.'))
+            if repetidos == 'block' and record._rw_otros_clientes_con_telefono():
+                raise ValidationError(
+                    _('Another customer already has that %s.') % _('phone')
+                )
+
+    @api.onchange('phone')
+    def _onchange_rw_telefono_repetido(self):
+        """Con «solo avisar», dice quién tiene ya ese número sin impedir guardar."""
+        if not self.phone or self.env['repair.integration']._param('phone_unique', 'block') != 'warn':
+            return
+        otros = self._rw_otros_clientes_con_telefono()
+        if otros:
+            return {'warning': {
+                'title': _('Phone number already in use'),
+                'message': _('This phone number already belongs to: %s') % ', '.join(otros[:5].mapped('display_name')),
+            }}
 
     # Permite localizar al cliente escribiendo su phone en el buscador de
     # contactos. Desde Odoo 17 esto se declara así en lugar de reescribir
@@ -584,7 +653,7 @@ class RepairP(models.Model):
         tracking_url = self.get_portal_url()
         
         # Preparar el mensaje de WhatsApp
-        phone_number = self.partner_id.phone.replace(" ","").replace("-", "").replace("+", "")
+        phone_number = self.partner_id._rw_telefono_whatsapp()
         product_name = self.product_id.name or "tu equipo"
         
         message = f"""Hola {self.partner_id.name},
@@ -756,7 +825,7 @@ class RepairP(models.Model):
 
                     if not product:
                         # Si no existe, creamos el producto y asignamos el fabricante y el código del modelo
-                        product = self.env['product.product'].create({
+                        product = self.env['product.product'].with_context(axer_repair_device=True).create({
                             'name': product_description,
                             'type': 'product',
                             'categ_id': self.env.ref('product.product_category_all').id,
@@ -936,7 +1005,12 @@ class RepairP(models.Model):
 
     @api.model_create_multi
     def create(self, vals_list):
-        """Genera el token de acceso al portal de cada nueva reparación."""
+        """Numera con la secuencia del taller, si está activada, y genera el
+        token de acceso al portal de cada nueva reparación."""
+        if self.env['repair.integration']._param('own_numbering', 'False') in ('True', 'true', '1'):
+            for vals in vals_list:
+                if not vals.get('name') or vals['name'] in ('New', _('New')):
+                    vals['name'] = self.env['ir.sequence'].next_by_code('axer.repair.order') or vals.get('name')
         registros = super().create(vals_list)
         for registro in registros:
             registro.get_access_token()
@@ -1528,7 +1602,7 @@ class RepairP(models.Model):
 
 
         data = {
-                "phone": new_user.phone,
+                "phone": new_user.partner_id._rw_telefono_whatsapp(),
                 "message": f"""¡Otro desafío superado! La reparación {entradano} ha sido finalizada. 
                            en un tiempo: *{elapsed_time_str}* ¿Listo para el próximo?""",
                 "mediaUrl": ""
@@ -1578,7 +1652,7 @@ class RepairP(models.Model):
     # Enviar mensaje al responsable principal por nuevo trabajo
         if new_user.phone:
             data = {
-            "phone": new_user.phone,
+            "phone": new_user.partner_id._rw_telefono_whatsapp(),
             "message": message_responsable_nuevo_trabajo,
             "mediaUrl": ""
            }
@@ -1589,7 +1663,7 @@ class RepairP(models.Model):
            for collaborator in collaborators:
                if collaborator.phone:
                   data = {
-                    "phone": collaborator.phone,
+                    "phone": collaborator.partner_id._rw_telefono_whatsapp(),
                     "message": message_colaborador,
                     "mediaUrl": ""
                    }
@@ -1598,7 +1672,7 @@ class RepairP(models.Model):
         # Enviar mensaje adicional al responsable informando sobre los colaboradores asignados
            if new_user.phone:
               data = {
-                "phone": new_user.phone,
+                "phone": new_user.partner_id._rw_telefono_whatsapp(),
                 "message": message_responsable_con_colaborador,
                 "mediaUrl": ""
              }
@@ -1636,7 +1710,7 @@ class RepairP(models.Model):
         if self.name != 'New' and self.whatsapp_sent == True:
          if self.state == self.last_whatsapp_state:
             url = self.env['repair.integration']._param('whatsapp_url')
-            phone_number = self.partner1_phone.replace(" ","").replace("-", "").replace("+", "")
+            phone_number = self.partner_id._rw_telefono_whatsapp()
             equipo = self.product_id.name
             falla = self.description
             nombre = self.partner_id.name
@@ -1696,7 +1770,7 @@ class RepairP(models.Model):
        if self.state == 'done' or self.state == 'cancel':
            #time.sleep(1 * 60)
            url = self.env['repair.integration']._param('whatsapp_url')
-           phone_number = self.partner1_phone.replace("-", "").replace("+", "")
+           phone_number = self.partner_id._rw_telefono_whatsapp()
            nombre = self.partner_id.name
            taller = self._datos_taller(self.company_id)
            message = f"""Hey, {nombre}
@@ -1822,7 +1896,7 @@ class RepairP(models.Model):
     ###confirma la firma del documento y envia un mensaje###
     def whatsapp_confirm(self):
         url = self.env['repair.integration']._param('whatsapp_url')
-        phone_number = self.partner1_phone.replace(" ","").replace("-", "").replace("+", "")
+        phone_number = self.partner_id._rw_telefono_whatsapp()
         equipo = self.product_id.name
         falla = self.description
         nombre = self.partner_id.name
@@ -1919,7 +1993,7 @@ class RepairP(models.Model):
         if self.state != 'draft' :
             taller = self._datos_taller(self.company_id)
             url = self.env['repair.integration']._param('whatsapp_url')
-            phone_number = self.partner1_phone.replace(" ","").replace("-", "").replace("+", "")
+            phone_number = self.partner_id._rw_telefono_whatsapp()
             equipo = self.product_id.name
             falla = self.description
             nombre = self.partner_id.name
@@ -2082,7 +2156,7 @@ class RepairP(models.Model):
         try:
             # Solo tratar de usar replace si es una cadena
             if isinstance(self.partner1_phone, str):
-                phone_number = self.partner1_phone.replace(" ","").replace("-", "").replace("+", "")
+                phone_number = self.partner_id._rw_telefono_whatsapp()
             else:
                 # Si no es una cadena, convertirlo o usar una cadena vacía
                 phone_number = str(self.partner1_phone) if self.partner1_phone else ""
