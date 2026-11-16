@@ -32,9 +32,7 @@ class InternalTransfer(models.Model):
     # Campos para impresión
     barcode = fields.Char('Barcode', compute='_compute_barcode', store=True)
     
-    _sql_constraints = [
-        ('name_uniq', 'unique(name)', 'La referencia de transferencia debe ser única!')
-    ]
+    _name_uniq = models.Constraint('unique(name)', 'La referencia de transferencia debe ser única!')
     
     @api.depends('name')
     def _compute_barcode(self):

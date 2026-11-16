@@ -17,6 +17,4 @@ class RepairIssueTag(models.Model):
         help='Boolean field on repair.order to tick when this issue is selected'
     )
     
-    _sql_constraints = [
-        ('code_uniq', 'unique (code)', 'The code must be unique.'),
-    ]
+    _code_uniq = models.Constraint('unique (code)', 'The code must be unique.')

@@ -17,9 +17,7 @@ class RepairComponent(models.Model):
         ('other', 'Otro')
     ], string='Category', default='hardware')
     
-    _sql_constraints = [
-        ('code_unique', 'UNIQUE(code)', 'The component code must be unique.')
-    ]
+    _code_unique = models.Constraint('UNIQUE(code)', 'The component code must be unique.')
 
 class RepairOrderComponentLine(models.Model):
     _name = 'repair.order.component.line'
